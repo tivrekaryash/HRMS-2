@@ -39,6 +39,47 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+            <a href="candidate_details.php" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Candidate Details
+                <span class="badge badge-danger right">0</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="emp_details.php" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Employee Details
+                <span class="badge badge-info right">0</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-building"></i>
+              <p>
+                Company Structure
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Departments</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Designations</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
         </ul>
     </nav>

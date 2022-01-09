@@ -9,7 +9,7 @@ include 'db_conn.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HRMS | Dashboard</title>
+    <title>HRMS | Candidate</title>
 
     <!-- style-sheet links -->
     <?php include 'style_links.php'; ?>
@@ -65,7 +65,6 @@ include 'db_conn.php';
                             <i class="fas fa-user-plus"></i> Add New
 
                         </button>
-                        <br><br>
 
                         <h2>Candidate Details Table:</h2>
                     </div>
@@ -134,7 +133,7 @@ include 'db_conn.php';
 
 
     <!-- Modal -->
-    <div class="modal fade" id="modal_insert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modal_insert" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -202,7 +201,7 @@ include 'db_conn.php';
 
                             <div class="form-group">
                                 <label for="phnum" class="form-label">Phone number: (+91) </label>
-                                <input type="number_format" class="form-control" id="phnum" name="phnumber" minlength="10" required>
+                                <input type="number_format" class="form-control" id="phnum" name="phnumber" minlength="10" maxlength="10" required>
                             </div>
                             <br>
 
@@ -233,7 +232,7 @@ include 'db_conn.php';
     </div>
 
     <!-- Modal NOTE; DID NOT INCLUDED PHP WORK-->
-    <div class="modal fade" id="modal_update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modal_update" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -301,7 +300,7 @@ include 'db_conn.php';
 
                             <div class="form-group">
                                 <label for="phnum" class="form-label">Phone number: (+91) </label>
-                                <input type="number_format" class="form-control" id="phnum" name="phnumber" minlength="10" required>
+                                <input type="number_format" class="form-control" id="phnum" name="phnumber" minlength="10" maxlength="10" required>
                             </div>
                             <br>
 
