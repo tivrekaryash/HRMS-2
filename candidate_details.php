@@ -15,6 +15,8 @@ include 'db_conn.php';
     <?php include 'style_links.php'; ?>
     <!-- /.style-sheet links -->
 
+    
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -83,7 +85,7 @@ include 'db_conn.php';
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr><td>" . $row["candidate_id"] . "</td><td>" . $row["candidate_fullname"] . "</td><td>" . $row["candidate_dob"] . "</td><td>" . $row["candidate_age"] . "</td><td>" . $row["candidate_gender"] . "</td><td>" . $row["candidate_address"] . "</td><td>" . $row["phnum"] . "</td><td>" . $row["candidate_email"] . "</td>";
                     ?>
-                            <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update">Update</button></td>
+                            <td><button id="can_upd" type="submit" class="btn btn-warning" data-cid="<?php echo $row["candidate_id"]; ?>" data-toggle="modal" data-target="#modal_update">Update</button></td>
                             <td><a href="candidate_delete.php?del=<?php echo $row["candidate_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
                             <?php
                             // different button styles based on whether candidate was already accepted or not
@@ -248,14 +250,14 @@ include 'db_conn.php';
 
                             <div class="form-group">
                                 <label for="fullname" class="form-label">Full Name: </label>
-                                <input type="text" class="form-control" id="fname" name="fullname" required>
+                                <input type="text" class="form-control" id="fname_upd" name="fullname" required>
                             </div>
                             <br>
 
                             <div class="form-inline">
                                 <label for="dob" class="form-label">Date of Birth: </label>
                                 <div class="col-sm-2">
-                                    <input type="date" class="form-control" id="dob" name="dateofbirth" required>
+                                    <input type="date" class="form-control" id="dob_upd" name="dateofbirth" required>
                                 </div>
                             </div>
                             <br>
@@ -263,7 +265,7 @@ include 'db_conn.php';
                             <div class="form-inline">
                                 <label for="age" class="form-label">Age: </label>
                                 <div class="col-sm-2">
-                                    <input type="number" class="form-control" id="age" name="age" required>
+                                    <input type="number" class="form-control" id="age_upd" name="age" required>
                                 </div>
                             </div>
                             <br>
@@ -271,15 +273,15 @@ include 'db_conn.php';
                             <div class="form-check">
                                 <label for="gender" class="form-label">Gender: </label>
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="gender" name="gender" value="Male" checked>Male
+                                    <input type="radio" class="form-check-input" id="gender_upd" name="gender" value="Male" checked>Male
                                     <label class="form-check-label" for="radio1"></label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="gender" name="gender" value="Female">Female
+                                    <input type="radio" class="form-check-input" id="gender_upd" name="gender" value="Female">Female
                                     <label class="form-check-label" for="radio1"></label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="gender" name="gender" value="Others">Others
+                                    <input type="radio" class="form-check-input" id="gender_upd" name="gender" value="Others">Others
                                     <label class="form-check-label" for="radio1"></label>
                                 </div>
                             </div>
@@ -287,34 +289,34 @@ include 'db_conn.php';
 
                             <div class="form-group">
                                 <label for="address" class="form-label">Address: </label>
-                                <textarea type="text" class="form-control" rows="5" cols="33" id="address" name="address" required></textarea>
+                                <textarea type="text" class="form-control" rows="5" cols="33" id="address_upd" name="address" required></textarea>
                             </div>
                             <br>
 
                             <div class="form-group">
                                 <label for="email" class="form-label">Email address: </label>
-                                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+                                <input type="email" class="form-control" id="email_upd" name="email" aria-describedby="emailHelp" required>
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <br>
 
                             <div class="form-group">
                                 <label for="phnum" class="form-label">Phone number: (+91) </label>
-                                <input type="number_format" class="form-control" id="phnum" name="phnumber" minlength="10" maxlength="10" required>
+                                <input type="number_format" class="form-control" id="phnum_upd" name="phnumber" minlength="10" maxlength="10" required>
                             </div>
                             <br>
 
                             <div class="form-inline">
                                 <label for="workexp" class="form-label">Total work experience (in years): </label>
                                 <div class="col-sm-2">
-                                    <input type="number" class="form-control" id="workexp" name="workexperience" required>
+                                    <input type="number" class="form-control" id="workexp_upd" name="workexperience" required>
                                 </div>
                             </div>
                             <br>
 
                             <div class="form-group">
                                 <label for="qualif" class="form-label">Qualifications: </label>
-                                <input type="text" class="form-control" id="qualif" name="qualifications" required>
+                                <input type="text" class="form-control" id="qualif_upd" name="qualifications" required>
                             </div>
                             <br>
 
@@ -333,6 +335,37 @@ include 'db_conn.php';
     <!-- scripts -->
     <?php include 'scripts.php'; ?>
     <!-- /.scripts -->
+    <script>
+        $(document).ready(function()
+        {
+
+            $("#can_upd").click(function()
+            {
+
+                var v = $("#can_upd").data("cid");
+                alert(v);
+
+                <?php
+                $sql = $conn->query("select * from candidate_information where candidate_id = " . $v);
+                $row = $sql->fetch_assoc();
+
+                $sql = $conn->query("select * from candidate_qualifications where candidate_id = " . $v);
+                $qualif = $sql->fetch_assoc();
+                ?>
+
+                $("#fname_upd").val("<?php echo $row["candidate_fullname"]; ?>");
+                $("#dob_upd").val("<?php echo $row["candidate_dob"]; ?>");
+                $("#age_upd").val("<?php echo $row["candidate_age"]; ?>");
+                $("#gender_upd").val("<?php echo $row["candidate_gender"]; ?>");
+                $("#address_upd").val("<?php echo $row["candidate_address"]; ?>");
+                $("#email_upd").val("<?php echo $row["candidate_email"]; ?>");
+                $("#phnum_upd").val("<?php echo $row["phnum"]; ?>");
+                $("#workexp_upd").val("<?php echo $row["experience_in_years"]; ?>");
+                $("#qualif_upd").val("<?php echo $qualif["qualifications_file_location"]; ?>");
+            });
+
+        });
+    </script>
 </body>
 
 </html>
