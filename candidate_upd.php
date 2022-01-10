@@ -1,98 +1,136 @@
+<script>
+    // function to perform validations
+    function checkForm() {
+        var fname = document.forms["candidate_upd"]["fname_upd"].value;
+        var age = document.forms["candidate_upd"]["age_upd"].value;
+        var email = document.forms["candidate_upd"]["email_upd"].value;
+        var phnum = document.forms["candidate_upd"]["phnum_upd"].value;
+
+        // checking for digits in full name
+        if (!(/[A-Za-z ]*/.test(fname))) {
+            window.alert("Full name is invalid");
+            return false;
+        }
+
+        // checking for age, valid age is 18 to 60
+        if (!(/^\d{2}$/.test(age)) || age > 60 || age < 18) {
+            window.alert("age is invalid");
+            return false;
+        }
+
+        // checking validity of email
+        if (!(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/.test(email))) {
+            window.alert("email is invalid");
+            return false;
+        }
+
+        // checking for telephone or mobile phone number
+        if (!(/^\d{8,10}$/.test(phnum))) {
+            window.alert("phone number is invalid");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
 <!-- modal update -->
 <div class="modal fade" id="modal_update<?php echo $row["candidate_id"]; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Candidate Update form: </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container p-5 my-2 border">
-                        <h2>Update your details here:</h2><br>
-                        <form name="candidate_info" action="candidate_insert.php" method="POST">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Candidate Update form: </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container p-5 my-2 border">
+                    <h2>Update your details here:</h2><br>
+                    <form name="candidate_upd" onsubmit="return checkForm()" action="candidate_upd_query.php" method="POST">
 
-                            <div class="form-group">
-                                <label for="fullname" class="form-label">Full Name: </label>
-                                <input type="text" class="form-control" id="fname_upd" name="fullname" value = "<?php echo $row["candidate_fullname"]; ?>" required>
+                        <div class="form-group">
+                            <label for="fname_upd" class="form-label">Full Name: </label>
+                            <input type="text" class="form-control" id="fname_upd" name="fname_upd" value="<?php echo $row["candidate_fullname"]; ?>" required>
+                        </div>
+                        <br>
+
+                        <div class="form-inline">
+                            <label for="dob_upd" class="form-label">Date of Birth: </label>
+                            <div class="col-sm-2">
+                                <input type="date" class="form-control" id="dob_upd" name="dob_upd" value="<?php echo $row["candidate_dob"]; ?>" required>
                             </div>
-                            <br>
+                        </div>
+                        <br>
 
-                            <div class="form-inline">
-                                <label for="dob" class="form-label">Date of Birth: </label>
-                                <div class="col-sm-2">
-                                    <input type="date" class="form-control" id="dob_upd" name="dateofbirth" value = "<?php echo $row["candidate_dob"]; ?>" required>
-                                </div>
+                        <div class="form-inline">
+                            <label for="age_upd" class="form-label">Age: </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="age_upd" name="age_upd" value="<?php echo $row["candidate_age"]; ?>" required>
                             </div>
-                            <br>
+                        </div>
+                        <br>
 
-                            <div class="form-inline">
-                                <label for="age" class="form-label">Age: </label>
-                                <div class="col-sm-2">
-                                    <input type="number" class="form-control" id="age_upd" name="age" value = "<?php echo $row["candidate_age"]; ?>" required>
-                                </div>
-                            </div>
-                            <br>
-
+                        <div class="form-check">
+                            <label for="gender_upd" class="form-label">Gender: </label>
                             <div class="form-check">
-                                <label for="gender" class="form-label">Gender: </label>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="gender_upd" name="gender" <?php if ($row["candidate_gender"]=="Male") echo "checked";?> value="Male">Male
-                                    <label class="form-check-label" for="radio1"></label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="gender_upd" name="gender" <?php if ($row["candidate_gender"]=="Female") echo "checked";?> value="Female">Female
-                                    <label class="form-check-label" for="radio1"></label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="gender_upd" name="gender" <?php if ($row["candidate_gender"]=="Others") echo "checked";?> value="Others">Others
-                                    <label class="form-check-label" for="radio1"></label>
-                                </div>
+                                <input type="radio" class="form-check-input" id="gender_upd" name="gender_upd" <?php if ($row["candidate_gender"] == "Male") echo "checked"; ?> value="Male">Male
+                                <label class="form-check-label" for="radio1"></label>
                             </div>
-                            <br>
-
-                            <div class="form-group">
-                                <label for="address" class="form-label">Address: </label>
-                                <textarea type="text" class="form-control" rows="5" cols="33" id="address_upd" name="address" required><?php echo $row["candidate_address"]; ?></textarea>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="gender_upd" name="gender_upd" <?php if ($row["candidate_gender"] == "Female") echo "checked"; ?> value="Female">Female
+                                <label class="form-check-label" for="radio1"></label>
                             </div>
-                            <br>
-
-                            <div class="form-group">
-                                <label for="phnum" class="form-label">Phone number: (+91) </label>
-                                <input type="number_format" class="form-control" id="phnum_upd" name="phnumber" minlength="10" maxlength="10" value = "<?php echo $row["phnum"]; ?>" required>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="gender_upd" name="gender_upd" <?php if ($row["candidate_gender"] == "Others") echo "checked"; ?> value="Others">Others
+                                <label class="form-check-label" for="radio1"></label>
                             </div>
-                            <br>
+                        </div>
+                        <br>
 
-                            <div class="form-group">
-                                <label for="email" class="form-label">Email address: </label>
-                                <input type="email" class="form-control" id="email_upd" name="email" aria-describedby="emailHelp" value = "<?php echo $row["candidate_email"]; ?>" required>
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <div class="form-group">
+                            <label for="address_upd" class="form-label">Address: </label>
+                            <textarea type="text" class="form-control" rows="5" cols="33" id="address_upd" name="address_upd" required><?php echo $row["candidate_address"]; ?></textarea>
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+                            <label for="phnum_upd" class="form-label">Phone number: (+91) </label>
+                            <input type="number_format" class="form-control" id="phnum_upd" name="phnum_upd" minlength="10" maxlength="10" value="<?php echo $row["phnum"]; ?>" required>
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+                            <label for="email_upd" class="form-label">Email address: </label>
+                            <input type="email" class="form-control" id="email_upd" name="email_upd" aria-describedby="emailHelp" value="<?php echo $row["candidate_email"]; ?>" required>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <br>
+
+                        <div class="form-inline">
+                            <label for="workexp_upd" class="form-label">Total work experience (in years): </label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" id="workexp_upd" name="workexp_upd" value="<?php echo $row["experience_in_years"]; ?>" required>
                             </div>
-                            <br>
+                        </div>
+                        <br>
 
-                            <div class="form-inline">
-                                <label for="workexp" class="form-label">Total work experience (in years): </label>
-                                <div class="col-sm-2">
-                                    <input type="number" class="form-control" id="workexp_upd" name="workexperience" value = "<?php echo $row["experience_in_years"]; ?>" required>
-                                </div>
-                            </div>
-                            <br>
+                        <div class="form-group">
+                            <label for="qualif_upd" class="form-label">Qualifications: </label>
+                            <input type="text" class="form-control" id="qualif_upd" name="qualif_upd" required>
+                        </div>
+                        <br>
 
-                            <div class="form-group">
-                                <label for="qualif" class="form-label">Qualifications: </label>
-                                <input type="text" class="form-control" id="qualif_upd" name="qualifications" required>
-                            </div>
-                            <br>
+                        <input type="hidden" id="cid" name="cid" value="<?php echo $row["candidate_id"]; ?>">
 
-                            <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+                        <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
