@@ -46,15 +46,15 @@ $res = $res->fetch_assoc();
                         <div class="form-check">
                             <label for="gender" class="form-label">Gender: </label>
                             <div class="form-check">
-                                <input type="radio" class="form-check-input" id="gender" name="gender" <?php if ($row["candidate_gender"]=="Male") echo "checked";?> value="Male">Male
+                                <input type="radio" class="form-check-input" id="gender" name="gender" <?php if ($row["employee_gender"]=="Male") echo "checked";?> value="Male">Male
                                 <label class="form-check-label" for="radio1"></label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" class="form-check-input" id="gender" name="gender" <?php if ($row["candidate_gender"]=="Female") echo "checked";?> value="Female">Female
+                                <input type="radio" class="form-check-input" id="gender" name="gender" <?php if ($row["employee_gender"]=="Female") echo "checked";?> value="Female">Female
                                 <label class="form-check-label" for="radio1"></label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" class="form-check-input" id="gender" name="gender" <?php if ($row["candidate_gender"]=="Others") echo "checked";?> value="Others">Others
+                                <input type="radio" class="form-check-input" id="gender" name="gender" <?php if ($row["employee_gender"]=="Others") echo "checked";?> value="Others">Others
                                 <label class="form-check-label" for="radio1"></label>
                             </div>
                         </div>
