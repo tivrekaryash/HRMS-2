@@ -79,11 +79,11 @@ include 'db_conn.php';
 
                     if ($result->num_rows > 0) {
                         // displaying header for table view
-                        echo "<table id = 'cinfo' style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Full name" . "</th><th>" . "Date of Birth" . "</th><th>" . "Age" . "</th><th>" . "Gender" . "</th><th>" . "Address" . "</th><th>" . "Contact number" . "</th><th>" . "E-mail" . "</th><th colspan = '3'>" . "Actions" . "</th></tr>";
+                        echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Full name" . "</th><th>" . "Date of Birth" . "</th><th>" . "Age" . "</th><th>" . "Gender" . "</th><th>" . "Address" . "</th><th>" . "Contact number" . "</th><th>" . "E-mail" . "</th><th colspan = '3'>" . "Actions" . "</th></tr>";
 
                         // displaying data from db
                         while ($row = $result->fetch_assoc()) {
-                            echo "<tr><td>" . $row["candidate_id"] . "</td><td class = 'c_upd'>" . $row["candidate_fullname"] . "</td><td class = 'c_upd'>" . $row["candidate_dob"] . "</td><td class = 'c_upd'>" . $row["candidate_age"] . "</td><td class = 'c_upd'>" . $row["candidate_gender"] . "</td><td class = 'c_upd'>" . $row["candidate_address"] . "</td><td class = 'c_upd'>" . $row["phnum"] . "</td><td class = 'c_upd'>" . $row["candidate_email"] . "</td>";
+                            echo "<tr><td>" . $row["candidate_id"] . "</td><td id = 'fname_td'>" . $row["candidate_fullname"] . "</td><td id = 'dob_td'>" . $row["candidate_dob"] . "</td><td id = 'age_td'>" . $row["candidate_age"] . "</td><td id = 'gender_td'>" . $row["candidate_gender"] . "</td><td id = 'address_td'>" . $row["candidate_address"] . "</td><td id = 'phnum_td'>" . $row["phnum"] . "</td><td id = 'email_td'>" . $row["candidate_email"] . "</td>";
                     ?>
                             <td><button id="can_upd" type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update">Update</button></td>
                             <td><a href="candidate_delete.php?del=<?php echo $row["candidate_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
@@ -337,12 +337,13 @@ include 'db_conn.php';
     <!-- /.scripts -->
     <script>
         $(document).ready(function() {
+
             $("#can_upd").click(function() {
-                $('#cinfo .c_upd').each(function() {
-                    static var i = 10;
-                    var v = $( "input" ).index(i++);
-                });
+
+                $("#fname_upd").val($("#fname_td").html());
+
             });
+
         });
     </script>
 </body>
