@@ -5,9 +5,6 @@ include 'db_conn.php';
 // fetches the id of the accepted candidate
 $acc_id = $_GET['acc'];
 
-session_start();
-$_SESSION['acc_id']=$acc_id;
-
 // Fetching candidate details
 $res= $conn->query("SELECT * FROM candidate_information WHERE candidate_id='$acc_id'");
 $updData=$res->fetch_assoc();
@@ -33,11 +30,11 @@ $result= $conn->query("SELECT * FROM candidate_qualifications WHERE candidate_id
 while($row = $result->fetch_assoc())
 {
     // inserting each qualification to employee qualifications
-    $res = mysqli_query($conn, "insert into employee_qualifications (employee_id, experience_in_years, qualifications_file_location) values ((select employee_id from employee_information order by employee_id desc limit 1), '$row[experience_in_years]', '$row[qualifications_file_location]')");
+    $res = mysqli_query($conn, "insert into employee_qualifications (employee_id, qualifications_file_location) values ((select employee_id from employee_information order by employee_id desc limit 1), '$row[qualifications_file_location]')");
 }
 
 // candidate has been accepted
-$res = mysqli_query($conn, "update candidate_information set acceptance = 1 where candidate_id = '$acc_id'");
+$res = mysqli_query($conn, "update candidate_information set employee_id = (select employee_id from employee_information order by employee_id desc limit 1) where candidate_id = $acc_id");
 
 // redirects to display employee information after closing connection
 $conn->close();

@@ -15,8 +15,6 @@ include 'db_conn.php';
     <?php include 'style_links.php'; ?>
     <!-- /.style-sheet links -->
 
-
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -74,8 +72,7 @@ include 'db_conn.php';
                     <?php
 
                     // fetching candidate data from db
-                    $sql = "SELECT * FROM candidate_information";
-                    $result = $conn->query($sql);
+                    $result = $conn->query("SELECT * FROM candidate_information");
 
                     if ($result->num_rows > 0) {
                         // displaying header for table view
@@ -89,7 +86,7 @@ include 'db_conn.php';
                             <td><a href="candidate_delete.php?del=<?php echo $row["candidate_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
                             <?php
                             // different button styles based on whether candidate was already accepted or not
-                            if ($row["acceptance"])
+                            if ($row["employee_id"])
                                 echo "<td><button type='submit' class='btn btn-secondary' disabled>Accepted</button></td></tr>";
                             else {
                             ?>
@@ -104,10 +101,8 @@ include 'db_conn.php';
                         echo "no records inserted";
 
                         // resetting counter when there are no records
-                        $sql = "ALTER TABLE candidate_information AUTO_INCREMENT = 1";
-                        $res = $conn->query($sql);
-                        $sql = "ALTER TABLE candidate_qualifications AUTO_INCREMENT = 1";
-                        $res = $conn->query($sql);
+                        $res = $conn->query("ALTER TABLE candidate_information AUTO_INCREMENT = 1");
+                        $res = $conn->query("ALTER TABLE candidate_qualifications AUTO_INCREMENT = 1");
                     }
 
                     // closing connection
@@ -228,7 +223,7 @@ include 'db_conn.php';
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <br>
                 </div>
             </div>
         </div>
@@ -237,17 +232,6 @@ include 'db_conn.php';
     <!-- scripts -->
     <?php include 'scripts.php'; ?>
     <!-- /.scripts -->
-    <script>
-        $(document).ready(function() {
-
-            $("#can_upd").click(function() {
-
-                $("#fname_upd").val($("#fname_td").html());
-
-            });
-
-        });
-    </script>
 </body>
 
 </html>

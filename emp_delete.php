@@ -60,15 +60,11 @@ $sql = mysqli_query($conn,"delete from employee_phnum where employee_id = '$del_
 
 //----------------------------------------------------main record--------------------------------------------------------------//
 
+// candidate can now be re-accepted
+$res = mysqli_query($conn, "update candidate_information set employee_id = NULL where employee_id = '$del_id'");
+
 // deleting main record
 $sql = mysqli_query($conn,"delete from employee_information where employee_id = '$del_id'");
-
-// fetches candidate id that might be re-accepted
-session_start();
-$acc_id = $_SESSION['acc_id'];
-
-// candidate can now be re-accepted
-$res = mysqli_query($conn, "update candidate_information set acceptance = 0 where candidate_id = '$acc_id'");
 
 // redirects to display employee information after closing connection
 $conn->close();

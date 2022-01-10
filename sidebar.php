@@ -1,3 +1,16 @@
+<?php
+// db connection file
+include 'db_conn.php';
+
+// fetching candidate data from db
+$cand_res = $conn->query("SELECT count(candidate_id) FROM candidate_information where employee_id is null");
+$cand_res = $cand_res->fetch_assoc();
+// fetching employee data from db
+$emp_res = $conn->query("SELECT count(employee_id) FROM employee_information");
+$emp_res = $emp_res->fetch_assoc();
+
+?>
+
 <!-- Brand Logo -->
 <a href="index_admin.php" class="brand-link">
   <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -44,7 +57,7 @@
           <i class="nav-icon fas fa-th"></i>
           <p>
             Candidate Details
-            <span class="badge badge-danger right">0</span>
+            <span class="badge badge-danger right"><?php echo $cand_res["count(candidate_id)"]; ?></span>
           </p>
         </a>
       </li>
@@ -53,7 +66,7 @@
           <i class="nav-icon fas fa-th"></i>
           <p>
             Employee Details
-            <span class="badge badge-info right">0</span>
+            <span class="badge badge-info right"><?php echo $emp_res["count(employee_id)"]; ?></span>
           </p>
         </a>
       </li>
