@@ -38,15 +38,15 @@
                             <div class="form-check">
                                 <label for="gender" class="form-label">Gender: </label>
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="gender_upd" name="gender" value="Male" checked>Male
+                                    <input type="radio" class="form-check-input" id="gender_upd" name="gender" <?php if ($row["candidate_gender"]=="Male") echo "checked";?> value="Male">Male
                                     <label class="form-check-label" for="radio1"></label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="gender_upd" name="gender" value="Female">Female
+                                    <input type="radio" class="form-check-input" id="gender_upd" name="gender" <?php if ($row["candidate_gender"]=="Female") echo "checked";?> value="Female">Female
                                     <label class="form-check-label" for="radio1"></label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="gender_upd" name="gender" value="Others">Others
+                                    <input type="radio" class="form-check-input" id="gender_upd" name="gender" <?php if ($row["candidate_gender"]=="Others") echo "checked";?> value="Others">Others
                                     <label class="form-check-label" for="radio1"></label>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
 
                             <div class="form-group">
                                 <label for="address" class="form-label">Address: </label>
-                                <textarea type="text" class="form-control" rows="5" cols="33" id="address_upd" name="address" value = "<?php echo $row["candidate_address"]; ?>" required></textarea>
+                                <textarea type="text" class="form-control" rows="5" cols="33" id="address_upd" name="address" required><?php echo $row["candidate_address"]; ?></textarea>
                             </div>
                             <br>
 
