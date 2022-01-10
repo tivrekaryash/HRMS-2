@@ -15,7 +15,7 @@ include 'db_conn.php';
     <?php include 'style_links.php'; ?>
     <!-- /.style-sheet links -->
 
-    
+
 
 </head>
 
@@ -79,13 +79,13 @@ include 'db_conn.php';
 
                     if ($result->num_rows > 0) {
                         // displaying header for table view
-                        echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Full name" . "</th><th>" . "Date of Birth" . "</th><th>" . "Age" . "</th><th>" . "Gender" . "</th><th>" . "Address" . "</th><th>" . "Contact number" . "</th><th>" . "E-mail" . "</th><th colspan = '3'>" . "Actions" . "</th></tr>";
+                        echo "<table id = 'cinfo' style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Full name" . "</th><th>" . "Date of Birth" . "</th><th>" . "Age" . "</th><th>" . "Gender" . "</th><th>" . "Address" . "</th><th>" . "Contact number" . "</th><th>" . "E-mail" . "</th><th colspan = '3'>" . "Actions" . "</th></tr>";
 
                         // displaying data from db
                         while ($row = $result->fetch_assoc()) {
-                            echo "<tr><td>" . $row["candidate_id"] . "</td><td>" . $row["candidate_fullname"] . "</td><td>" . $row["candidate_dob"] . "</td><td>" . $row["candidate_age"] . "</td><td>" . $row["candidate_gender"] . "</td><td>" . $row["candidate_address"] . "</td><td>" . $row["phnum"] . "</td><td>" . $row["candidate_email"] . "</td>";
+                            echo "<tr><td>" . $row["candidate_id"] . "</td><td class = 'c_upd'>" . $row["candidate_fullname"] . "</td><td class = 'c_upd'>" . $row["candidate_dob"] . "</td><td class = 'c_upd'>" . $row["candidate_age"] . "</td><td class = 'c_upd'>" . $row["candidate_gender"] . "</td><td class = 'c_upd'>" . $row["candidate_address"] . "</td><td class = 'c_upd'>" . $row["phnum"] . "</td><td class = 'c_upd'>" . $row["candidate_email"] . "</td>";
                     ?>
-                            <td><button id="can_upd" type="submit" class="btn btn-warning" data-cid="<?php echo $row["candidate_id"]; ?>" data-toggle="modal" data-target="#modal_update">Update</button></td>
+                            <td><button id="can_upd" type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update">Update</button></td>
                             <td><a href="candidate_delete.php?del=<?php echo $row["candidate_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
                             <?php
                             // different button styles based on whether candidate was already accepted or not
@@ -294,15 +294,15 @@ include 'db_conn.php';
                             <br>
 
                             <div class="form-group">
-                                <label for="email" class="form-label">Email address: </label>
-                                <input type="email" class="form-control" id="email_upd" name="email" aria-describedby="emailHelp" required>
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                <label for="phnum" class="form-label">Phone number: (+91) </label>
+                                <input type="number_format" class="form-control" id="phnum_upd" name="phnumber" minlength="10" maxlength="10" required>
                             </div>
                             <br>
 
                             <div class="form-group">
-                                <label for="phnum" class="form-label">Phone number: (+91) </label>
-                                <input type="number_format" class="form-control" id="phnum_upd" name="phnumber" minlength="10" maxlength="10" required>
+                                <label for="email" class="form-label">Email address: </label>
+                                <input type="email" class="form-control" id="email_upd" name="email" aria-describedby="emailHelp" required>
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <br>
 
@@ -336,34 +336,13 @@ include 'db_conn.php';
     <?php include 'scripts.php'; ?>
     <!-- /.scripts -->
     <script>
-        $(document).ready(function()
-        {
-
-            $("#can_upd").click(function()
-            {
-
-                var v = $("#can_upd").data("cid");
-                alert(v);
-
-                <?php
-                $sql = $conn->query("select * from candidate_information where candidate_id = " . $v);
-                $row = $sql->fetch_assoc();
-
-                $sql = $conn->query("select * from candidate_qualifications where candidate_id = " . $v);
-                $qualif = $sql->fetch_assoc();
-                ?>
-
-                $("#fname_upd").val("<?php echo $row["candidate_fullname"]; ?>");
-                $("#dob_upd").val("<?php echo $row["candidate_dob"]; ?>");
-                $("#age_upd").val("<?php echo $row["candidate_age"]; ?>");
-                $("#gender_upd").val("<?php echo $row["candidate_gender"]; ?>");
-                $("#address_upd").val("<?php echo $row["candidate_address"]; ?>");
-                $("#email_upd").val("<?php echo $row["candidate_email"]; ?>");
-                $("#phnum_upd").val("<?php echo $row["phnum"]; ?>");
-                $("#workexp_upd").val("<?php echo $row["experience_in_years"]; ?>");
-                $("#qualif_upd").val("<?php echo $qualif["qualifications_file_location"]; ?>");
+        $(document).ready(function() {
+            $("#can_upd").click(function() {
+                $('#cinfo .c_upd').each(function() {
+                    static var i = 10;
+                    var v = $( "input" ).index(i++);
+                });
             });
-
         });
     </script>
 </body>
