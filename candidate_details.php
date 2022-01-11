@@ -82,14 +82,18 @@ include 'db_conn.php';
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr><td>" . $row["candidate_id"] . "</td><td id = 'fname_td'>" . $row["candidate_fullname"] . "</td><td id = 'dob_td'>" . $row["candidate_dob"] . "</td><td id = 'age_td'>" . $row["candidate_age"] . "</td><td id = 'gender_td'>" . $row["candidate_gender"] . "</td><td id = 'address_td'>" . $row["candidate_address"] . "</td><td id = 'phnum_td'>" . $row["phnum"] . "</td><td id = 'email_td'>" . $row["candidate_email"] . "</td>";
                     ?>
-                            <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update<?php echo $row["candidate_id"]; ?>">Update</button></td>
                             <td><a href="candidate_delete.php?del=<?php echo $row["candidate_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
                             <?php
                             // different button styles based on whether candidate was already accepted or not
                             if ($row["employee_id"])
+                            {
+                                echo "<td><button type='submit' class='btn btn-warning' disabled>Cannot update</button></td>";
                                 echo "<td><button type='submit' class='btn btn-secondary' disabled>Accepted</button></td></tr>";
+                            }
+                                
                             else {
                             ?>
+                                <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update<?php echo $row["candidate_id"]; ?>">Update</button></td>
                                 <td><a href='emp_info.php?acc=<?php echo $row["candidate_id"]; ?>'><button type='submit' class='btn btn-success'>Accept</button></td>
                                 </tr>
                     <?php
