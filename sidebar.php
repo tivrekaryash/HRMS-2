@@ -55,7 +55,7 @@ $emp_res = $emp_res->fetch_assoc();
       <li class="nav-item">
         <a href="candidate_details.php" class="nav-link">
           <i class="nav-icon fas fa-th"></i>
-          <p>
+          <p data-toggle="tooltip" title="Pending Candidates">
             Candidate Details
             <span class="badge badge-warning right"><?php echo $cand_res["count(candidate_id)"]; ?></span>
           </p>
@@ -64,7 +64,7 @@ $emp_res = $emp_res->fetch_assoc();
       <li class="nav-item">
         <a href="emp_details.php" class="nav-link">
           <i class="nav-icon fas fa-th"></i>
-          <p>
+          <p data-toggle="tooltip" title="Total Employees">
             Employee Details
             <span class="badge badge-info right"><?php echo $emp_res["count(employee_id)"]; ?></span>
           </p>
