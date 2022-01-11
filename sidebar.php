@@ -57,7 +57,7 @@ $emp_res = $emp_res->fetch_assoc();
           <i class="nav-icon fas fa-th"></i>
           <p>
             Candidate Details
-            <span class="badge badge-danger right"><?php echo $cand_res["count(candidate_id)"]; ?></span>
+            <span class="badge badge-warning right"><?php echo $cand_res["count(candidate_id)"]; ?></span>
           </p>
         </a>
       </li>
