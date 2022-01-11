@@ -75,15 +75,15 @@
                             <label for="gender_upd" class="form-label">Gender: </label>
                             <div class="form-check">
                                 <input type="radio" class="form-check-input" id="gender_upd" name="gender_upd" <?php if ($row["candidate_gender"] == "Male") echo "checked"; ?> value="Male">Male
-                                <label class="form-check-label" for="radio1"></label>
+                                <label class="form-check-label" for="gender_upd"></label>
                             </div>
                             <div class="form-check">
                                 <input type="radio" class="form-check-input" id="gender_upd" name="gender_upd" <?php if ($row["candidate_gender"] == "Female") echo "checked"; ?> value="Female">Female
-                                <label class="form-check-label" for="radio1"></label>
+                                <label class="form-check-label" for="gender_upd"></label>
                             </div>
                             <div class="form-check">
                                 <input type="radio" class="form-check-input" id="gender_upd" name="gender_upd" <?php if ($row["candidate_gender"] == "Others") echo "checked"; ?> value="Others">Others
-                                <label class="form-check-label" for="radio1"></label>
+                                <label class="form-check-label" for="gender_upd"></label>
                             </div>
                         </div>
                         <br>
