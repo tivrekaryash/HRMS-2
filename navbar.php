@@ -107,8 +107,8 @@
               </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-                  <i class="fas fa-th-large"></i>
+              <a class="btn btn-outline-danger" href="login_form.html" role="button">
+               <i class="fas fa-sign-out-alt"> Log Out</i>
               </a>
           </li>
       </ul>
