@@ -46,7 +46,7 @@ $emp_res = $emp_res->fetch_assoc();
                with font-awesome or any other icon font library -->
       <li class="nav-item menu-open">
         <a href="index_admin.php" class="nav-link">
-          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <i class="nav-icon fas fa-suitcase"></i>
           <p>
             Dashboard
           </p>
@@ -54,7 +54,7 @@ $emp_res = $emp_res->fetch_assoc();
       </li>
       <li class="nav-item">
         <a href="candidate_details.php" class="nav-link">
-          <i class="nav-icon fas fa-th"></i>
+          <i class="nav-icon far fa-list-alt"></i>
           <p data-toggle="tooltip" title="Pending Candidates">
             Candidate Details
             <span class="badge badge-warning right"><?php echo $cand_res["count(candidate_id)"]; ?></span>
@@ -63,7 +63,7 @@ $emp_res = $emp_res->fetch_assoc();
       </li>
       <li class="nav-item">
         <a href="emp_details.php" class="nav-link">
-          <i class="nav-icon fas fa-th"></i>
+          <i class="nav-icon fas fa-list-alt"></i>
           <p data-toggle="tooltip" title="Total Employees">
             Employee Details
             <span class="badge badge-info right"><?php echo $emp_res["count(employee_id)"]; ?></span>
@@ -74,7 +74,7 @@ $emp_res = $emp_res->fetch_assoc();
         <a href="#" class="nav-link">
           <i class="nav-icon far fa-building"></i>
           <p>
-            Company Structure
+           Company Structure
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
@@ -89,6 +89,64 @@ $emp_res = $emp_res->fetch_assoc();
             <a href="#" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Designations</p>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-history"></i>
+          <p>
+           History Records
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Job History</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Disciplinary History</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Salary History</p>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-money-check"></i>
+          <p>
+           Financial Records
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Salary</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Overtime Pay</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Compensation</p>
             </a>
           </li>
         </ul>

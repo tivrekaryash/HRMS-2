@@ -1,3 +1,16 @@
+<?php
+// db connection file
+include 'db_conn.php';
+
+// fetching candidate data from db
+$cand_res = $conn->query("SELECT count(candidate_id) FROM candidate_information where employee_id is null");
+$cand_res = $cand_res->fetch_assoc();
+// fetching employee data from db
+$emp_res = $conn->query("SELECT count(employee_id) FROM employee_information");
+$emp_res = $emp_res->fetch_assoc();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,11 +70,11 @@
           <div class="row">
             <div class="col-lg-3 col-6">
               <!-- small box -->
-              <div class="small-box bg-warning">
+              <div class="small-box bg-red">
                 <div class="inner">
-                  <h3> 150 (count_test)</h3>
+                  <h3> <?php echo $cand_res["count(candidate_id)"]; ?> </h3>
 
-                  <p>Cadidates</p>
+                  <p>Pending Cadidates</p>
                 </div>
                 <div class="icon">
                   <i class="fas fa-users"></i>
@@ -72,9 +85,9 @@
             <!-- ./col -->
             <div class="col-lg-3 col-6">
               <!-- small box -->
-              <div class="small-box bg-success">
+              <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3> 100 </h3>
+                  <h3> <?php echo $emp_res["count(employee_id)"]; ?> </h3>
                   <p>Employees</p>
                 </div>
                 <div class="icon">
@@ -89,7 +102,6 @@
               <div class="small-box bg-info">
                 <div class="inner">
                   <h3>44</h3>
-
                   <p>User Registrations</p>
                 </div>
                 <div class="icon">
@@ -99,6 +111,49 @@
               </div>
             </div>
             <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-primary">
+                <div class="inner">
+                  <h3>None</h3>
+                  <p>Company Structure</p>
+                </div>
+                <div class="icon">
+                  <i class="far fa-building"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-secondary">
+                <div class="inner">
+                  <h3>None</h3>
+                  <p>History Records</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-history"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-success">
+                <div class="inner">
+                  <h3>None</h3>
+                  <p>Financial Records</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-money-check"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            
 
           </div>
           <!-- /.row -->
