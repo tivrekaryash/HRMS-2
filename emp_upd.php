@@ -101,25 +101,7 @@ $res = $res->fetch_assoc();
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <br>
-
-                        <div class="form-group">
-                            <label for="phnum_hm" class="form-label">Phone (Home) number: (+91) </label>
-                            <input type="number_format" class="form-control" id="phnum_hm" name="phnum_hm" minlength="10" maxlength="10" value="<?php echo $res["phnum_home"]; ?>" required>
-                        </div>
-                        <br>
-
-                        <div class="form-group">
-                            <label for="phnum_wk" class="form-label">Phone (work) number: (+91) </label>
-                            <input type="number_format" class="form-control" id="phnum_wk" name="phnum_wk" minlength="10" maxlength="10" value="<?php echo $res["phnum_work"]; ?>" required>
-                        </div>
-                        <br>
-
-                        <div class="form-group">
-                            <label for="phnum_mb" class="form-label">Phone (Mobile) number: (+91) </label>
-                            <input type="number_format" class="form-control" id="phnum_mb" name="phnum_mb" minlength="10" maxlength="10" value="<?php echo $res["phnum_mobile"]; ?>" required>
-                        </div>
-                        <br>
-
+                        
                         <input type="hidden" id="eid" name="eid" value="<?php echo $row["employee_id"]; ?>">
 
                         <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>

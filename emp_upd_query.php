@@ -12,7 +12,7 @@ $email = $_POST['email_upd'];
 $phnum_hm = $_POST['phnum_hm'];
 $phnum_wk = $_POST['phnum_wk'];
 $phnum_mb = $_POST['phnum_mb'];
-$upd_id = $_POST['eid'];
+$upd_id = $_POST['eid']; 
 
 // stores updated data into the database
 $res = $conn->query("UPDATE employee_information SET employee_name='$fullname', employee_dob='$dateofbirth', employee_age='$age', employee_gender='$gender', employee_address='$address', employee_email='$email' WHERE employee_id='$upd_id'");

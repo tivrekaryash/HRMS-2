@@ -1,99 +1,173 @@
 <?php
 // db connection file
 include 'db_conn.php';
-
-// fetching candidate data from db
-$cand_res = $conn->query("SELECT count(candidate_id) FROM candidate_information where employee_id is null");
-$cand_res = $cand_res->fetch_assoc();
-// fetching employee data from db
-$emp_res = $conn->query("SELECT count(employee_id) FROM employee_information");
-$emp_res = $emp_res->fetch_assoc();
-
 ?>
 
-<!-- Brand Logo -->
-<a href="index_admin.php" class="brand-link">
-  <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-  <span class="brand-text font-weight-light"> HRMS </span>
-</a>
-<div class="sidebar">
-  <!-- Sidebar user panel (optional) -->
-  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-    <div class="image">
-      <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-    </div>
-    <div class="info">
-      <a href="#" class="d-block">Admin - Test</a>
-    </div>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
 
-  <!-- SidebarSearch Form -->
-  <div class="form-inline">
-    <div class="input-group" data-widget="sidebar-search">
-      <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-      <div class="input-group-append">
-        <button class="btn btn-sidebar">
-          <i class="fas fa-search fa-fw"></i>
-        </button>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HRMS | Employee</title>
+
+  <!-- style-sheet links -->
+  <?php include 'style_links.php'; ?>
+  <!-- /.style-sheet links -->
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
+
+    <!-- Preloader 
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+        </div> -->
+
+    <!-- Navbar -->
+    <?php include 'navbar.php'; ?>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Sidebar -->
+      <?php include 'sidebar.php' ?>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="index_admin.php">Home</a></li>
+                <li class="breadcrumb-item"><a href="index_admin.php">Dashboard</a></li>
+                <li class="breadcrumb-item active">Employees</li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
       </div>
-    </div>
-  </div>
+      <!-- /.content-header -->
 
-  <!-- Sidebar Menu -->
-  <nav class="mt-2">
-    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-      <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-      <li class="nav-item menu-open">
-        <a href="index_admin.php" class="nav-link">
-          <i class="nav-icon fas fa-tachometer-alt"></i>
-          <p>
-            Dashboard
-          </p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="candidate_details.php" class="nav-link">
-          <i class="nav-icon fas fa-th"></i>
-          <p>
-            Candidate Details
-            <span class="badge badge-warning right"><?php echo $cand_res["count(candidate_id)"]; ?></span>
-          </p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="emp_details.php" class="nav-link">
-          <i class="nav-icon fas fa-th"></i>
-          <p>
-            Employee Details
-            <span class="badge badge-info right"><?php echo $emp_res["count(employee_id)"]; ?></span>
-          </p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">
-          <i class="nav-icon far fa-building"></i>
-          <p>
-            Company Structure
-            <i class="right fas fa-angle-left"></i>
-          </p>
-        </a>
-        <ul class="nav nav-treeview">
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Departments</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Designations</p>
-            </a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.sidebar-menu -->
-</div>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid p-3">
+          <div>
+            <h2>Employee Details: </h2>
+          </div>
+          <br>
+
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" id="empTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">Details</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab" aria-controls="contacts" aria-selected="false">Contacts</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="qualifications-tab" data-toggle="tab" href="#qualifications" role="tab" aria-controls="qualifications" aria-selected="false">Qualifications</a>
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="details" role="tabpanel" aria-labelledby="details-tab">
+              <?php
+
+              // retrieves all employee information records
+              $sql = "SELECT * FROM employee_information";
+              $result = $conn->query($sql);
+
+              if ($result->num_rows > 0) {
+                // displaying header for tabular form
+                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Full name" . "</th><th>" . "Date of Birth" . "</th><th>" . "Age" . "</th><th>" . "Gender" . "</th><th>" . "Address" . "</th><th>" . "E-mail" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+
+                // displaying data along with adding buttons for update and delete
+                while ($row = $result->fetch_assoc()) {
+                  echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $row["employee_name"] . "</td><td>" . $row["employee_dob"] . "</td><td>" . $row["employee_age"] . "</td><td>" . $row["employee_gender"] . "</td><td>" . $row["employee_address"] . "</td><td>" . $row["employee_email"] . "</td>";
+
+              ?>
+
+                  <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update<?php echo $row["employee_id"]; ?>">Update</button></td>
+                  <td><a href="emp_delete.php?del=<?php echo $row["employee_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
+                  </tr>
+
+              <?php
+                  include 'emp_upd.php';
+                }
+
+                echo "</table>";
+              } else {
+                echo "no records inserted";
+
+                // resetting counter in case there are no records
+
+                $sql = "ALTER TABLE employee_qualifications AUTO_INCREMENT = 1";
+                $res = $conn->query($sql);
+
+                $sql = "ALTER TABLE employee_phnum AUTO_INCREMENT = 1";
+                $res = $conn->query($sql);
+
+                $sql = "ALTER TABLE job_history AUTO_INCREMENT = 1";
+                $res = $conn->query($sql);
+
+                $sql = "ALTER TABLE disciplinary_history AUTO_INCREMENT = 1";
+                $res = $conn->query($sql);
+
+                $sql = "ALTER TABLE base_salary_history AUTO_INCREMENT = 1";
+                $res = $conn->query($sql);
+
+                $sql = "ALTER TABLE employee_information AUTO_INCREMENT = 1";
+                $res = $conn->query($sql);
+              }
+
+              // closing connection
+              $conn->close();
+
+              ?>
+            </div>
+
+            <div class="tab-pane" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">TEST...</div>
+
+            <div class="tab-pane" id="qualifications" role="tabpanel" aria-labelledby="qualifications-tab">TEST...</div>
+
+
+          </div>
+
+
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <strong>Copyright &copy; 2021-2022 <a href="#">EVA</a>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 0.1.1
+      </div>
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- scripts -->
+  <?php include 'scripts.php'; ?>
+  <!-- /.scripts -->
+</body>
+
+</html>

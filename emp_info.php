@@ -39,6 +39,6 @@ $res = mysqli_query($conn, "update candidate_information set employee_id = (sele
 // redirects to display employee information after closing connection
 $conn->close();
 header("location:candidate_details.php");
-exit;
+exit; 
 
 ?>

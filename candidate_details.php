@@ -95,7 +95,7 @@ include 'db_conn.php';
                             ?>
                                 <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update<?php echo $row["candidate_id"]; ?>">Update</button></td>
                                 <td><a href='emp_info.php?acc=<?php echo $row["candidate_id"]; ?>'><button type='submit' class='btn btn-success'>Accept</button></td>
-                                </tr>
+                                </tr> 
                     <?php
                             }
                             include 'candidate_upd.php';

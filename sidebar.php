@@ -48,7 +48,7 @@ $emp_res = $emp_res->fetch_assoc();
         <a href="index_admin.php" class="nav-link">
           <i class="nav-icon fas fa-suitcase"></i>
           <p>
-            Dashboard
+            Dashboard 
           </p>
         </a>
       </li>
