@@ -1,9 +1,6 @@
 <?php
 // db connection file
 require_once 'db_conn.php';
-
-$res = $conn->query("select * from employee_qualifications where employee_id = $row[employee_id]");
-$res = $res->fetch_assoc();
 ?>
 
 <!-- Modal update -->
@@ -19,7 +16,7 @@ $res = $res->fetch_assoc();
             <div class="modal-body">
                 <div class="container p-5 my-2 border">
                     <h2>Update your qualification details here:</h2><br>
-                    <form name="emp_upd" action="" method="POST">
+                    <form name="emp_upd" action="emp_upd_qualif_query.php" method="POST">
 
                         <div class="form-group">
                             <label for="fname_upd" class="form-label">Full Name: </label>
@@ -29,11 +26,11 @@ $res = $res->fetch_assoc();
 
                         <div class="form-group">
                             <label for="qualif_upd" class="form-label">Qualifications: </label>
-                            <input type="text" class="form-control" id="qualif_upd" name="qualif_upd" required>
+                            <input type="text" class="form-control" id="qualif_upd" name="qualif_upd" value="<?php echo $row["qualifications_file_location"]; ?>" required>
                         </div>
                         <br>
 
-                        <input type="hidden" id="eid" name="eid" value="<?php echo $row["employee_id"]; ?>">
+                        <input type="hidden" id="eid" name="eid" value="<?php echo $res["employee_id"]; ?>">
 
                         <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 

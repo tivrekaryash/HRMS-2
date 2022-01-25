@@ -2,8 +2,8 @@
 // db connection file
 require_once 'db_conn.php';
 
-$res = $conn->query("select * from employee_information where employee_id = $row[employee_id]");
-$res = $res->fetch_assoc();
+//$res = $conn->query("select * from employee_information where employee_id = $row[employee_id]");
+//$res = $res->fetch_assoc();
 ?>
 
 <!-- Modal update -->
@@ -19,7 +19,7 @@ $res = $res->fetch_assoc();
             <div class="modal-body">
                 <div class="container p-5 my-2 border">
                     <h2>Update your contact details here:</h2><br>
-                    <form name="emp_upd" action="" method="POST">
+                    <form name="emp_upd" action="emp_upd_cont_query.php" method="POST">
 
                         <div class="form-group">
                             <label for="fname_upd" class="form-label">Full Name: </label>

@@ -145,7 +145,14 @@ include 'db_conn.php';
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
-                                    echo "<tr><td>" . $row["phnum_id"] . "</td><td>" . $row["employee_id"] . "</td><td>" . $row["phnum_home"] . "</td><td>" . $row["phnum_work"] . "</td><td>" . $row["phnum_mobile"] . "</td>";
+
+                                    $res = $conn->query("select * from employee_information where employee_id = $row[employee_id]");
+                                    $res = $res->fetch_assoc();
+
+                                    echo "<tr><td>" . $row["phnum_id"] . "</td><td>" . $res["employee_name"] . "</td><td>";
+                                    if($row["phnum_home"] == null) echo "Null</td><td>"; else echo $row["phnum_home"] . "</td><td>";
+                                    if($row["phnum_work"] == null) echo "Null</td><td>"; else echo $row["phnum_work"] . "</td><td>";
+                                    if($row["phnum_mobile"] == null) echo "Null</td>"; else echo $row["phnum_mobile"] . "</td>";
 
                             ?>
 
@@ -196,7 +203,11 @@ include 'db_conn.php';
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
-                                    echo "<tr><td>" . $row["qualification_id"] . "</td><td>" . $row["employee_id"] . "</td><td>" . $row["qualifications_file_location"] . "</td>";
+
+                                    $res = $conn->query("select * from employee_information where employee_id = $row[employee_id]");
+                                    $res = $res->fetch_assoc();
+
+                                    echo "<tr><td>" . $row["qualification_id"] . "</td><td>" . $res["employee_name"] . "</td><td>" . $row["qualifications_file_location"] . "</td>";
 
                             ?>
 
