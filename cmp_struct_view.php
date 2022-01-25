@@ -115,22 +115,9 @@ include 'db_conn.php';
 
                                 // resetting counter in case there are no records (CHeck if there are any tables to be reset)
 
-                                $sql = "ALTER TABLE employee_qualifications AUTO_INCREMENT = 1";
+                                $sql = "ALTER TABLE department AUTO_INCREMENT = 1";
                                 $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE employee_phnum AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE job_history AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE disciplinary_history AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE base_salary_history AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE employee_information AUTO_INCREMENT = 1";
+                                $sql = "ALTER TABLE designations AUTO_INCREMENT = 1";
                                 $res = $conn->query($sql);
                             }
 
@@ -146,17 +133,17 @@ include 'db_conn.php';
                             <br><br>
                             <?php
 
-                            // retrieves all employee information records
+                            // retrieves all designation information records
                             $sql = "SELECT * FROM designations";
                             $result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Designation ID" . "</th><th>" . "Department" . "</th><th>" . "Designation" . "</th><th>" . "Base Salary(Rs.)" ."</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Designation ID" . "</th><th>" . "Department" . "</th><th>" . "Designation" . "</th><th>" . "Base Salary(Rs.)" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
-                                    echo "<tr><td>" . $row["designation_id"] . "</td><td>" . $row["department_id"] . "</td><td>" . $row["designation"] . "</td><td>" . $row["base_salary"] ."</td>";
+                                    echo "<tr><td>" . $row["designation_id"] . "</td><td>" . $row["department_id"] . "</td><td>" . $row["designation"] . "</td><td>" . $row["base_salary"] . "</td>";
 
                             ?>
 
@@ -174,22 +161,7 @@ include 'db_conn.php';
 
                                 // resetting counter in case there are no records (CHeck if there are any tables to be reset)
 
-                                $sql = "ALTER TABLE employee_qualifications AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE employee_phnum AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE job_history AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE disciplinary_history AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE base_salary_history AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE employee_information AUTO_INCREMENT = 1";
+                                $sql = "ALTER TABLE designations AUTO_INCREMENT = 1";
                                 $res = $conn->query($sql);
                             }
 
@@ -251,17 +223,30 @@ include 'db_conn.php';
                                 <div class="modal-body">
                                     <div class="container p-5 my-2 border">
                                         <h2>Enter Designation details here:</h2><br>
-                                        <form name="candidate_info" action="department_insert.php" method="POST">
+                                        <form name="candidate_info" action="designation_insert.php" method="POST">
+
+                                            <div class="form-group">
+                                                <label>Select Department: </label>
+                                                <select class="form-control select2" style="width: 100%;">
+                                                    <option selected="selected">Alabama</option>
+                                                    <option>Alaska</option>
+                                                    <option>California</option>
+                                                    <option>Delaware</option>
+                                                    <option>Tennessee</option>
+                                                    <option>Texas</option>
+                                                    <option>Washington</option>
+                                                </select>
+                                            </div>
 
                                             <div class="form-group">
                                                 <label for="deptname" class="form-label">Department Name: </label>
-                                                <input type="text" class="form-control" id="deptname" name="deptname" required>
+                                                <input type="text" class="form-control" id="deptnames" name="deptname" required>
                                             </div>
                                             <br>
 
                                             <div class="form-group">
                                                 <label for="deptloc" class="form-label">Department Location: </label>
-                                                <textarea type="text" class="form-control" rows="5" cols="33" id="deptloc" name="deptloc" required></textarea>
+                                                <textarea type="text" class="form-control" rows="5" cols="33" id="deptlocs" name="deptloc" required></textarea>
                                             </div>
                                             <br>
 
