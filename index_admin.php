@@ -122,7 +122,7 @@ $emp_res = $emp_res->fetch_assoc();
                 <div class="icon">
                   <i class="far fa-building"></i>
                 </div>
-                <a href="cmp_struct_view.php" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="cmp_struct_view.php?c=0" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->

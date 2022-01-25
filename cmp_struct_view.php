@@ -71,17 +71,17 @@ $count = $_GET["c"];
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" id="cmpTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="department-tab" data-toggle="tab" href="#department" role="tab" aria-controls="department" <?php if($count == 0) {echo "aria-selected="."true"."";} else {echo "aria-selected="."false"."";} ?>>Departments</a>
+                            <a class="nav-link <?php if($count == 0) echo "active";?>" id="department-tab" data-toggle="tab" href="#department" role="tab" aria-controls="department" aria-selected="<?php if($count == 0) echo "true"; else echo "false"; ?>">Departments</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="designation-tab" data-toggle="tab" href="#designation" role="tab" aria-controls="designation" <?php if($count == 1) {echo "aria-selected="."true"."";} else {echo "aria-selected="."false"."";} ?>>Designations</a>
+                            <a class="nav-link <?php if($count == 1) echo "active";?>" id="designation-tab" data-toggle="tab" href="#designation" role="tab" aria-controls="designation" aria-selected="<?php if($count == 1) echo "true"; else echo "false"; ?>">Designations</a>
                         </li>
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <!-- department -->
-                        <div class="tab-pane fade show active" id="department" role="tabpanel" aria-labelledby="department-tab">
+                        <div class="tab-pane fade <?php if ($count == 0) echo "show active"; ?>" id="department" role="tabpanel" aria-labelledby="department-tab">
                             <button type="button" data-toggle="modal" data-target="#modal_insert_dept" class="btn btn-outline-success" style="float:right">
                                 <i class="fas fa-plus"></i> Add New
 
@@ -127,7 +127,7 @@ $count = $_GET["c"];
                         </div><!-- /.department -->
 
                         <!-- designation -->
-                        <div class="tab-pane fade" id="designation" role="tabpanel" aria-labelledby="designation-tab">
+                        <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="designation" role="tabpanel" aria-labelledby="designation-tab">
                             <button type="button" data-toggle="modal" data-target="#modal_insert_desg" class="btn btn-outline-success" style="float:right">
                                 <i class="fas fa-plus"></i> Add New
 
