@@ -72,14 +72,15 @@ $emp_res = $emp_res->fetch_assoc();
               <!-- small box -->
               <div class="small-box bg-red">
                 <div class="inner">
-                  <h3> <?php echo $cand_res["count(candidate_id)"]; ?> </h3>
-
-                  <p>Pending Cadidates</p>
+                  <h4>Pending Candidates</h4>
+                  <h4> <?php echo $cand_res["count(candidate_id)"]; ?> </h4>
+                  
                 </div>
+                
                 <div class="icon">
                   <i class="fas fa-users"></i>
                 </div>
-                <a href="candidate_details.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="candidate_details.php" class="small-box-footer">View Info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -87,13 +88,13 @@ $emp_res = $emp_res->fetch_assoc();
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3> <?php echo $emp_res["count(employee_id)"]; ?> </h3>
-                  <p>Employees</p>
+                <h4>Employees</h4>
+                  <h4> <?php echo $emp_res["count(employee_id)"]; ?> </h4>
                 </div>
                 <div class="icon">
                   <i class="fas fa-users"></i>
                 </div>
-                <a href="emp_details.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="emp_details.php" class="small-box-footer">View Info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -101,13 +102,13 @@ $emp_res = $emp_res->fetch_assoc();
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>44 (Count_test)</h3>
-                  <p>User Registrations</p>
+                <p>User Registrations</p>
+                <h4>44 (Count_test)</h4>  
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">View Info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -115,13 +116,13 @@ $emp_res = $emp_res->fetch_assoc();
               <!-- small box -->
               <div class="small-box bg-primary">
                 <div class="inner">
-                  <h3>Manage...</h3>
-                  <p>Departments</p>
+                  <h4>Departments</h4>
+                  <p><br></p>
                 </div>
                 <div class="icon">
                   <i class="far fa-building"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -129,13 +130,13 @@ $emp_res = $emp_res->fetch_assoc();
               <!-- small box -->
               <div class="small-box bg-primary">
                 <div class="inner">
-                  <h3>Manage...</h3>
-                  <p>Designations</p>
+                  <h4>Designations</h4>
+                  <p><br></p>
                 </div>
                 <div class="icon">
                   <i class="fas fa-user-tie"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -143,13 +144,13 @@ $emp_res = $emp_res->fetch_assoc();
               <!-- small box -->
               <div class="small-box bg-secondary">
                 <div class="inner">
-                  <h3>Manage...</h3>
-                  <p>Job History</p>
+                  <h4>Job History</h4>
+                  <p><br></p>
                 </div>
                 <div class="icon">
                   <i class="far fa-address-book"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -157,13 +158,13 @@ $emp_res = $emp_res->fetch_assoc();
               <!-- small box -->
               <div class="small-box bg-secondary">
                 <div class="inner">
-                  <h3>Manage...</h3>
-                  <p>Disciplinary History</p>
+                  <h4>Disciplinary History</h4>
+                  <p><br></p>
                 </div>
                 <div class="icon">
                   <i class="fas fa-exclamation-circle"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -171,13 +172,15 @@ $emp_res = $emp_res->fetch_assoc();
               <!-- small box -->
               <div class="small-box bg-secondary">
                 <div class="inner">
-                  <h3>Manage...</h3>
-                  <p>Salary History</p>
+                <h4>Salary History</h4>
+                <p><br></p>
+                  
                 </div>
                 <div class="icon">
+                
                   <i class="fas fa-file-invoice"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -185,13 +188,13 @@ $emp_res = $emp_res->fetch_assoc();
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>Manage...</h3>
-                  <p>Salary Records</p>
+                  <h4>Salary Records</h4>
+                  <p><br></p>
                 </div>
                 <div class="icon">
                   <i class="fas fa-money-check"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -199,13 +202,13 @@ $emp_res = $emp_res->fetch_assoc();
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>Manage...</h3>
-                  <p>Overtime Pay Records</p>
+                  <h4>Overtime Pay Records</h4>
+                  <p><br></p>
                 </div>
                 <div class="icon">
                   <i class="fas fa-coins"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -213,13 +216,13 @@ $emp_res = $emp_res->fetch_assoc();
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>Manage...</h3>
-                  <p>Compensation Records</p>
+                  <h4>Compensation Records</h4>
+                  <p><br></p>
                 </div>
                 <div class="icon">
                   <i class="fas fa-wallet"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
