@@ -66,7 +66,7 @@ include 'db_conn.php';
                     <br>
 
                     <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" id="empTab" role="tablist">
+                    <ul class="nav nav-tabs" id="empTab" role="tablist"> 
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">Details</a>
                         </li>

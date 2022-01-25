@@ -66,7 +66,7 @@ include 'db_conn.php';
 
                         </button>
 
-                        <h2>Candidate Details Table:</h2>
+                        <h2>Candidate Details:</h2>
                     </div>
                     <br>
                     <?php
