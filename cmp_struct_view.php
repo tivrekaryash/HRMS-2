@@ -211,7 +211,7 @@ include 'db_conn.php';
                     </div><!-- /.Modal -->
 
                     <!-- Modal-Designation Insert -->
-                    <div class="modal fade" id="modal_insert_desg" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal fade" id="modal_insert_desg" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
                         <div class="modal-dialog modal-dialog-scrollable modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -226,8 +226,8 @@ include 'db_conn.php';
                                         <form name="candidate_info" action="designation_insert.php" method="POST">
 
                                             <div class="form-group">
-                                                <label>Select Department: </label>
-                                                <select class="form-control select2" style="width: 100%;">
+                                                <label for="deptname" class="form-label">Select Department: </label>
+                                                <select id="deptname" class="form-control select2bs4"  name="deptname" style="width: 100%;" required>
                                                     <option selected="selected">Alabama</option>
                                                     <option>Alaska</option>
                                                     <option>California</option>
@@ -239,14 +239,14 @@ include 'db_conn.php';
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="deptname" class="form-label">Department Name: </label>
-                                                <input type="text" class="form-control" id="deptnames" name="deptname" required>
+                                                <label for="desgname" class="form-label">Designation: </label>
+                                                <input type="text" class="form-control" id="desgname" name="desgname" required>
                                             </div>
                                             <br>
 
                                             <div class="form-group">
-                                                <label for="deptloc" class="form-label">Department Location: </label>
-                                                <textarea type="text" class="form-control" rows="5" cols="33" id="deptlocs" name="deptloc" required></textarea>
+                                                <label for="basesal" class="form-label">Base Salary: </label>
+                                                <input type="number" class="form-control" id="basesal" name="basesal" required>
                                             </div>
                                             <br>
 
