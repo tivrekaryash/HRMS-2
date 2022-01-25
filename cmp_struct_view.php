@@ -71,10 +71,10 @@ $count = $_GET["c"];
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" id="cmpTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="department-tab" data-toggle="tab" href="#department" role="tab" aria-controls="department" <?php if($count == 0) echo "aria-selected='true'"; else echo "aria-selected='false'"; ?>>Departments</a>
+                            <a class="nav-link active" id="department-tab" data-toggle="tab" href="#department" role="tab" aria-controls="department" <?php if($count == 0) {echo "aria-selected="."true"."";} else {echo "aria-selected="."false"."";} ?>>Departments</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="designation-tab" data-toggle="tab" href="#designation" role="tab" aria-controls="designation" <?php if($count == 1) echo "aria-selected='true'"; else echo "aria-selected='false'"; ?>>Designations</a>
+                            <a class="nav-link" id="designation-tab" data-toggle="tab" href="#designation" role="tab" aria-controls="designation" <?php if($count == 1) {echo "aria-selected="."true"."";} else {echo "aria-selected="."false"."";} ?>>Designations</a>
                         </li>
                     </ul>
 
