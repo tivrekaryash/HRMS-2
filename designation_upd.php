@@ -19,16 +19,8 @@ require_once 'db_conn.php';
                     <form name="desg_upd_form" action="designation_upd_query.php" method="POST">
 
                         <div class="form-group">
-                            <label for="deptname_upd" class="form-label">Select Department: </label>
-                            <select id="deptname_upd" class="form-control select2bs4" name="deptname_upd" style="width: 100%;" required>
-                                <option selected="selected">Alabama</option>
-                                <option>Alaska</option>
-                                <option>California</option>
-                                <option>Delaware</option>
-                                <option>Tennessee</option>
-                                <option>Texas</option>
-                                <option>Washington</option>
-                            </select>
+                            <label for="deptname_upd" class="form-label">Department: </label>
+                            <input type="text" class="form-control" id="deptname_upd" name="deptname_upd" value="<?php echo $res["department_name"]; ?>" disabled>
                         </div>
 
                         <div class="form-group">

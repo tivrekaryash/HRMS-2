@@ -134,8 +134,7 @@ include 'db_conn.php';
                             <?php
 
                             // retrieves all designation information records
-                            $sql = "SELECT * FROM designations";
-                            $result = $conn->query($sql);
+                            $result = $conn->query("SELECT * FROM designations");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -143,7 +142,11 @@ include 'db_conn.php';
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
-                                    echo "<tr><td>" . $row["designation_id"] . "</td><td>" . $row["department_id"] . "</td><td>" . $row["designation"] . "</td><td>" . $row["base_salary"] . "</td>";
+
+                                    $res = $conn->query("select * from department where department_id = $row[department_id]");
+                                    $res = $res->fetch_assoc();
+
+                                    echo "<tr><td>" . $row["designation_id"] . "</td><td>" . $res["department_name"] . "</td><td>" . $row["designation"] . "</td><td>" . $row["base_salary"] . "</td>";
 
                             ?>
 
@@ -227,16 +230,18 @@ include 'db_conn.php';
 
                                             <div class="form-group">
                                                 <label for="deptname" class="form-label">Select Department: </label>
-                                                <select id="deptname" class="form-control select2bs4"  name="deptname" style="width: 100%;" required>
-                                                    <option selected="selected">Alabama</option>
-                                                    <option>Alaska</option>
-                                                    <option>California</option>
-                                                    <option>Delaware</option>
-                                                    <option>Tennessee</option>
-                                                    <option>Texas</option>
-                                                    <option>Washington</option>
+                                                <select id="deptname" class="form-control select2bs4" name="deptname" style="width: 100%;" required>
+                                                    <?php
+                                                    // retrieving all departments
+                                                    $result = $conn->query("select * from department");
+
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        // displaying each department in the list
+                                                        echo "<option>" . $row["department_name"] . "</option>";
+                                                    }
+                                                    ?>
                                                 </select>
-                                            </div>
+                                            </div><br>
 
                                             <div class="form-group">
                                                 <label for="desgname" class="form-label">Designation: </label>

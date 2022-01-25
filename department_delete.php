@@ -23,3 +23,5 @@ $sql = mysqli_query($conn, "delete from department where department_id = '$del_i
 $conn->close();
 header("location:emp_details.php");
 exit;
+
+?>
