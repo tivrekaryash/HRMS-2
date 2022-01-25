@@ -80,13 +80,13 @@ $emp_res = $emp_res->fetch_assoc();
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="cmp_struct_view.php" class="nav-link">
+            <a href="cmp_struct_view.php?c=0" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Departments</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="cmp_struct_view.php" class="nav-link">
+            <a href="cmp_struct_view.php?c=1" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Designations</p>
             </a>
