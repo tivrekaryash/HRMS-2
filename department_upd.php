@@ -1,3 +1,8 @@
+<?php
+// db connection file
+require_once 'db_conn.php';
+?>
+
 <!-- Modal update -->
 <div class="modal fade" id="modal_update_dept<?php echo $row["department_id"]; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
@@ -11,7 +16,7 @@
             <div class="modal-body">
                 <div class="container p-5 my-2 border">
                     <h2>Update details here:</h2><br>
-                    <form name="emp_upd" onsubmit="return checkForm()" action="emp_upd_query.php" method="POST">
+                    <form name="dpt_upd" onsubmit="return checkForm()" action="dpt_upd_query.php" method="POST">
 
                         <div class="form-group">
                             <label for="deptname_upd" class="form-label">Department Name: </label>
