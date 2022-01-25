@@ -43,7 +43,7 @@ include 'db_conn.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard</h1>
+                            <h1 class="m-0">...</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -76,7 +76,7 @@ include 'db_conn.php';
 
                     if ($result->num_rows > 0) {
                         // displaying header for table view
-                        echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Full name" . "</th><th>" . "Date of Birth" . "</th><th>" . "Age" . "</th><th>" . "Gender" . "</th><th>" . "Address" . "</th><th>" . "Contact number" . "</th><th>" . "E-mail" . "</th><th colspan = '3'>" . "Actions" . "</th></tr>";
+                        echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Candidate ID" . "</th><th>" . "Full name" . "</th><th>" . "Date of Birth" . "</th><th>" . "Age" . "</th><th>" . "Gender" . "</th><th>" . "Address" . "</th><th>" . "Contact number" . "</th><th>" . "E-mail" . "</th><th colspan = '3'>" . "Actions" . "</th></tr>";
 
                         // displaying data from db
                         while ($row = $result->fetch_assoc()) {
@@ -231,7 +231,7 @@ include 'db_conn.php';
                 </div>
             </div>
         </div>
-    </div>
+    </div><!-- /.Modal -->
 
     <!-- scripts -->
     <?php include 'scripts.php'; ?>

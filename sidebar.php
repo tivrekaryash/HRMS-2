@@ -71,7 +71,7 @@ $emp_res = $emp_res->fetch_assoc();
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="cmp_struct_view.php" class="nav-link">
           <i class="nav-icon far fa-building"></i>
           <p>
            Company Structure

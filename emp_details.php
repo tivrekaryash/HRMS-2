@@ -43,7 +43,7 @@ include 'db_conn.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard</h1>
+                            <h1 class="m-0">...</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -66,7 +66,7 @@ include 'db_conn.php';
                     <br>
 
                     <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" id="empTab" role="tablist"> 
+                    <ul class="nav nav-tabs" id="empTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">Details</a>
                         </li>
@@ -89,7 +89,7 @@ include 'db_conn.php';
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID." . "</th><th>" . "Full name" . "</th><th>" . "Date of Birth" . "</th><th>" . "Age" . "</th><th>" . "Gender" . "</th><th>" . "Address" . "</th><th>" . "E-mail" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Full name" . "</th><th>" . "Date of Birth" . "</th><th>" . "Age" . "</th><th>" . "Gender" . "</th><th>" . "Address" . "</th><th>" . "E-mail" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -150,9 +150,12 @@ include 'db_conn.php';
                                     $res = $res->fetch_assoc();
 
                                     echo "<tr><td>" . $row["phnum_id"] . "</td><td>" . $res["employee_name"] . "</td><td>";
-                                    if($row["phnum_home"] == null) echo "Null</td><td>"; else echo $row["phnum_home"] . "</td><td>";
-                                    if($row["phnum_work"] == null) echo "Null</td><td>"; else echo $row["phnum_work"] . "</td><td>";
-                                    if($row["phnum_mobile"] == null) echo "Null</td>"; else echo $row["phnum_mobile"] . "</td>";
+                                    if ($row["phnum_home"] == null) echo "Null</td><td>";
+                                    else echo $row["phnum_home"] . "</td><td>";
+                                    if ($row["phnum_work"] == null) echo "Null</td><td>";
+                                    else echo $row["phnum_work"] . "</td><td>";
+                                    if ($row["phnum_mobile"] == null) echo "Null</td>";
+                                    else echo $row["phnum_mobile"] . "</td>";
 
                             ?>
 
