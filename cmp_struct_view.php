@@ -184,7 +184,7 @@ include 'db_conn.php';
                                 <div class="modal-body">
                                     <div class="container p-5 my-2 border">
                                         <h2>Enter Department details here:</h2><br>
-                                        <form name="candidate_info" action="department_insert.php" method="POST">
+                                        <form name="dept_form" action="department_insert.php" method="POST">
 
                                             <div class="form-group">
                                                 <label for="deptname" class="form-label">Department Name: </label>
@@ -223,7 +223,7 @@ include 'db_conn.php';
                                 <div class="modal-body">
                                     <div class="container p-5 my-2 border">
                                         <h2>Enter Designation details here:</h2><br>
-                                        <form name="candidate_info" action="designation_insert.php" method="POST">
+                                        <form name="desg_form" action="designation_insert.php" method="POST">
 
                                             <div class="form-group">
                                                 <label for="deptname" class="form-label">Select Department: </label>
