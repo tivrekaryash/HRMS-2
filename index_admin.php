@@ -136,7 +136,7 @@ $emp_res = $emp_res->fetch_assoc();
                 <div class="icon">
                   <i class="fas fa-history"></i>
                 </div>
-                <a href="#" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="history_rec_view.php?c=0" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->

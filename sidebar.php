@@ -48,7 +48,7 @@ $emp_res = $emp_res->fetch_assoc();
         <a href="index_admin.php" class="nav-link">
           <i class="nav-icon fas fa-suitcase"></i>
           <p>
-            Dashboard 
+            Dashboard
           </p>
         </a>
       </li>
@@ -74,7 +74,7 @@ $emp_res = $emp_res->fetch_assoc();
         <a href="cmp_struct_view.php" class="nav-link">
           <i class="nav-icon far fa-building"></i>
           <p>
-           Company Structure
+            Company Structure
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
@@ -94,28 +94,28 @@ $emp_res = $emp_res->fetch_assoc();
         </ul>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="history_rec_view.php" class="nav-link">
           <i class="nav-icon fas fa-history"></i>
           <p>
-           History Records
+            History Records
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="history_rec_view.php?c=0" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Job History</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="history_rec_view.php?c=1" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Disciplinary History</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="history_rec_view.php?c=2" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Salary History</p>
             </a>
@@ -126,7 +126,7 @@ $emp_res = $emp_res->fetch_assoc();
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-money-check"></i>
           <p>
-           Financial Records
+            Financial Records
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
