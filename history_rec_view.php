@@ -202,7 +202,7 @@ $count = $_GET["c"];
 
                                                     while ($row = $result->fetch_assoc()) {
                                                         // displaying each employee_information in the list
-                                                        echo "<option>" . $row["employee_name"] . "</option>";
+                                                        echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
                                                     }
                                                     ?>
                                                 </select>
@@ -233,7 +233,7 @@ $count = $_GET["c"];
 
                                                     while ($row = $result->fetch_assoc()) {
                                                         // displaying each Designation in the list
-                                                        echo "<option>" . $row["designation"] . "</option>";
+                                                        echo "<option value = '$row[designation_id]'>" . $row["designation"] . "</option>";
                                                     }
                                                     ?>
                                                 </select>
@@ -244,8 +244,6 @@ $count = $_GET["c"];
                                                 <textarea type="text" class="form-control" rows="5" cols="33" id="jobdesc" name="jobdesc" required></textarea>
                                             </div>
                                             <br>
-
-                                            <input type="text" id="eid" name="eid" value="<?php echo $row["employee_id"]; ?>">
 
                                             <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 
