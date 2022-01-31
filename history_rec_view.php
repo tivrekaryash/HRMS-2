@@ -138,7 +138,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all disciplinary history information records
-                            $result = $conn->query("SELECT * FROM designations");
+                            $result = $conn->query("SELECT * FROM disciplinary_history");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -168,7 +168,7 @@ $count = $_GET["c"];
 
                                 // resetting counter in case there are no records (CHeck if there are any tables to be reset)
 
-                                $sql = "ALTER TABLE designations AUTO_INCREMENT = 1";
+                                $sql = "ALTER TABLE disciplinary_history AUTO_INCREMENT = 1";
                                 $res = $conn->query($sql);
                             }
 
