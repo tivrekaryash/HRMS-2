@@ -91,7 +91,7 @@ include 'db_conn.php';
                             } else {
                             ?>
                                 <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update<?php echo $row["candidate_id"]; ?>">Update</button></td>
-                                <td><button type='submit' class='btn btn-success' data-toggle="modal" data-target="#modal_accept<?php echo $row["candidate_id"]; ?>">Accept</button></td>
+                                <td><button type='submit' class="btn btn-success" data-toggle="modal" data-target="#modal_accept<?php echo $row["candidate_id"]; ?>">Accept</button></td>
                                 </tr>
                     <?php
                             }
@@ -243,11 +243,11 @@ include 'db_conn.php';
                 <div class="modal-body">
                     <div class="container p-5 my-2 border">
                         <h2>Assign designation:</h2><br>
-                        <form name="HisJob_form" action="emp_info.php?acc=<?php echo $row["candidate_id"]; ?>" method="POST">
+                        <form name="accp_form" action="emp_info.php?acc=<?php echo $row["candidate_id"]; ?>" method="POST">
 
                             <div class="form-group">
-                                <label for="fname_upd" class="form-label">Full Name: </label>
-                                <input type="text" class="form-control" id="fname_upd" name="fname_upd" value="<?php echo $row["candidate_fullname"]; ?>" disabled>
+                                <label for="fname" class="form-label">Full Name: </label>
+                                <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $row["candidate_fullname"]; ?>" disabled>
                             </div>
                             <br>
 
