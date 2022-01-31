@@ -76,6 +76,9 @@ include 'db_conn.php';
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="qualifications-tab" data-toggle="tab" href="#qualifications" role="tab" aria-controls="qualifications" aria-selected="false">Qualifications</a>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="empDesg-tab" data-toggle="tab" href="#empDesg" role="tab" aria-controls="empDesg" aria-selected="false">Employee designations</a>
+                        </li>
                     </ul>
 
                     <!-- Tab panes -->
@@ -195,6 +198,61 @@ include 'db_conn.php';
                         </div><!-- /.Contacts -->
 
                         <div class="tab-pane fade" id="qualifications" role="tabpanel" aria-labelledby="qualifications-tab">
+                            <?php
+
+                            // retrieves all employee_qualifications records
+                            $result = $conn->query("SELECT * FROM employee_qualifications");
+
+                            if ($result->num_rows > 0) {
+                                // displaying header for tabular form
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Employee name" . "</th><th>" . "Qualifications" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+
+                                // displaying data along with adding buttons for update and delete
+                                while ($row = $result->fetch_assoc()) {
+
+                                    $res = $conn->query("select * from employee_information where employee_id = $row[employee_id]");
+                                    $res = $res->fetch_assoc();
+
+                                    echo "<tr><td>" . $row["qualification_id"] . "</td><td>" . $res["employee_name"] . "</td><td>" . $row["qualifications_file_location"] . "</td>";
+
+                            ?>
+
+                                    <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_qualif<?php echo $row["employee_id"]; ?>">Update</button></td>
+                                    </tr>
+
+                            <?php
+                                    include 'emp_upd_qualif.php';
+                                }
+
+                                echo "</table>";
+                            } else {
+                                echo "no records inserted";
+
+                                // resetting counter in case there are no records
+
+                                $sql = "ALTER TABLE employee_qualifications AUTO_INCREMENT = 1";
+                                $res = $conn->query($sql);
+
+                                $sql = "ALTER TABLE employee_phnum AUTO_INCREMENT = 1";
+                                $res = $conn->query($sql);
+
+                                $sql = "ALTER TABLE job_history AUTO_INCREMENT = 1";
+                                $res = $conn->query($sql);
+
+                                $sql = "ALTER TABLE disciplinary_history AUTO_INCREMENT = 1";
+                                $res = $conn->query($sql);
+
+                                $sql = "ALTER TABLE base_salary_history AUTO_INCREMENT = 1";
+                                $res = $conn->query($sql);
+
+                                $sql = "ALTER TABLE employee_information AUTO_INCREMENT = 1";
+                                $res = $conn->query($sql);
+                            }
+
+                            ?>
+                        </div><!-- /.Qualifications -->
+
+                        <div class="tab-pane fade" id="empDesg" role="tabpanel" aria-labelledby="empDesg-tab">
                             <?php
 
                             // retrieves all employee_qualifications records
