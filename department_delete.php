@@ -21,7 +21,7 @@ $sql = mysqli_query($conn, "delete from department where department_id = '$del_i
 
 // redirects to display employee information after closing connection
 $conn->close();
-header("location:emp_details.php");
+header("location:emp_details.php?c=0");
 exit;
 
 ?>
