@@ -109,12 +109,10 @@ $count = $_GET["c"];
 
                             ?>
 
-                                    <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_HisJob<?php echo $row["history_id"]; ?>">Update</button></td>
                                     <td><a href="HisJob_delete.php?del=<?php echo $row["history_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
                                     </tr>
 
                             <?php
-                                    include 'HisJob_upd.php';
                                 }
 
                                 echo "</table>";
