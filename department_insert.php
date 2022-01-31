@@ -10,6 +10,6 @@ $res = mysqli_query($conn, "INSERT INTO department (department_name, department_
 
 // redirects to display candidate information after closing connection
 $conn->close();
-header("location:cmp_struct_view.php");
+header("location:cmp_struct_view.php?c=0");
 exit;
 ?>

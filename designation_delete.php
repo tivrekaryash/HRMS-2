@@ -13,7 +13,7 @@ $sql = mysqli_query($conn, "delete from designations where designation_id = '$de
 
 // redirects to display employee information after closing connection
 $conn->close();
-header("location:cmp_struct_view.php");
+header("location:cmp_struct_view.php?c=1");
 exit;
 
 ?>
