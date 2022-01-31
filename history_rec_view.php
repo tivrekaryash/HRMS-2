@@ -129,7 +129,7 @@ $count = $_GET["c"];
                         </div><!-- /.jobHistory -->
 
                         <!-- disciplinary -->
-                        <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="disc" role="tabpanel" aria-labelledby="disc-tab">
+                        <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="HisDisc" role="tabpanel" aria-labelledby="disc-tab">
                             <button type="button" data-toggle="modal" data-target="#modal_insert_HisDisc" class="btn btn-outline-success" style="float:right">
                                 <i class="fas fa-plus"></i> Add New
 
