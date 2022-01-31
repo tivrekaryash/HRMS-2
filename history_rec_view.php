@@ -194,8 +194,8 @@ $count = $_GET["c"];
                                         <form name="HisJob_form" action="HisJob_insert.php" method="POST">
 
                                             <div class="form-group">
-                                                <label for="empname" class="form-label">Select Employee: </label>
-                                                <select id="empname" class="form-control select2bs4" name="empname" style="width: 100%;" required>
+                                                <label for="ename" class="form-label">Select Employee: </label>
+                                                <select id="ename" class="form-control select2bs4" name="ename" style="width: 100%;" required>
                                                     <?php
                                                     // retrieving all employee_information
                                                     $result = $conn->query("select * from employee_information");
@@ -203,21 +203,6 @@ $count = $_GET["c"];
                                                     while ($row = $result->fetch_assoc()) {
                                                         // displaying each employee_information in the list
                                                         echo "<option>" . $row["employee_name"] . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div><br>
-
-                                            <div class="form-group">
-                                                <label for="desgname" class="form-label">Select Designation: </label>
-                                                <select id="desgname" class="form-control select2bs4" name="desgname" style="width: 100%;" required>
-                                                    <?php
-                                                    // retrieving all Designation
-                                                    $result = $conn->query("select * from designations");
-
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        // displaying each Designation in the list
-                                                        echo "<option>" . $row["designation"] . "</option>";
                                                     }
                                                     ?>
                                                 </select>
@@ -240,12 +225,27 @@ $count = $_GET["c"];
                                             <br>
 
                                             <div class="form-group">
+                                                <label for="dname" class="form-label">Select Designation: </label>
+                                                <select id="dname" class="form-control select2bs4" name="dname" style="width: 100%;" required>
+                                                    <?php
+                                                    // retrieving all Designation
+                                                    $result = $conn->query("select * from designations");
+
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        // displaying each Designation in the list
+                                                        echo "<option>" . $row["designation"] . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div><br>
+
+                                            <div class="form-group">
                                                 <label for="jobdesc" class="form-label">Job Description: </label>
                                                 <textarea type="text" class="form-control" rows="5" cols="33" id="jobdesc" name="jobdesc" required></textarea>
                                             </div>
                                             <br>
 
-                                            <input type="hidden" id="eid" name="eid" value="<?php echo $row["employee_id"]; ?>">
+                                            <input type="text" id="eid" name="eid" value="<?php echo $row["employee_id"]; ?>">
 
                                             <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 
