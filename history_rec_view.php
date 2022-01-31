@@ -105,7 +105,13 @@ $count = $_GET["c"];
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
-                                    echo "<tr><td>" . $row["history_id"] . "</td><td>" . $row["employee_id"] . "</td><td>" . $row["designation_id"] . "</td><td>" . $row["job_start_date"] . "</td><td>" . $row["job_end_date"] . "</td><td>" . $row["job_description"] . "</td>";
+
+                                    $res = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
+                                    $emprow = $res->fetch_assoc();
+                                    $res = mysqli_query($conn, "select * from designations where designation_id = '$row[designation_id]'");
+                                    $desrow = $res->fetch_assoc();
+
+                                    echo "<tr><td>" . $row["history_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $desrow["designation"] . "</td><td>" . $row["job_start_date"] . "</td><td>" . $row["job_end_date"] . "</td><td>" . $row["job_description"] . "</td>";
 
                             ?>
 
