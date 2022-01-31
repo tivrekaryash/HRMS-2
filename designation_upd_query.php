@@ -12,6 +12,6 @@ $res = $conn->query("UPDATE designations SET designation='$desig', base_salary='
 
 // redirects to display employee information after closing connection
 $conn->close();
-header("location:cmp_struct_view.php");
+header("location:cmp_struct_view.php?c=1");
 exit;
 ?>

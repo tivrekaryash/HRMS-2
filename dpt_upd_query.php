@@ -12,6 +12,6 @@ $res = $conn->query("UPDATE department SET department_name='$deptname', departme
 
 // redirects to display employee information after closing connection
 $conn->close();
-header("location:cmp_struct_view.php");
+header("location:cmp_struct_view.php?c=0");
 exit;
 ?>
