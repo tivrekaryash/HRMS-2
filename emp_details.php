@@ -265,9 +265,9 @@ include 'db_conn.php';
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
 
-                                    $res_des = $conn->query("select * from designations where designation_id = $row[designation_id]");
+                                    $res_des = $conn->query("select * from designations where designation_id = '$row[designation_id]'");
                                     $res_des = $res_des->fetch_assoc();
-                                    $res_dpt = $conn->query("select * from department where department_id = $res_des[department_id]");
+                                    $res_dpt = $conn->query("select * from department where department_id = '$res_des[department_id]'");
                                     $res_dpt = $res_dpt->fetch_assoc();
 
                                     echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $row["employee_name"] . "</td><td>" . $res_dpt["department_name"] . "</td><td>" . $res_des["designation"] . "</td>";
