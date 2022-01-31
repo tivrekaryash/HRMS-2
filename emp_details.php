@@ -250,13 +250,13 @@ include 'db_conn.php';
                             }
 
                             ?>
-                        </div><!-- /.Qualifications -->
+                        </div><!-- /.Employee designations -->
 
                         <div class="tab-pane fade" id="empDesg" role="tabpanel" aria-labelledby="empDesg-tab">
                             <?php
 
                             // retrieves all employee_qualifications records
-                            $result = $conn->query("SELECT * FROM employee_information");
+                            $result = $conn->query("SELECT * FROM designations");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -265,10 +265,12 @@ include 'db_conn.php';
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
 
-                                    $res = $conn->query("select * from employee_information where employee_id = $row[employee_id]");
-                                    $res = $res->fetch_assoc();
+                                    $res_emp = $conn->query("select * from employee_information where employee_id = $row[employee_id]");
+                                    $res_emp = $res_emp->fetch_assoc();
+                                    $res_dpt = $conn->query("select * from department where department_id = $row[department_id]");
+                                    $res_dpt = $res_dpt->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $res["employee_name"] . $row["employee_id"] .  "</td><td>" . $row["qualifications_file_location"] . "</td>";
+                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $res_emp["employee_name"] . "</td><td>" . $res_dpt["department"] . "</td><td>" . $res["designation"] . "</td>";
 
                             ?>
 
@@ -276,7 +278,7 @@ include 'db_conn.php';
                                     </tr>
 
                             <?php
-                                    include 'emp_upd_qualif.php';
+                                    //include 'emp_upd_qualif.php';
                                 }
 
                                 echo "</table>";
@@ -285,23 +287,8 @@ include 'db_conn.php';
 
                                 // resetting counter in case there are no records
 
-                                $sql = "ALTER TABLE employee_qualifications AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE employee_phnum AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE job_history AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE disciplinary_history AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE base_salary_history AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-
-                                $sql = "ALTER TABLE employee_information AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
+                                //$sql = "ALTER TABLE employee_qualifications AUTO_INCREMENT = 1";
+                                //$res = $conn->query($sql);
                             }
 
                             ?>
