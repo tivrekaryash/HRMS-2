@@ -130,7 +130,7 @@ $count = $_GET["c"];
 
                         <!-- disciplinary -->
                         <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="disc" role="tabpanel" aria-labelledby="disc-tab">
-                            <button type="button" data-toggle="modal" data-target="#modal_insert_disc" class="btn btn-outline-success" style="float:right">
+                            <button type="button" data-toggle="modal" data-target="#modal_insert_HisDisc" class="btn btn-outline-success" style="float:right">
                                 <i class="fas fa-plus"></i> Add New
 
                             </button>
@@ -142,24 +142,20 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Designation ID" . "</th><th>" . "Department" . "</th><th>" . "Designation" . "</th><th>" . "Base Salary(Rs.)" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Behaviour Standard" . "</th><th>" . "Disciplinary Action" . "</th><th>" . "Date" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
 
-                                    $res = $conn->query("select * from department where department_id = $row[department_id]");
-                                    $res = $res->fetch_assoc();
-
-                                    echo "<tr><td>" . $row["designation_id"] . "</td><td>" . $res["department_name"] . "</td><td>" . $row["designation"] . "</td><td>" . $row["base_salary"] . "</td>";
+                                    echo "<tr><td>" . $row["history_id"] . "</td><td>" . $row["employee_id"] . "</td><td>" . $row["behaviour_standard"] . "</td><td>" . $row["disciplinary_action"] . "</td><td>" . $row["date"] . "</td>";
 
                             ?>
 
-                                    <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_desg<?php echo $row["designation_id"]; ?>">Update</button></td>
-                                    <td><a href="designation_delete.php?del=<?php echo $row["designation_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
+                                    <td><a href="HisDisc_delete.php?del=<?php echo $row["history_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
                                     </tr>
 
                             <?php
-                                    include 'designation_upd.php';
+
                                 }
 
                                 echo "</table>";
@@ -176,7 +172,7 @@ $count = $_GET["c"];
                         </div><!-- /.disciplinary -->
 
                         <!-- Salary Hsitory -->
-                        <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="salHis" role="tabpanel" aria-labelledby="salHis-tab">
+                        <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="salHis" role="tabpanel" aria-labelledby="salHis-tab">
                             <p>To be discussed - Base Salary Hsitory or just Salary History (cleared status)</p>
                         </div><!-- /.Salary Hsitory -->
 
@@ -246,6 +242,85 @@ $count = $_GET["c"];
                                             <div class="form-group">
                                                 <label for="jobdesc" class="form-label">Job Description: </label>
                                                 <textarea type="text" class="form-control" rows="5" cols="33" id="jobdesc" name="jobdesc" required></textarea>
+                                            </div>
+                                            <br>
+
+                                            <input type="hidden" id="eid" name="eid" value="<?php echo $row["employee_id"]; ?>">
+
+                                            <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.Modal -->
+
+                    <!-- Modal-HisDisc Insert -->
+                    <div class="modal fade" id="modal_insert_HisDisc" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Disciplinary History form: </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container p-5 my-2 border">
+                                        <h2>Enter Disciplinary History Record:</h2><br>
+                                        <form name="HisJob_form" action="HisDisc_insert.php" method="POST">
+
+                                            <div class="form-group">
+                                                <label for="empname" class="form-label">Select Employee: </label>
+                                                <select id="empname" class="form-control select2bs4" name="empname" style="width: 100%;" required>
+                                                    <?php
+                                                    // retrieving all employee_information
+                                                    $result = $conn->query("select * from employee_information");
+
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        // displaying each employee_information in the list
+                                                        echo "<option>" . $row["employee_name"] . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div><br>
+
+                                            <div class="form-group">
+                                                <label for="desgname" class="form-label">Select Designation: </label>
+                                                <select id="desgname" class="form-control select2bs4" name="desgname" style="width: 100%;" required>
+                                                    <?php
+                                                    // retrieving all Designation
+                                                    $result = $conn->query("select * from designations");
+
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        // displaying each Designation in the list
+                                                        echo "<option>" . $row["designation"] . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div><br>
+
+                                            <div class="form-inline">
+                                                <label for="date" class="form-label">Date : </label>
+                                                <div class="col-sm-2">
+                                                    <input type="date" class="form-control" id="date" name="date" required>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group">
+                                                <label for="best" class="form-label">Behaviour standard: </label>
+                                                <textarea type="text" class="form-control" rows="5" cols="33" id="best" name="best" required></textarea>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group">
+                                                <label for="disc" class="form-label">Disciplinary action ▲: </label>
+                                                <textarea type="text" class="form-control" rows="5" cols="33" id="disc" name="disc" required></textarea>
                                             </div>
                                             <br>
 
