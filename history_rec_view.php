@@ -75,11 +75,11 @@ $count = $_GET["c"];
                                                                                                                                                                                             else echo "false"; ?>">Job History</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="disc-tab" data-toggle="tab" href="#disc" role="tab" aria-controls="disc" aria-selected="<?php if ($count == 1) echo "true";
+                            <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="Hisdisc-tab" data-toggle="tab" href="#HisDisc" role="tab" aria-controls="HisDisc" aria-selected="<?php if ($count == 1) echo "true";
                                                                                                                                                                                         else echo "false"; ?>">Disciplinary History</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="salHis-tab" data-toggle="tab" href="#salHis" role="tab" aria-controls="salHis" aria-selected="<?php if ($count == 2) echo "true";
+                            <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="Hissal-tab" data-toggle="tab" href="#Hissal" role="tab" aria-controls="Hissal" aria-selected="<?php if ($count == 2) echo "true";
                                                                                                                                                                                             else echo "false"; ?>">Salary History</a>
                         </li>
                     </ul>
@@ -129,7 +129,7 @@ $count = $_GET["c"];
                         </div><!-- /.jobHistory -->
 
                         <!-- disciplinary -->
-                        <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="HisDisc" role="tabpanel" aria-labelledby="disc-tab">
+                        <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="HisDisc" role="tabpanel" aria-labelledby="Hisdisc-tab">
                             <button type="button" data-toggle="modal" data-target="#modal_insert_HisDisc" class="btn btn-outline-success" style="float:right">
                                 <i class="fas fa-plus"></i> Add New
 
@@ -172,7 +172,7 @@ $count = $_GET["c"];
                         </div><!-- /.disciplinary -->
 
                         <!-- Salary Hsitory -->
-                        <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="salHis" role="tabpanel" aria-labelledby="salHis-tab">
+                        <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="Hissal" role="tabpanel" aria-labelledby="Hissal-tab">
                             <p>To be discussed - Base Salary Hsitory or just Salary History (cleared status)</p>
                         </div><!-- /.Salary Hsitory -->
 
@@ -282,21 +282,6 @@ $count = $_GET["c"];
                                                     while ($row = $result->fetch_assoc()) {
                                                         // displaying each employee_information in the list
                                                         echo "<option>" . $row["employee_name"] . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div><br>
-
-                                            <div class="form-group">
-                                                <label for="desgname" class="form-label">Select Designation: </label>
-                                                <select id="desgname" class="form-control select2bs4" name="desgname" style="width: 100%;" required>
-                                                    <?php
-                                                    // retrieving all Designation
-                                                    $result = $conn->query("select * from designations");
-
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        // displaying each Designation in the list
-                                                        echo "<option>" . $row["designation"] . "</option>";
                                                     }
                                                     ?>
                                                 </select>
