@@ -144,7 +144,7 @@ include 'db_conn.php';
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Employee name" . "</th><th>" . "Home" . "</th><th>" . "Work" . "</th><th>" . "Mobile" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Employee name" . "</th><th>" . "Home" . "</th><th>" . "Work" . "</th><th>" . "Mobile" . "</th><th>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -205,7 +205,7 @@ include 'db_conn.php';
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Employee name" . "</th><th>" . "Qualifications" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Employee name" . "</th><th>" . "Qualifications" . "</th><th>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -256,11 +256,11 @@ include 'db_conn.php';
                             <?php
 
                             // retrieves all employee_qualifications records
-                            $result = $conn->query("SELECT * FROM employee_qualifications");
+                            $result = $conn->query("SELECT * FROM employee_information");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Employee name" . "</th><th>" . "Qualifications" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Employee name" . "</th><th>" . "Department" . "</th><th>" . "Designation" . "</th><th>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -268,7 +268,7 @@ include 'db_conn.php';
                                     $res = $conn->query("select * from employee_information where employee_id = $row[employee_id]");
                                     $res = $res->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["qualification_id"] . "</td><td>" . $res["employee_name"] . "</td><td>" . $row["qualifications_file_location"] . "</td>";
+                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $res["employee_name"] . $row["employee_id"] .  "</td><td>" . $row["qualifications_file_location"] . "</td>";
 
                             ?>
 
