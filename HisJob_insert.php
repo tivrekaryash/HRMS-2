@@ -3,7 +3,7 @@
 include 'db_conn.php';
 
 $emp_id = $_POST['ename'];
-$desig_id = $_POST['desgname'];
+$desig_id = $_POST['dname'];
 $job_start = $_POST['start'];
 $job_end = $_POST['end'];
 $job_desc = $_POST['jobdesc'];
