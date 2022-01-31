@@ -101,7 +101,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Designation" . "</th><th>" . "Start Date" . "</th><th>" . "End Date" . "</th><th>" . "Description" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Designation" . "</th><th>" . "Start Date" . "</th><th>" . "End Date" . "</th><th>" . "Description" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -114,8 +114,6 @@ $count = $_GET["c"];
                                     echo "<tr><td>" . $row["history_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $desrow["designation"] . "</td><td>" . $row["job_start_date"] . "</td><td>" . $row["job_end_date"] . "</td><td>" . $row["job_description"] . "</td>";
 
                             ?>
-
-                                    <td><a href="HisJob_delete.php?del=<?php echo $row["history_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
                                     </tr>
 
                             <?php
@@ -148,7 +146,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Behaviour Standard" . "</th><th>" . "Disciplinary Action" . "</th><th>" . "Date" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Behaviour Standard" . "</th><th>" . "Disciplinary Action" . "</th><th>" . "Date" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -156,11 +154,9 @@ $count = $_GET["c"];
                                     $res = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
                                     $emprow = $res->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["history_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["behaviour_standard"] . "</td><td>" . $row["disciplinary_action"] . "</td><td>" . $row["date"] . "</td>";
+                                    echo "<tr><td>" . $row["history_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["behaviour_standard"] . "</td><td>" . $row["disciplinary_action"] . "</td><td>" . $row["dis_date"] . "</td>";
 
                             ?>
-
-                                    <td><a href="HisDisc_delete.php?del=<?php echo $row["history_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
                                     </tr>
 
                             <?php
