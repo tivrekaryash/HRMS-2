@@ -250,17 +250,17 @@ include 'db_conn.php';
                             }
 
                             ?>
-                        </div><!-- /.Employee designations -->
+                        </div><!-- /.Qualifications -->
 
                         <div class="tab-pane fade" id="empDesg" role="tabpanel" aria-labelledby="empDesg-tab">
                             <?php
 
-                            // retrieves all employee_qualifications records
+                            // retrieves all employee_information records
                             $result = $conn->query("SELECT * FROM employee_information");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Employee name" . "</th><th>" . "Department" . "</th><th>" . "Designation" . "</th><th>" . "Action" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee name" . "</th><th>" . "Department" . "</th><th>" . "Designation" . "</th><th>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -292,7 +292,7 @@ include 'db_conn.php';
                             }
 
                             ?>
-                        </div><!-- /.Qualifications -->
+                        </div><!-- /.Employee designations -->
 
 
                     </div><!-- /.Tab-panes -->
