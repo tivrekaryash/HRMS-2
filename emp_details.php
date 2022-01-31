@@ -256,7 +256,7 @@ include 'db_conn.php';
                             <?php
 
                             // retrieves all employee_qualifications records
-                            $result = $conn->query("SELECT * FROM designations");
+                            $result = $conn->query("SELECT * FROM employee_information");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -265,12 +265,12 @@ include 'db_conn.php';
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
 
-                                    $res_emp = $conn->query("select * from employee_information where employee_id = $row[employee_id]");
-                                    $res_emp = $res_emp->fetch_assoc();
-                                    $res_dpt = $conn->query("select * from department where department_id = $row[department_id]");
+                                    $res_des = $conn->query("select * from designations where designation_id = $row[designation_id]");
+                                    $res_des = $res_des->fetch_assoc();
+                                    $res_dpt = $conn->query("select * from department where department_id = $res_des[department_id]");
                                     $res_dpt = $res_dpt->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $res_emp["employee_name"] . "</td><td>" . $res_dpt["department"] . "</td><td>" . $res["designation"] . "</td>";
+                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $row["employee_name"] . "</td><td>" . $res_dpt["department_name"] . "</td><td>" . $res_des["designation"] . "</td>";
 
                             ?>
 
@@ -278,7 +278,7 @@ include 'db_conn.php';
                                     </tr>
 
                             <?php
-                                    //include 'emp_upd_qualif.php';
+                                    include 'emp_upd_qualif.php';
                                 }
 
                                 echo "</table>";
