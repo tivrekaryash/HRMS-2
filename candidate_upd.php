@@ -7,7 +7,7 @@
         var phnum = document.forms["candidate_upd"]["phnum_upd"].value;
 
         // checking for digits in full name
-        if (!(/^[a-zA-Z ]+$/.test(fname))) {
+        if (!(/^[a-zA-Z]+$/.test(fname))) {
             window.alert("Full name is invalid");
             return false;
         }
