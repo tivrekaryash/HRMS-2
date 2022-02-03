@@ -260,7 +260,7 @@ include 'db_conn.php';
                             <?php
 
                             // retrieves all employee_information records
-                            $result = $conn->query("SELECT * FROM employee_information");
+                            $result = $conn->query("SELECT * FROM employee_information where designation_id IS NOT NULL");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -272,7 +272,7 @@ include 'db_conn.php';
                                     $res_des = $conn->query("select * from designations where designation_id = '$row[designation_id]'");
                                     $res_des = $res_des->fetch_assoc();
                                     $res_dpt = $conn->query("select * from department where department_id = '$res_des[department_id]'");
-                                    $res_dpt = $res_dpt->fetch_assoc(); 
+                                    $res_dpt = $res_dpt->fetch_assoc();
 
                                     echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $row["employee_name"] . "</td><td>" . $res_dpt["department_name"] . "</td><td>" . $res_des["designation"] . "</td>";
 
@@ -288,21 +288,70 @@ include 'db_conn.php';
                                 echo "</table>";
                             } else {
                                 echo "no records inserted";
-
-                                // resetting counter in case there are no records
-
-                                //$sql = "ALTER TABLE employee_qualifications AUTO_INCREMENT = 1";
-                                //$res = $conn->query($sql);
                             }
 
                             ?>
+                        
+                        <!-- Modal-Set Designations -->
+                        <div class="modal fade" id="modal_set_desg" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+                                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Designation form: </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container p-5 my-2 border">
+                                                <h2>Assign designation:</h2><br>
+                                                <form name="set_desg_form" action="emp_desg_set.php" method="POST">
+
+                                                    <div class="form-group">
+                                                        <label for="empname" class="form-label">Select Employee: </label>
+                                                        <select id="empname" class="form-control select2bs4" name="empname" style="width: 100%;" required>
+                                                            <?php
+                                                            // retrieving all employee_information
+                                                            $result = $conn->query("select * from employee_information where designation_id is null");
+
+                                                            while ($row = $result->fetch_assoc()) {
+                                                                // displaying each employee_information in the list
+                                                                echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div><br>
+
+                                                    <div class="form-group">
+                                                        <label for="design" class="form-label">Select Designation: </label>
+                                                        <select id="design" class="form-control select2bs4" name="design" style="width: 100%;" required>
+                                                            <?php
+                                                            // retrieving all Designation
+                                                            $result = $conn->query("select * from designations");
+
+                                                            while ($row = $result->fetch_assoc()) {
+                                                                // displaying each Designation in the list
+                                                                echo "<option value = '$row[designation_id]'>" . $row["designation"] . "</option>";
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div><br>
+
+                                                    <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.Modal -->
                         </div><!-- /.Employee designations -->
 
 
                     </div><!-- /.Tab-panes -->
-
-                    
-
 
                 </div><!-- /.container-fluid -->
             </section>
