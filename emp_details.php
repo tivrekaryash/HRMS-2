@@ -77,7 +77,7 @@ include 'db_conn.php';
                             <a class="nav-link" id="qualifications-tab" data-toggle="tab" href="#qualifications" role="tab" aria-controls="qualifications" aria-selected="false">Qualifications</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="empDesg-tab" data-toggle="tab" href="#empDesg" role="tab" aria-controls="empDesg" aria-selected="false">Employee designations &nbsp;<span data-toggle="tooltip" data-placement="top" title="△ Designations Not Set △" class="badge badge-danger right"><i class="fas fa-exclamation"></i></span></a>
+                            <a class="nav-link" id="empDesg-tab" data-toggle="tab" href="#empDesg" role="tab" aria-controls="empDesg" aria-selected="false">Employee designations &nbsp;<span data-toggle="tooltip" data-placement="top" title="△ Designations Not Set △" class="badge badge-danger right">0</span></a>
                         </li>
                     </ul>
 
@@ -300,6 +300,8 @@ include 'db_conn.php';
 
 
                     </div><!-- /.Tab-panes -->
+
+                    
 
 
                 </div><!-- /.container-fluid -->

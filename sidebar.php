@@ -67,6 +67,7 @@ $emp_res = $emp_res->fetch_assoc();
           <p >
             Employee Details
             <span data-toggle="tooltip" data-placement="right" title="Total Employees" class="badge badge-info right"><?php echo $emp_res["count(employee_id)"]; ?></span>
+            
             <span data-toggle="tooltip" data-placement="right" title="△ Set Designations △" class="badge badge-danger right"> <i class="fas fa-exclamation-circle"></i> </span>
           </p>
         </a>
