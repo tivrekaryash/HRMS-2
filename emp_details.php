@@ -257,6 +257,7 @@ include 'db_conn.php';
                                 <i class="fas fa-user-cog"></i> Set Designation
 
                             </button>
+                            <br><br>
                             <?php
 
                             // retrieves all employee_information records
