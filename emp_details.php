@@ -77,7 +77,7 @@ include 'db_conn.php';
                             <a class="nav-link" id="qualifications-tab" data-toggle="tab" href="#qualifications" role="tab" aria-controls="qualifications" aria-selected="false">Qualifications</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="empDesg-tab" data-toggle="tab" href="#empDesg" role="tab" aria-controls="empDesg" aria-selected="false">Employee designations <span class="badge badge-info right"><?php echo $emp_res["count(employee_id)"]; ?></span></a>
+                            <a class="nav-link" id="empDesg-tab" data-toggle="tab" href="#empDesg" role="tab" aria-controls="empDesg" aria-selected="false">Employee designations &nbsp;<span data-toggle="tooltip" data-placement="top" title="△ Designations Not Set △" class="badge badge-danger right"><i class="fas fa-exclamation"></i></span></a>
                         </li>
                     </ul>
 
@@ -253,6 +253,10 @@ include 'db_conn.php';
                         </div><!-- /.Qualifications -->
 
                         <div class="tab-pane fade" id="empDesg" role="tabpanel" aria-labelledby="empDesg-tab">
+                            <button type="button" data-toggle="modal" data-target="#modal_set_desg" class="btn btn-outline-success" style="float:right">
+                                <i class="fas fa-user-cog"></i> Set Designation
+
+                            </button>
                             <?php
 
                             // retrieves all employee_information records
@@ -274,11 +278,11 @@ include 'db_conn.php';
 
                             ?>
 
-                                    <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_qualif<?php echo $row["employee_id"]; ?>">Update</button></td>
+                                    <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_desg<?php echo $row["employee_id"]; ?>">Update</button></td>
                                     </tr>
 
                             <?php
-                                    include 'emp_upd_qualif.php';
+                                    include 'emp_upd_desg.php';
                                 }
 
                                 echo "</table>";
@@ -318,6 +322,80 @@ include 'db_conn.php';
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
+
+    <!-- Modal-Set Designations -->
+    <div class="modal fade" id="modal_set_desg" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Acceptance form: </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container p-5 my-2 border">
+                        <h2>Assign designation:</h2><br>
+                        <form name="accp_form" action="" method="POST">
+
+                            <div class="form-group">
+                                <label for="ename" class="form-label">Select Employee: </label>
+                                <select id="ename" class="form-control select2bs4" name="ename" style="width: 100%;" required>
+                                    <?php
+                                    // retrieving all employee_information
+                                    $result = $conn->query("select * from employee_information");
+
+                                    while ($row = $result->fetch_assoc()) {
+                                        // displaying each employee_information in the list
+                                        echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div><br>
+
+                            <div class="form-group">
+                                <label for="dname" class="form-label">Select Department: </label>
+                                <select id="dname" class="form-control select2bs4" name="dname" style="width: 100%;" required>
+                                    <?php
+                                    // retrieving all Designation
+                                    $result = $conn->query("select * from departments");
+
+                                    while ($row = $result->fetch_assoc()) {
+                                        // displaying each Designation in the list
+                                        echo "<option value = '$row[designation_id]'>" . $row["designation"] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div><br>
+
+                            <div class="form-group">
+                                <label for="dname" class="form-label">Select Designation: </label>
+                                <select id="dname" class="form-control select2bs4" name="dname" style="width: 100%;" required>
+                                    <?php
+                                    // retrieving all Designation
+                                    $result = $conn->query("select * from designations");
+
+                                    while ($row = $result->fetch_assoc()) {
+                                        // displaying each Designation in the list
+                                        echo "<option value = '$row[designation_id]'>" . $row["designation"] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div><br>
+
+                            <input type="hidden" id="canid" name="canid" value="<?php echo $row["candidate_id"]; ?>">
+
+                            <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.Modal -->
 
     <!-- scripts -->
     <?php include 'scripts.php'; ?>
