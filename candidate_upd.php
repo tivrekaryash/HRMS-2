@@ -6,11 +6,11 @@
         var email = document.forms["candidate_upd"]["email_upd"].value;
         var phnum = document.forms["candidate_upd"]["phnum_upd"].value;
 
-        // checking for digits in full name
-        if (!(/^[a-zA-Z]+$/.test(fname))) {
+        /* // checking for digits in full name
+        if (!(/^[A-Za-z\s]+$/.test(fname))) {
             window.alert("Full name is invalid");
             return false;
-        }
+        } */
 
         // checking for age, valid age is 18 to 60
         if (!(/^\d{2}$/.test(age)) || age > 60 || age < 18) {
