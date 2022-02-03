@@ -77,7 +77,7 @@ include 'db_conn.php';
                             <a class="nav-link" id="qualifications-tab" data-toggle="tab" href="#qualifications" role="tab" aria-controls="qualifications" aria-selected="false">Qualifications</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="empDesg-tab" data-toggle="tab" href="#empDesg" role="tab" aria-controls="empDesg" aria-selected="false">Employee designations</a>
+                            <a class="nav-link" id="empDesg-tab" data-toggle="tab" href="#empDesg" role="tab" aria-controls="empDesg" aria-selected="false">Employee designations <span class="badge badge-info right"><?php echo $emp_res["count(employee_id)"]; ?></span></a>
                         </li>
                     </ul>
 

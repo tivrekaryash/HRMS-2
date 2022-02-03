@@ -231,7 +231,7 @@ include 'db_conn.php';
     </div><!-- /.Modal -->
 
     <!-- Modal-Acceptance -->
-    <div class="modal fade" id="modal_accept<?php echo $row["candidate_id"]; ?>" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+    <div class="modal fade" id="smodal_accept<?php echo $row["candidate_id"]; ?>" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">

@@ -13,4 +13,4 @@ $res = $conn->query("UPDATE employee_qualifications SET qualifications_file_loca
 $conn->close();
 header("location:emp_details.php");
 exit;
-?>
+?> 
