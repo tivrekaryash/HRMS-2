@@ -150,7 +150,7 @@ $emp_res = $emp_res->fetch_assoc();
                 <div class="icon">
                   <i class="fas fa-money-check"></i>
                 </div>
-                <a href="#" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="finance_rec_view.php?c=0" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->

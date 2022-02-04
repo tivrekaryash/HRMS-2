@@ -81,7 +81,7 @@ include 'db_conn.php';
             }
 
             else
-              echo "<span data-toggle='tooltip' data-placement='right' title='△ Set Designations △' class='badge badge-danger right'><i class='fas fa-exclamation-circle'></i></span>";
+              echo "<span data-toggle='tooltip' data-placement='right' title='△ Set Designations △' class='badge badge-danger right'>▲</span>";
             ?>
           </p>
         </a>
@@ -139,7 +139,7 @@ include 'db_conn.php';
         </ul>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="finance_rec_view.php" class="nav-link">
           <i class="nav-icon fas fa-money-check"></i>
           <p>
             Financial Records
@@ -148,19 +148,19 @@ include 'db_conn.php';
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="finance_rec_view.php?c=0" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Salary</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="finance_rec_view.php?c=1" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Overtime Pay</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="finance_rec_view.php?c=2" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Compensation</p>
             </a>
