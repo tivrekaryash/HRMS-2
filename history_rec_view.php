@@ -101,7 +101,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Designation" . "</th><th>" . "Start Date" . "</th><th>" . "End Date" . "</th><th>" . "Description" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Designation" . "</th><th>" . "Start Date" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -111,7 +111,7 @@ $count = $_GET["c"];
                                     $res = mysqli_query($conn, "select * from designations where designation_id = '$row[designation_id]'");
                                     $desrow = $res->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["history_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $desrow["designation"] . "</td><td>" . $row["job_start_date"] . "</td><td>" . $row["job_end_date"] . "</td><td>" . $row["job_description"] . "</td>";
+                                    echo "<tr><td>" . $row["history_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $desrow["designation"] . "</td><td>" . $row["job_start_date"] . "</td>";
 
                             ?>
                                     </tr>
@@ -221,14 +221,6 @@ $count = $_GET["c"];
                                             </div>
                                             <br>
 
-                                            <div class="form-inline">
-                                                <label for="end" class="form-label">End Date : </label>
-                                                <div class="col-sm-2">
-                                                    <input type="date" class="form-control" id="end" name="end" required>
-                                                </div>
-                                            </div>
-                                            <br>
-
                                             <div class="form-group">
                                                 <label for="dname" class="form-label">Select Designation: </label>
                                                 <select id="dname" class="form-control select2bs4" name="dname" style="width: 100%;" required>
@@ -243,12 +235,6 @@ $count = $_GET["c"];
                                                     ?>
                                                 </select>
                                             </div><br>
-
-                                            <div class="form-group">
-                                                <label for="jobdesc" class="form-label">Job Description: </label>
-                                                <textarea type="text" class="form-control" rows="5" cols="33" id="jobdesc" name="jobdesc" required></textarea>
-                                            </div>
-                                            <br>
 
                                             <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 

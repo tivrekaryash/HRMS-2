@@ -69,84 +69,58 @@ $count = $_GET["c"];
                     <br>
 
                     <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" id="hisTab" role="tablist">
+                    <ul class="nav nav-tabs" id="finTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if ($count == 0) echo "active"; ?>" id="HisJob-tab" data-toggle="tab" href="#HisJob" role="tab" aria-controls="HisJob" aria-selected="<?php if ($count == 0) echo "true";
-                                                                                                                                                                                            else echo "false"; ?>">Job History</a>
+                            <a class="nav-link <?php if ($count == 0) echo "active"; ?>" id="Sal-tab" data-toggle="tab" href="#Sal" role="tab" aria-controls="Sal" aria-selected="<?php if ($count == 0) echo "true";
+                                                                                                                                                                                    else echo "false"; ?>">Salary</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="Hisdisc-tab" data-toggle="tab" href="#HisDisc" role="tab" aria-controls="HisDisc" aria-selected="<?php if ($count == 1) echo "true";
-                                                                                                                                                                                        else echo "false"; ?>">Disciplinary History</a>
+                            <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="Otp-tab" data-toggle="tab" href="#Otp" role="tab" aria-controls="Otp" aria-selected="<?php if ($count == 1) echo "true";
+                                                                                                                                                                                    else echo "false"; ?>">Overtime Payment</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="Hissal-tab" data-toggle="tab" href="#Hissal" role="tab" aria-controls="Hissal" aria-selected="<?php if ($count == 2) echo "true";
-                                                                                                                                                                                            else echo "false"; ?>">Salary History</a>
+                            <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="Comp-tab" data-toggle="tab" href="#Comp" role="tab" aria-controls="Comp" aria-selected="<?php if ($count == 2) echo "true";
+                                                                                                                                                                                        else echo "false"; ?>">Compensation</a>
                         </li>
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <!-- jobHistory -->
-                        <div class="tab-pane fade <?php if ($count == 0) echo "show active"; ?>" id="HisJob" role="tabpanel" aria-labelledby="HisJob-tab">
-                            <button type="button" data-toggle="modal" data-target="#modal_insert_HisJob" class="btn btn-outline-success" style="float:right">
-                                <i class="fas fa-plus"></i> Add New
+                        <!-- Salary -->
+                        <div class="tab-pane fade <?php if ($count == 0) echo "show active"; ?>" id="Sal" role="tabpanel" aria-labelledby="Sal-tab">
+                            <button type="button" data-toggle="modal" data-target="#" class="btn btn-outline-success" style="float:right">
+                                <i class="fas fa-wallet"></i> Clear Due
+
+                            </button>
+                            <br><br>
+                            To be discussed
+                        </div><!-- /.Salary -->
+
+                        <!-- Overtime Pay -->
+                        <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="Otp" role="tabpanel" aria-labelledby="Otp-tab">
+                            <button type="button" data-toggle="modal" data-target="#" class="btn btn-outline-success" style="float:right">
+                                <i class="fas fa-wallet"></i> Clear Due
+
+                            </button>
+                            <br><br>
+                            To be discussed
+                        </div><!-- /.Overtime Pay  -->
+
+                        <!-- Compensation -->
+                        <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="Comp" role="tabpanel" aria-labelledby="Comp-tab">
+                            <button type="button" data-toggle="modal" data-target="#modal_insert_comp" class="btn btn-outline-success" style="float:right">
+                                <i class="fas fa-wallet"></i> Clear Due
 
                             </button>
                             <br><br>
                             <?php
 
-                            // retrieves all job History information records
-                            $sql = "SELECT * FROM job_history";
-                            $result = $conn->query($sql);
+                            // retrieves all compensation records
+                            $result = $conn->query("SELECT * FROM compensation");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Designation" . "</th><th>" . "Start Date" . "</th><th>" . "End Date" . "</th><th>" . "Description" . "</th></tr>";
-
-                                // displaying data along with adding buttons for update and delete
-                                while ($row = $result->fetch_assoc()) {
-
-                                    $res = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
-                                    $emprow = $res->fetch_assoc();
-                                    $res = mysqli_query($conn, "select * from designations where designation_id = '$row[designation_id]'");
-                                    $desrow = $res->fetch_assoc();
-
-                                    echo "<tr><td>" . $row["history_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $desrow["designation"] . "</td><td>" . $row["job_start_date"] . "</td><td>" . $row["job_end_date"] . "</td><td>" . $row["job_description"] . "</td>";
-
-                            ?>
-                                    </tr>
-
-                            <?php
-                                }
-
-                                echo "</table>";
-                            } else {
-                                echo "no records inserted";
-
-                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-
-                                $sql = "ALTER TABLE job_history AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
-                            }
-
-                            ?>
-                        </div><!-- /.jobHistory -->
-
-                        <!-- disciplinary -->
-                        <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="HisDisc" role="tabpanel" aria-labelledby="Hisdisc-tab">
-                            <button type="button" data-toggle="modal" data-target="#modal_insert_HisDisc" class="btn btn-outline-success" style="float:right">
-                                <i class="fas fa-plus"></i> Add New
-
-                            </button>
-                            <br><br>
-                            <?php
-
-                            // retrieves all disciplinary history information records
-                            $result = $conn->query("SELECT * FROM disciplinary_history");
-
-                            if ($result->num_rows > 0) {
-                                // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Behaviour Standard" . "</th><th>" . "Disciplinary Action" . "</th><th>" . "Date" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Compensation ID" . "</th><th>" . "Employee" . "</th><th>" . "Type" . "</th><th>" . "Description" . "</th><th>" . "Amount" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -154,7 +128,7 @@ $count = $_GET["c"];
                                     $res = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
                                     $emprow = $res->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["history_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["behaviour_standard"] . "</td><td>" . $row["disciplinary_action"] . "</td><td>" . $row["dis_date"] . "</td>";
+                                    echo "<tr><td>" . $row["compensation_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["compensation_type"] . "</td><td>" . $row["compensation_description"] . "</td><td>" . $row["compensation_amt"] . "</td><td>" . $row["cmp_Date"] . "</td><td>" . $row["clearance"] . "</td>";
 
                             ?>
                                     </tr>
@@ -174,33 +148,36 @@ $count = $_GET["c"];
                             }
 
                             ?>
-                        </div><!-- /.disciplinary -->
-
-                        <!-- Salary Hsitory -->
-                        <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="Hissal" role="tabpanel" aria-labelledby="Hissal-tab">
-                            <p>To be discussed - Base Salary Hsitory or just Salary History (cleared status)</p>
-                        </div><!-- /.Salary Hsitory -->
+                        </div><!-- /.Compensation -->
 
                     </div><!-- /.Tab-panes -->
 
-                    <!-- Modal-HisJob Insert -->
-                    <div class="modal fade" id="modal_insert_HisJob" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+                    <!-- Modal-Compensation Insert -->
+                    <div class="modal fade" id="modal_insert_comp" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
                         <div class="modal-dialog modal-dialog-scrollable modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Job History form: </h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Compensation form: </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="container p-5 my-2 border">
-                                        <h2>Enter Job History Record:</h2><br>
-                                        <form name="HisJob_form" action="HisJob_insert.php" method="POST">
+                                        <h2>Enter Compensation Record:</h2><br>
+                                        <form name="Comp_form" action="HisJob_insert.php" method="POST">
+
+                                            <div class="form-inline">
+                                                <label for="compdate" class="form-label">Date : </label>
+                                                <div class="col-sm-2">
+                                                    <input type="date" class="form-control" id="compdate" name="compdate" required>
+                                                </div>
+                                            </div>
+                                            <br>
 
                                             <div class="form-group">
-                                                <label for="ename" class="form-label">Select Employee: </label>
-                                                <select id="ename" class="form-control select2bs4" name="ename" style="width: 100%;" required>
+                                                <label for="emp" class="form-label">Select Employee: </label>
+                                                <select id="emp" class="form-control select2bs4" name="emp" style="width: 100%;" required>
                                                     <?php
                                                     // retrieving all employee_information
                                                     $result = $conn->query("select * from employee_information");
@@ -213,42 +190,27 @@ $count = $_GET["c"];
                                                 </select>
                                             </div><br>
 
-                                            <div class="form-inline">
-                                                <label for="start" class="form-label">Start Date : </label>
-                                                <div class="col-sm-2">
-                                                    <input type="date" class="form-control" id="start" name="start" required>
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="comptype" class="form-label">Type: </label>
+                                                <input type="text" class="form-control" id="comptype" name="comptype" required>
                                             </div>
                                             <br>
 
                                             <div class="form-inline">
-                                                <label for="end" class="form-label">End Date : </label>
+                                                <label for="compamt" class="form-label">Amount (Rs): </label>
                                                 <div class="col-sm-2">
-                                                    <input type="date" class="form-control" id="end" name="end" required>
+                                                    <input type="number" class="form-control" id="compamt" name="compamt" required>
                                                 </div>
                                             </div>
                                             <br>
 
-                                            <div class="form-group">
-                                                <label for="dname" class="form-label">Select Designation: </label>
-                                                <select id="dname" class="form-control select2bs4" name="dname" style="width: 100%;" required>
-                                                    <?php
-                                                    // retrieving all Designation
-                                                    $result = $conn->query("select * from designations");
-
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        // displaying each Designation in the list
-                                                        echo "<option value = '$row[designation_id]'>" . $row["designation"] . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div><br>
 
                                             <div class="form-group">
-                                                <label for="jobdesc" class="form-label">Job Description: </label>
-                                                <textarea type="text" class="form-control" rows="5" cols="33" id="jobdesc" name="jobdesc" required></textarea>
+                                                <label for="compdesc" class="form-label">Description: </label>
+                                                <textarea type="text" class="form-control" rows="5" cols="33" id="compdesc" name="compdesc"></textarea>
                                             </div>
                                             <br>
+
 
                                             <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 
@@ -261,70 +223,6 @@ $count = $_GET["c"];
                             </div>
                         </div>
                     </div><!-- /.Modal -->
-
-                    <!-- Modal-HisDisc Insert -->
-                    <div class="modal fade" id="modal_insert_HisDisc" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
-                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Disciplinary History form: </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container p-5 my-2 border">
-                                        <h2>Enter Disciplinary History Record:</h2><br>
-                                        <form name="HisJob_form" action="HisDisc_insert.php" method="POST">
-
-                                            <div class="form-group">
-                                                <label for="empname" class="form-label">Select Employee: </label>
-                                                <select id="empname" class="form-control select2bs4" name="empname" style="width: 100%;" required>
-                                                    <?php
-                                                    // retrieving all employee_information
-                                                    $result = $conn->query("select * from employee_information");
-
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        // displaying each employee_information in the list
-                                                        echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div><br>
-
-                                            <div class="form-inline">
-                                                <label for="date" class="form-label">Date : </label>
-                                                <div class="col-sm-2">
-                                                    <input type="date" class="form-control" id="date" name="date" required>
-                                                </div>
-                                            </div>
-                                            <br>
-
-                                            <div class="form-group">
-                                                <label for="best" class="form-label">Behaviour standard: </label>
-                                                <textarea type="text" class="form-control" rows="5" cols="33" id="best" name="best" required></textarea>
-                                            </div>
-                                            <br>
-
-                                            <div class="form-group">
-                                                <label for="disc" class="form-label">Disciplinary action ▲: </label>
-                                                <textarea type="text" class="form-control" rows="5" cols="33" id="disc" name="disc" required></textarea>
-                                            </div>
-                                            <br>
-
-                                            <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
-
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.Modal -->
-
-
 
                 </div><!-- /.container-fluid -->
             </section>

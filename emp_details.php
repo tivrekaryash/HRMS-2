@@ -293,7 +293,7 @@ $count = $_GET["c"];
                                     </tr>
 
                             <?php
-                                    include 'emp_desg.php';
+                                    include 'emp_desg.php'; 
                                 }
 
                                 echo "</table>";
