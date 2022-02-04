@@ -11,6 +11,6 @@ $res = $conn->query("UPDATE employee_information SET designation_id='$desig_id' 
 
 // redirects to display employee information after closing connection
 $conn->close();
-header("location:emp_details.php");
+header("location:emp_details.php?c=3");
 exit;
 ?>

@@ -1,6 +1,8 @@
 <?php
 // db connection file
 include 'db_conn.php';
+
+$count = $_GET["c"];
 ?>
 
 <!DOCTYPE html>
@@ -68,16 +70,16 @@ include 'db_conn.php';
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" id="empTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">Details</a>
+                            <a class="nav-link <?php if($count == 0) echo "active";?>" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="<?php if($count == 0) echo "true";?>">Details</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab" aria-controls="contacts" aria-selected="false">Contacts</a>
+                            <a class="nav-link <?php if($count == 1) echo "active";?>" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab" aria-controls="contacts" aria-selected="<?php if($count == 1) echo "true";?>">Contacts</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="qualifications-tab" data-toggle="tab" href="#qualifications" role="tab" aria-controls="qualifications" aria-selected="false">Qualifications</a>
+                            <a class="nav-link <?php if($count == 2) echo "active";?>" id="qualifications-tab" data-toggle="tab" href="#qualifications" role="tab" aria-controls="qualifications" aria-selected="<?php if($count == 2) echo "true";?>">Qualifications</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="empDesg-tab" data-toggle="tab" href="#empDesg" role="tab" aria-controls="empDesg" aria-selected="false">Employee designations &nbsp;
+                            <a class="nav-link <?php if($count == 3) echo "active";?>" id="empDesg-tab" data-toggle="tab" href="#empDesg" role="tab" aria-controls="empDesg" aria-selected="<?php if($count == 3) echo "true";?>">Employee designations &nbsp;
                                 <?php
                                     // retrieving number of employees without designations
                                     $result = mysqli_query($conn, "select count(*) from employee_information where designation_id is null");
@@ -93,7 +95,7 @@ include 'db_conn.php';
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+                        <div class="tab-pane fade <?php if($count == 0) echo "show active";?>" id="details" role="tabpanel" aria-labelledby="details-tab">
                             <?php
 
                             // retrieves all employee information records
@@ -146,7 +148,7 @@ include 'db_conn.php';
                             ?>
                         </div><!-- /.Details -->
 
-                        <div class="tab-pane fade" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+                        <div class="tab-pane fade <?php if($count == 1) echo "show active";?>" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
                             <?php
 
                             // retrieves all employee_phnum records
@@ -207,7 +209,7 @@ include 'db_conn.php';
                             ?>
                         </div><!-- /.Contacts -->
 
-                        <div class="tab-pane fade" id="qualifications" role="tabpanel" aria-labelledby="qualifications-tab">
+                        <div class="tab-pane fade<?php if($count == 2) echo "show active";?>" id="qualifications" role="tabpanel" aria-labelledby="qualifications-tab">
                             <?php
 
                             // retrieves all employee_qualifications records
@@ -262,7 +264,7 @@ include 'db_conn.php';
                             ?>
                         </div><!-- /.Qualifications -->
 
-                        <div class="tab-pane fade" id="empDesg" role="tabpanel" aria-labelledby="empDesg-tab">
+                        <div class="tab-pane fade <?php if($count == 3) echo "show active";?>" id="empDesg" role="tabpanel" aria-labelledby="empDesg-tab">
                             <button type="button" data-toggle="modal" data-target="#modal_set_desg" class="btn btn-outline-success" style="float:right">
                                 <i class="fas fa-user-cog"></i> Set Designation
                             </button><br><br>

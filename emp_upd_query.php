@@ -20,6 +20,6 @@ $res = $conn->query("UPDATE employee_information SET employee_name='$fullname', 
 
 // redirects to display employee information after closing connection
 $conn->close();
-header("location:emp_details.php");
+header("location:emp_details.php?c=0");
 exit;
 ?>

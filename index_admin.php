@@ -94,7 +94,7 @@ $emp_res = $emp_res->fetch_assoc();
                 <div class="icon">
                   <i class="fas fa-users"></i>
                 </div>
-                <a href="emp_details.php" class="small-box-footer">View Info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="emp_details.php?c=0" class="small-box-footer">View Info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->

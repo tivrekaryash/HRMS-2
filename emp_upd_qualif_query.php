@@ -11,6 +11,6 @@ $res = $conn->query("UPDATE employee_qualifications SET qualifications_file_loca
 
 // redirects to display employee information after closing connection
 $conn->close();
-header("location:emp_details.php");
+header("location:emp_details.php?c=2");
 exit;
 ?> 

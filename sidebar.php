@@ -61,7 +61,7 @@ include 'db_conn.php';
         </a>
       </li>
       <li class="nav-item">
-        <a href="emp_details.php" class="nav-link">
+        <a href="emp_details.php?c=0" class="nav-link">
           <i class="nav-icon fas fa-list-alt"></i>
           <p>
             Employee Details

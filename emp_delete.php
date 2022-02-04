@@ -68,7 +68,7 @@ $sql = mysqli_query($conn,"delete from employee_information where employee_id = 
 
 // redirects to display employee information after closing connection
 $conn->close();
-header("location:emp_details.php");
+header("location:emp_details.php?c=0");
 exit;
 
 ?>
