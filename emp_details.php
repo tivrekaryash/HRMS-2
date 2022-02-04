@@ -77,7 +77,17 @@ include 'db_conn.php';
                             <a class="nav-link" id="qualifications-tab" data-toggle="tab" href="#qualifications" role="tab" aria-controls="qualifications" aria-selected="false">Qualifications</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="empDesg-tab" data-toggle="tab" href="#empDesg" role="tab" aria-controls="empDesg" aria-selected="false">Employee designations &nbsp;<span data-toggle="tooltip" data-placement="top" title="△ Designations Not Set △" class="badge badge-danger right">0</span></a>
+                            <a class="nav-link" id="empDesg-tab" data-toggle="tab" href="#empDesg" role="tab" aria-controls="empDesg" aria-selected="false">Employee designations &nbsp;
+                                <?php
+                                    // retrieving number of employees without designations
+                                    $result = mysqli_query($conn, "select count(*) from employee_information where designation_id is null");
+                                    $row = $result->fetch_assoc();
+
+                                    // if there is atleast one employee without a designation, shows a count of employees without designations
+                                    if($row["count(*)"] > 0)
+                                        echo "<span data-toggle='tooltip' data-placement='top' title='△ Designations Not Set △' class='badge badge-danger right'>" . $row["count(*)"] . "</span>";
+                                ?>
+                            </a>
                         </li>
                     </ul>
 
@@ -255,12 +265,10 @@ include 'db_conn.php';
                         <div class="tab-pane fade" id="empDesg" role="tabpanel" aria-labelledby="empDesg-tab">
                             <button type="button" data-toggle="modal" data-target="#modal_set_desg" class="btn btn-outline-success" style="float:right">
                                 <i class="fas fa-user-cog"></i> Set Designation
+                            </button><br><br>
 
-                            </button>
-                            <br><br>
                             <?php
-
-                            // retrieves all employee_information records
+                            // retrieves all employees that don't have designations assigned to them
                             $result = $conn->query("SELECT * FROM employee_information where designation_id IS NOT NULL");
 
                             if ($result->num_rows > 0) {

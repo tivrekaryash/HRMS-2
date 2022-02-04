@@ -1,14 +1,6 @@
 <?php
 // db connection file
 include 'db_conn.php';
-
-// fetching candidate data from db
-$cand_res = $conn->query("SELECT count(candidate_id) FROM candidate_information where employee_id is null");
-$cand_res = $cand_res->fetch_assoc();
-// fetching employee data from db
-$emp_res = $conn->query("SELECT count(employee_id) FROM employee_information");
-$emp_res = $emp_res->fetch_assoc();
-
 ?>
 
 <!-- Brand Logo -->
@@ -57,18 +49,40 @@ $emp_res = $emp_res->fetch_assoc();
           <i class="nav-icon far fa-list-alt"></i>
           <p data-toggle="tooltip" title="Pending Candidates">
             Candidate Details
-            <span class="badge badge-warning right"><?php echo $cand_res["count(candidate_id)"]; ?></span>
+            <span class="badge badge-warning right">
+              <?php
+              // fetching candidate data from db
+              $res = $conn->query("SELECT count(candidate_id) FROM candidate_information where employee_id is null");
+              $res = $res->fetch_assoc();
+              echo $res["count(candidate_id)"];
+              ?>
+            </span>
           </p>
         </a>
       </li>
       <li class="nav-item">
         <a href="emp_details.php" class="nav-link">
           <i class="nav-icon fas fa-list-alt"></i>
-          <p >
+          <p>
             Employee Details
-            <span data-toggle="tooltip" data-placement="right" title="Total Employees" class="badge badge-info right"><?php echo $emp_res["count(employee_id)"]; ?></span>
-            
-            <span data-toggle="tooltip" data-placement="right" title="△ Set Designations △" class="badge badge-danger right"> <i class="fas fa-exclamation-circle"></i> </span>
+            <?php
+            $res = $conn->query("select count(*) from employee_information where designation_id is null");
+            $res = $res->fetch_assoc();
+
+            if ($res["count(*)"] == 0) {
+              echo "<span data-toggle='tooltip' data-placement='right' title='Total Employees' class='badge badge-info right'>";
+
+              // fetching employee data from db
+              $res = $conn->query("SELECT count(employee_id) FROM employee_information");
+              $res = $res->fetch_assoc();
+              echo $res["count(employee_id)"];
+
+              echo "</span>";
+            }
+
+            else
+              echo "<span data-toggle='tooltip' data-placement='right' title='△ Set Designations △' class='badge badge-danger right'><i class='fas fa-exclamation-circle'></i></span>";
+            ?>
           </p>
         </a>
       </li>
