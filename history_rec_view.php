@@ -76,7 +76,7 @@ $count = $_GET["c"];
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="Hisdisc-tab" data-toggle="tab" href="#HisDisc" role="tab" aria-controls="HisDisc" aria-selected="<?php if ($count == 1) echo "true";
-                                                                                                                                                                                        else echo "false"; ?>">Disciplinary History</a>
+                                                                                                                                                                                                else echo "false"; ?>">Disciplinary History</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="Hissal-tab" data-toggle="tab" href="#Hissal" role="tab" aria-controls="Hissal" aria-selected="<?php if ($count == 2) echo "true";
@@ -101,7 +101,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Designation" . "</th><th>" . "Start Date" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Designation" . "</th><th>" . "Start Date" . "</th><th>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -114,10 +114,13 @@ $count = $_GET["c"];
                                     echo "<tr><td>" . $row["history_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $desrow["designation"] . "</td><td>" . $row["job_start_date"] . "</td>";
 
                             ?>
+                                    <td><button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal_view_HisJob<?php echo $row["employee_id"]; ?>">View</button></td>
                                     </tr>
 
                             <?php
+                                    include 'HisJob_view.php';
                                 }
+
 
                                 echo "</table>";
                             } else {
