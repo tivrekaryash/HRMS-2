@@ -1,6 +1,6 @@
 <!-- Modal-HisJob Insert -->
-<div class="modal fade" id="modal_insert_HisJob" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+<div class="modal fade" id="modal_view_HisJob<?php echo $row["employee_id"]; ?>" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Job History: </h5>
@@ -11,49 +11,43 @@
             <div class="modal-body">
                 <div class="container p-5 my-2 border">
                     <h2>Job History Record:</h2><br>
-                    <form name="HisJob_form" action="HisJob_insert.php" method="POST">
+                    <?php
 
-                        <div class="form-group">
-                            <label for="ename" class="form-label">Select Employee: </label>
-                            <select id="ename" class="form-control select2bs4" name="ename" style="width: 100%;" required>
-                                <?php
-                                // retrieving all employee_information
-                                $result = $conn->query("select * from employee_information");
+                    // retrieves all job History information records
+                    $sql = "SELECT * FROM job_history";
+                    $result = $conn->query($sql);
 
-                                while ($row = $result->fetch_assoc()) {
-                                    // displaying each employee_information in the list
-                                    echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div><br>
+                    if ($result->num_rows > 0) {
+                        // displaying header for tabular form
+                        echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Designation" . "</th><th>" . "Start Date" . "</th></tr>";
 
-                        <div class="form-inline">
-                            <label for="start" class="form-label">Start Date : </label>
-                            <div class="col-sm-2">
-                                <input type="date" class="form-control" id="start" name="start" required>
-                            </div>
-                        </div>
-                        <br>
+                        // displaying data
+                        while ($row = $result->fetch_assoc()) {
 
-                        <div class="form-group">
-                            <label for="dname" class="form-label">Select Designation: </label>
-                            <select id="dname" class="form-control select2bs4" name="dname" style="width: 100%;" required>
-                                <?php
-                                // retrieving all Designation
-                                $result = $conn->query("select * from designations");
+                            $res = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
+                            $emprow = $res->fetch_assoc();
+                            $res = mysqli_query($conn, "select * from designations where designation_id = '$row[designation_id]'");
+                            $desrow = $res->fetch_assoc();
 
-                                while ($row = $result->fetch_assoc()) {
-                                    // displaying each Designation in the list
-                                    echo "<option value = '$row[designation_id]'>" . $row["designation"] . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div><br>
+                            echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $desrow["designation"] . "</td><td>" . $row["job_start_date"] . "</td>";
 
-                        <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+                    ?>
+                            </tr>
 
-                    </form>
+                    <?php
+                        }
+
+                        echo "</table>";
+                    } else {
+                        echo "no records inserted";
+
+                        // resetting counter in case there are no records (CHeck if there are any tables to be reset)
+
+                        $sql = "ALTER TABLE job_history AUTO_INCREMENT = 1";
+                        $res = $conn->query($sql);
+                    }
+
+                    ?>
                 </div>
             </div>
             <div class="modal-footer">
