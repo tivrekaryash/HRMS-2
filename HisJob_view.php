@@ -16,8 +16,9 @@ require_once 'db_conn.php';
             <div class="modal-body">
                 <div class="container p-5 my-2 border">
                     <h2>Job History Record:</h2><br>
-                 
-                    
+
+                    without the table
+
                 </div>
             </div>
             <div class="modal-footer">
