@@ -14,7 +14,7 @@ $start_date = $start_date->format('Y-m-d');
 $res = $conn->query("UPDATE employee_information SET designation_id='$desig_id' WHERE employee_id='$emp_id'");
 
 // updates job history record of employee
-$res = $conn->query("insert into job_history values (employee_id='$emp_id', designation_id='$desig_id', job_start_date = '$start_date')");
+$res = $conn->query("insert into job_history (employee_id, designation_id, job_start_date) values ('$emp_id', '$desig_id', '$start_date')");
 
 // redirects to display employee information after closing connection
 $conn->close();
