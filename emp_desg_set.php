@@ -6,8 +6,15 @@ include 'db_conn.php';
 $emp_id = $_POST['empname'];
 $desig_id = $_POST['design'];
 
+// fetches current date
+$start_date = new DateTime();
+$start_date = $start_date->format('Y-m-d');
+
 // stores updated data into the database
 $res = $conn->query("UPDATE employee_information SET designation_id='$desig_id' WHERE employee_id='$emp_id'");
+
+// updates job history record of employee
+$res = $conn->query("insert into job_history values (employee_id='$emp_id', designation_id='$desig_id', job_start_date = '$start_date')");
 
 // redirects to display employee information after closing connection
 $conn->close();
