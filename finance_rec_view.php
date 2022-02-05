@@ -137,7 +137,7 @@ $count = $_GET["c"];
                                     else
                                     {
                             ?>
-                                        <td><a href='comp_clear.php?acc=<?php echo $row["compensation_id"]; ?>'><button type='submit' class='btn btn-success'>Accept</button></td></tr>
+                                        <td><a href='comp_clear.php?acc=<?php echo $row["compensation_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></td></tr>
                             <?php
                                     }
                                 }
@@ -147,7 +147,7 @@ $count = $_GET["c"];
                                 echo "no records inserted";
 
                                 // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-                                $res = $conn->query("ALTER TABLE disciplinary_history AUTO_INCREMENT = 1");
+                                $res = $conn->query("ALTER TABLE compensation AUTO_INCREMENT = 1");
                             }
 
                             ?>
