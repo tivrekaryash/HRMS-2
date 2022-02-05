@@ -96,11 +96,11 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all job History information records
-                            $result = $conn->query("SELECT * FROM job_history");
+                            $result = $conn->query("SELECT * FROM job_history order by employee_id");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Designation" . "</th><th>" . "Start Date" . "</th><th>" . "Action" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Designation" . "</th><th>" . "Start Date" . "</th><th>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -110,7 +110,7 @@ $count = $_GET["c"];
                                     $res = mysqli_query($conn, "select * from designations where designation_id = '$row[designation_id]'");
                                     $desrow = $res->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["history_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $desrow["designation"] . "</td><td>" . $row["job_start_date"] . "</td>";
+                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $desrow["designation"] . "</td><td>" . $row["job_start_date"] . "</td>";
 
                             ?>
                                     <td><button type="submit" class="btn btn-info" data-toggle="modal" data-target="#modal_view_HisJob<?php echo $row["employee_id"]; ?>">View</button></td>
