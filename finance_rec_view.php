@@ -109,7 +109,7 @@ $count = $_GET["c"];
                         <!-- Compensation -->
                         <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="Comp" role="tabpanel" aria-labelledby="Comp-tab">
                             <button type="button" data-toggle="modal" data-target="#modal_insert_comp" class="btn btn-outline-success" style="float:right">
-                                <i class="fas fa-wallet"></i> Clear Due
+                            <i class="fas fa-file-invoice"></i>&nbsp; Add New
 
                             </button>
                             <br><br>
