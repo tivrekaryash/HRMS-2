@@ -131,6 +131,7 @@ $count = $_GET["c"];
                                     echo "<tr><td>" . $row["compensation_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["compensation_type"] . "</td><td>" . $row["compensation_description"] . "</td><td>" . $row["compensation_amt"] . "</td><td>" . $row["cmp_Date"] . "</td><td>" . $row["clearance"] . "</td>";
 
                             ?>
+                                    <td><a href="comp_delete.php?del=<?php echo $row["compensation_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
                                     </tr>
 
                             <?php
@@ -163,7 +164,7 @@ $count = $_GET["c"];
                                 <div class="modal-body">
                                     <div class="container p-5 my-2 border">
                                         <h2>Enter Compensation Record:</h2><br>
-                                        <form name="Comp_form" action="HisJob_insert.php" method="POST">
+                                        <form name="Comp_form" action="comp_insert.php" method="POST">
 
                                             <div class="form-inline">
                                                 <label for="compdate" class="form-label">Date : </label>
