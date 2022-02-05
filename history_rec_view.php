@@ -93,6 +93,21 @@ $count = $_GET["c"];
 
                             </button>
                             <br><br>
+                            <form>
+                            <div class="form-group">
+                                <label for="select_emp" class="form-label">Select Employee: </label>
+                                <select id="select_emp" class="form-control select2bs4" name="select_emp" style="width: 35%;" required>
+                                    <?php
+                                    // retrieving all employee_information
+                                    $result = $conn->query("select * from employee_information");
+
+                                    while ($row = $result->fetch_assoc()) {
+                                        // displaying each employee_information in the list
+                                        echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div></form><br>
                             <?php
 
                             // retrieves all job History information records
