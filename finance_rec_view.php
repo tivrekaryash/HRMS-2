@@ -116,26 +116,30 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all compensation records
-                            $result = $conn->query("SELECT * FROM compensation");
+                            $result = $conn->query("SELECT * FROM compensation order by employee_id");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Compensation ID" . "</th><th>" . "Employee" . "</th><th>" . "Type" . "</th><th>" . "Description" . "</th><th>" . "Amount" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Type" . "</th><th>" . "Description" . "</th><th>" . "Amount" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th><th>" . "Clear" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
 
-                                    $res = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
-                                    $emprow = $res->fetch_assoc();
+                                    $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
+                                    $emprow = $emprow->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["compensation_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["compensation_type"] . "</td><td>" . $row["compensation_description"] . "</td><td>" . $row["compensation_amt"] . "</td><td>" . $row["cmp_Date"] . "</td><td>" . $row["clearance"] . "</td>";
-
+                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["compensation_type"] . "</td><td>" . $row["compensation_description"] . "</td><td>" . $row["compensation_amt"] . "</td><td>" . $row["cmp_Date"] . "</td><td>" . $row["clearance"] . "</td>";
+                                    
+                                    if($row["clearance"] == "cleared")
+                                    {
+                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td></tr>";
+                                    }
+                                    else
+                                    {
                             ?>
-                                    <td><a href="comp_delete.php?del=<?php echo $row["compensation_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
-                                    </tr>
-
+                                        <td><a href='comp_clear.php?acc=<?php echo $row["compensation_id"]; ?>'><button type='submit' class='btn btn-success'>Accept</button></td></tr>
                             <?php
-
+                                    }
                                 }
 
                                 echo "</table>";

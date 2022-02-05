@@ -36,6 +36,11 @@ $res = mysqli_query($conn,"delete from base_salary_history where employee_id = '
 // deleting employees contact details
 $res = mysqli_query($conn,"delete from employee_phnum where employee_id = '$del_id'");
 
+//---------------------------------------------------compensation--------------------------------------------------------------//
+
+// deleting employees compensation details
+$res = mysqli_query($conn,"delete from compensation where employee_id = '$del_id'");
+
 //----------------------------------------------------main record--------------------------------------------------------------//
 
 // candidate can now be re-accepted
