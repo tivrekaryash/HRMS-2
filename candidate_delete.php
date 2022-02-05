@@ -6,8 +6,7 @@ include 'db_conn.php';
 $del_id = $_GET['del'];
 
 // getting no. of qualification records to be deleted
-$sql = "SELECT * FROM candidate_qualifications where candidate_id = '$del_id'";
-$result = $conn->query($sql);
+$result = $conn->query("SELECT * FROM candidate_qualifications where candidate_id = '$del_id'");
 
 // deleting qualification records
 while($row = $result->fetch_assoc())

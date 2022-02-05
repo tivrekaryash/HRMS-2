@@ -14,8 +14,7 @@
                     <?php
 
                     // retrieves all job History information records
-                    $sql = "SELECT * FROM job_history";
-                    $result = $conn->query($sql);
+                    $result = $conn->query("SELECT * FROM job_history");
 
                     if ($result->num_rows > 0) {
                         // displaying header for tabular form
@@ -42,9 +41,7 @@
                         echo "no records inserted";
 
                         // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-
-                        $sql = "ALTER TABLE job_history AUTO_INCREMENT = 1";
-                        $res = $conn->query($sql);
+                        $res = $conn->query("ALTER TABLE job_history AUTO_INCREMENT = 1");
                     }
 
                     ?>

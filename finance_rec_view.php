@@ -142,9 +142,7 @@ $count = $_GET["c"];
                                 echo "no records inserted";
 
                                 // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-
-                                $sql = "ALTER TABLE disciplinary_history AUTO_INCREMENT = 1";
-                                $res = $conn->query($sql);
+                                $res = $conn->query("ALTER TABLE disciplinary_history AUTO_INCREMENT = 1");
                             }
 
                             ?>

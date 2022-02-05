@@ -84,8 +84,7 @@ include 'db_conn.php';
               <?php
 
               // retrieves all employee information records
-              $sql = "SELECT * FROM employee_information";
-              $result = $conn->query($sql);
+              $result = $conn->query("SELECT * FROM employee_information");
 
               if ($result->num_rows > 0) {
                 // displaying header for tabular form
@@ -110,24 +109,12 @@ include 'db_conn.php';
                 echo "no records inserted";
 
                 // resetting counter in case there are no records
-
-                $sql = "ALTER TABLE employee_qualifications AUTO_INCREMENT = 1";
-                $res = $conn->query($sql);
-
-                $sql = "ALTER TABLE employee_phnum AUTO_INCREMENT = 1";
-                $res = $conn->query($sql);
-
-                $sql = "ALTER TABLE job_history AUTO_INCREMENT = 1";
-                $res = $conn->query($sql);
-
-                $sql = "ALTER TABLE disciplinary_history AUTO_INCREMENT = 1";
-                $res = $conn->query($sql);
-
-                $sql = "ALTER TABLE base_salary_history AUTO_INCREMENT = 1";
-                $res = $conn->query($sql);
-
-                $sql = "ALTER TABLE employee_information AUTO_INCREMENT = 1";
-                $res = $conn->query($sql);
+                $res = $conn->query("ALTER TABLE employee_qualifications AUTO_INCREMENT = 1");
+                $res = $conn->query("ALTER TABLE employee_phnum AUTO_INCREMENT = 1");
+                $res = $conn->query("ALTER TABLE job_history AUTO_INCREMENT = 1");
+                $res = $conn->query("ALTER TABLE disciplinary_history AUTO_INCREMENT = 1");
+                $res = $conn->query("ALTER TABLE base_salary_history AUTO_INCREMENT = 1");
+                $res = $conn->query("ALTER TABLE employee_information AUTO_INCREMENT = 1");
               }
 
               // closing connection
