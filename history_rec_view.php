@@ -190,16 +190,7 @@ $count = $_GET["c"];
                                     $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
                                     $emprow = $emprow->fetch_assoc();
 
-                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["salary_amount"] . "</td><td>" . $row["salary_date"] . "</td><td>" . $row["clearance"] . "</td>";
-
-                                    if ($row["clearance"] == "cleared") {
-                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td></tr>";
-                                    } else {
-                            ?>
- 
-                                        </tr>
-                            <?php
-                                    }
+                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["salary_amount"] . "</td><td>" . $row["salary_date"] . "</td><td>" . $row["clearance"] . "</td></tr>";
                                 }
 
                                 echo "</table>";
