@@ -20,14 +20,14 @@ require_once 'db_conn.php';
 
                         <div class="form-group">
                             <label for="emp_name_upd" class="form-label">Full Name: </label>
-                            <input type="text" class="form-control" id="emp_name_upd" name="emp_name_upd" value="<?php echo $row["employee_name"] ?>" disabled>
+                            <input type="text" class="form-control" id="emp_name_upd" name="emp_name_upd" value="<?php echo $emprow["employee_name"] ?>" disabled>
                         </div>
                         <br>
 
                         <div class="form-inline">
                             <label for="Sal_date_upd" class="form-label">Salary Date: </label>
                             <div class="col-sm-2">
-                                <input type="date" class="form-control" id="Sal_date_upd" name="Sal_date_upd" value="<?php echo $row["salary_date"]; ?>" required>
+                                <input type="date" class="form-control" id="Sal_date_upd" name="Sal_date_upd" value="<?php echo $row["salary_date"]; ?>" disabled>
                             </div>
                         </div>
                         <br>

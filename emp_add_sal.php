@@ -7,7 +7,7 @@ $sal_date = new DateTime();
 $sal_date = $sal_date->format('Y-m-d');
 
 // 
-$result = mysqli_query($conn, "select * from employee_information where designation_id is not null");
+$result = mysqli_query($conn, "select * from employee_information where designation_id is not null and employee_id != 1");
 
 while ($row = $result->fetch_assoc()) {
     // fetching base salary

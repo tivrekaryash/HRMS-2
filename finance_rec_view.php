@@ -96,7 +96,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all salary records
-                            $result = $conn->query("SELECT * FROM employee_salary order by employee_id");
+                            $result = $conn->query("SELECT * FROM employee_salary where clearance = 'pending' and employee_id != 1 order by employee_id");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -115,7 +115,7 @@ $count = $_GET["c"];
                                     } else {
                             ?>
                                         <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_edit_sal<?php echo $row["employee_id"]; ?>">Edit</button></td>
-                                        <td><a href='sal_clear.php?acc=<?php echo $row["salary_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></a></td>
+                                        <td><a href='emp_sal_clear.php?clr=<?php echo $row["salary_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></a></td>
                                         </tr>
                             <?php
                                     }
