@@ -175,7 +175,42 @@ $count = $_GET["c"];
 
                         <!-- Salary Hsitory -->
                         <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="Hissal" role="tabpanel" aria-labelledby="Hissal-tab">
-                            <p>To be discussed - Base Salary Hsitory or just Salary History (cleared status)</p>
+                            <?php
+
+                            // retrieves all salary records
+                            $result = $conn->query("SELECT * FROM employee_salary order by employee_id");
+
+                            if ($result->num_rows > 0) {
+                                // displaying header for tabular form
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Amount (Rs.)" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th></tr>";
+
+                                // displaying data along with adding buttons for update and delete
+                                while ($row = $result->fetch_assoc()) {
+
+                                    $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
+                                    $emprow = $emprow->fetch_assoc();
+
+                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["salary_amount"] . "</td><td>" . $row["salary_date"] . "</td><td>" . $row["clearance"] . "</td>";
+
+                                    if ($row["clearance"] == "cleared") {
+                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td></tr>";
+                                    } else {
+                            ?>
+ 
+                                        </tr>
+                            <?php
+                                    }
+                                }
+
+                                echo "</table>";
+                            } else {
+                                echo "no records inserted";
+
+                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
+                                $res = $conn->query("ALTER TABLE employee_salary AUTO_INCREMENT = 1");
+                            }
+
+                            ?>
                         </div><!-- /.Salary Hsitory -->
 
                     </div><!-- /.Tab-panes -->
