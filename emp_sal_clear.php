@@ -6,7 +6,7 @@ require_once 'db_conn.php';
 $clearance_id = $_GET['clr'];
 
 // clears record
-$res = $conn->query("UPDATE employee_salary SET clearance='cleared' WHERE salary_id='$upd_id'");
+$res = $conn->query("UPDATE employee_salary SET clearance='cleared' WHERE salary_id='$clearance_id'");
 
 // redirects to display salary information after closing connection
 $conn->close();
