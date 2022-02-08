@@ -97,7 +97,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all job History information records
-                            $result = $conn->query("SELECT * FROM job_history order by employee_id");
+                            $result = $conn->query("SELECT * FROM job_history group by employee_id desc");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -114,7 +114,7 @@ $count = $_GET["c"];
                                     echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $desrow["designation"] . "</td><td>" . $row["job_start_date"] . "</td>";
 
                             ?>
-                                    <td><button type="submit" class="btn btn-info userinfo" data-toggle="modal" data-target="#modal_view_HisJob">View</button></td>
+                                    <td><button type="submit" data-id="<?php echo $row["employee_id"]; ?>" class="btn btn-info userinfo" data-toggle="modal">View</button></td>
                                     </tr>
 
 
