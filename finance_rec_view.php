@@ -89,9 +89,9 @@ $count = $_GET["c"];
                         <!-- Salary -->
                         <div class="tab-pane fade <?php if ($count == 0) echo "show active"; ?>" id="Sal" role="tabpanel" aria-labelledby="Sal-tab">
                             <a href="#"><button type="button" class="btn btn-outline-success" style="float:right">
-                                <i class="fas fa-wallet"></i> Clear Due
+                                    <i class="fas fa-wallet"></i> Clear Due
 
-                            </button></a>
+                                </button></a>
                             <br><br>
                             <?php
 
@@ -114,10 +114,12 @@ $count = $_GET["c"];
                                         echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td></tr>";
                                     } else {
                             ?>
+                                        <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_edit_sal<?php echo $row["employee_id"]; ?>">Edit</button></td>
                                         <td><a href='sal_clear.php?acc=<?php echo $row["salary_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></a></td>
                                         </tr>
                             <?php
                                     }
+                                    include 'emp_sal_upd.php';
                                 }
 
                                 echo "</table>";
