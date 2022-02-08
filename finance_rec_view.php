@@ -88,12 +88,47 @@ $count = $_GET["c"];
                     <div class="tab-content">
                         <!-- Salary -->
                         <div class="tab-pane fade <?php if ($count == 0) echo "show active"; ?>" id="Sal" role="tabpanel" aria-labelledby="Sal-tab">
-                            <button type="button" data-toggle="modal" data-target="#" class="btn btn-outline-success" style="float:right">
+                            <a href="#"><button type="button" class="btn btn-outline-success" style="float:right">
                                 <i class="fas fa-wallet"></i> Clear Due
 
-                            </button>
+                            </button></a>
                             <br><br>
-                            To be discussed
+                            <?php
+
+                            // retrieves all salary records
+                            $result = $conn->query("SELECT * FROM employee_salary order by employee_id");
+
+                            if ($result->num_rows > 0) {
+                                // displaying header for tabular form
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Amount (Rs.)" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+
+                                // displaying data along with adding buttons for update and delete
+                                while ($row = $result->fetch_assoc()) {
+
+                                    $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
+                                    $emprow = $emprow->fetch_assoc();
+
+                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["salary_amount"] . "</td><td>" . $row["salary_date"] . "</td><td>" . $row["clearance"] . "</td>";
+
+                                    if ($row["clearance"] == "cleared") {
+                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td></tr>";
+                                    } else {
+                            ?>
+                                        <td><a href='sal_clear.php?acc=<?php echo $row["salary_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></a></td>
+                                        </tr>
+                            <?php
+                                    }
+                                }
+
+                                echo "</table>";
+                            } else {
+                                echo "no records inserted";
+
+                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
+                                $res = $conn->query("ALTER TABLE employee_salary AUTO_INCREMENT = 1");
+                            }
+
+                            ?>
                         </div><!-- /.Salary -->
 
                         <!-- Overtime Pay -->
@@ -109,7 +144,7 @@ $count = $_GET["c"];
                         <!-- Compensation -->
                         <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="Comp" role="tabpanel" aria-labelledby="Comp-tab">
                             <button type="button" data-toggle="modal" data-target="#modal_insert_comp" class="btn btn-outline-success" style="float:right">
-                            <i class="fas fa-file-invoice"></i>&nbsp; Add New
+                                <i class="fas fa-file-invoice"></i>&nbsp; Add New
 
                             </button>
                             <br><br>
@@ -129,15 +164,13 @@ $count = $_GET["c"];
                                     $emprow = $emprow->fetch_assoc();
 
                                     echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["compensation_type"] . "</td><td>" . $row["compensation_description"] . "</td><td>" . $row["compensation_amt"] . "</td><td>" . $row["cmp_Date"] . "</td><td>" . $row["clearance"] . "</td>";
-                                    
-                                    if($row["clearance"] == "cleared")
-                                    {
+
+                                    if ($row["clearance"] == "cleared") {
                                         echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td></tr>";
-                                    }
-                                    else
-                                    {
+                                    } else {
                             ?>
-                                        <td><a href='comp_clear.php?acc=<?php echo $row["compensation_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></td></tr>
+                                        <td><a href='comp_clear.php?acc=<?php echo $row["compensation_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></td>
+                                        </tr>
                             <?php
                                     }
                                 }
