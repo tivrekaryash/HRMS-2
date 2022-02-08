@@ -96,7 +96,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all salary records
-                            $result = $conn->query("SELECT * FROM employee_salary where clearance = 'pending' and employee_id != 1 order by employee_id");
+                            $result = $conn->query("SELECT * FROM employee_salary where clearance = 'pending' order by employee_id");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
