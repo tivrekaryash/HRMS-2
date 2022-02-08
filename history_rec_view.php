@@ -330,6 +330,35 @@ $count = $_GET["c"];
                     </div>
                     <!-- /.Modal -->
 
+                    <!-- scripts -->
+                    <?php include 'scripts.php'; ?>
+                    <script type='text/javascript'>
+                        $(document).ready(function() {
+
+                            $('.userinfo').click(function() {
+
+                                var userid = $(this).data('id');
+
+                                // AJAX request
+                                $.ajax({
+                                    url: 'ajaxfile.php',
+                                    type: 'post',
+                                    data: {
+                                        userid: userid
+                                    },
+                                    success: function(response) {
+                                        // Add response in Modal body
+                                        $('.modal-body').html(response);
+
+                                        // Display Modal
+                                        $('#modal_view_HisJob').modal('show');
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                    <!-- /.scripts -->
+
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
@@ -350,35 +379,6 @@ $count = $_GET["c"];
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-
-    <!-- scripts -->
-    <?php include 'scripts.php'; ?>
-    <script type='text/javascript'>
-        $(document).ready(function() {
-
-            $('.userinfo').click(function() {
-
-                var userid = $(this).data('id');
-
-                // AJAX request
-                $.ajax({
-                    url: 'ajaxfile.php',
-                    type: 'post',
-                    data: {
-                        userid: userid
-                    },
-                    success: function(response) {
-                        // Add response in Modal body
-                        $('.modal-body').html(response);
-
-                        // Display Modal
-                        $('#modal_view_HisJob').modal('show');
-                    }
-                });
-            });
-        });
-    </script>
-    <!-- /.scripts -->
 </body>
 
 </html>

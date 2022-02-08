@@ -1,5 +1,5 @@
 <?php
-include 'db_conn.php';
+include 'db_conn.php'; 
 
 $userid = $_POST['userid'];
 $result = mysqli_query($conn, "select * from job_history where employee_id='$userid'");
@@ -17,7 +17,7 @@ while ($row = mysqli_fetch_array($result)) {
     $response .= "<td>Designation : </td><td>" . $desrow['designation'] . "</td>";
     $response .= "<td>Start Date : </td><td>" . $row['job_start_date'] . "</td></tr>";
 }
-$response .= "</table>";
+$response .= "</table>"; 
 
 echo $response;
 exit;
