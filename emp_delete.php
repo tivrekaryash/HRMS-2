@@ -29,7 +29,7 @@ $res = mysqli_query($conn,"delete from job_history where employee_id = '$del_id'
 //---------------------------------------------------------salary--------------------------------------------------------------//
 
 // deleting salary history records
-$res = mysqli_query($conn,"delete from base_salary_history where employee_id = '$del_id'");
+$res = mysqli_query($conn,"delete from employee_salary where employee_id = '$del_id'");
 
 //---------------------------------------------------phone number--------------------------------------------------------------//
 
