@@ -114,14 +114,10 @@ $count = $_GET["c"];
                                     echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $desrow["designation"] . "</td><td>" . $row["job_start_date"] . "</td>";
 
                             ?>
-                                    <td><button type="submit" data-id="<?php echo $row["employee_id"]; ?>" class="btn btn-info userinfo" data-toggle="modal">View</button></td>
+                                    <td><button data-id="<?php echo $row["employee_id"]; ?>" class="btn btn-info userinfo">View</button></td>
                                     </tr>
-
-
                             <?php
-                                    //include 'HisJob_view.php';
                                 }
-
 
                                 echo "</table>";
                             } else {
@@ -132,31 +128,7 @@ $count = $_GET["c"];
                             }
 
                             ?>
-                            <script type='text/javascript'>
-                                $(document).ready(function() {
 
-                                    $('.userinfo').click(function() {
-
-                                        var userid = $(this).data('id');
-
-                                        // AJAX request
-                                        $.ajax({
-                                            url: 'ajaxfile.php',
-                                            type: 'post',
-                                            data: {
-                                                userid: userid
-                                            },
-                                            success: function(response) {
-                                                // Add response in Modal body
-                                                $('.modal-body').html(response);
-
-                                                // Display Modal
-                                                $('#modal_view_HisJob').modal('show');
-                                            }
-                                        });
-                                    });
-                                });
-                            </script>
                         </div><!-- /.jobHistory -->
 
                         <!-- disciplinary -->
@@ -381,6 +353,31 @@ $count = $_GET["c"];
 
     <!-- scripts -->
     <?php include 'scripts.php'; ?>
+    <script type='text/javascript'>
+        $(document).ready(function() {
+
+            $('.userinfo').click(function() {
+
+                var userid = $(this).data('id');
+
+                // AJAX request
+                $.ajax({
+                    url: 'ajaxfile.php',
+                    type: 'post',
+                    data: {
+                        userid: userid
+                    },
+                    success: function(response) {
+                        // Add response in Modal body
+                        $('.modal-body').html(response);
+
+                        // Display Modal
+                        $('#modal_view_HisJob').modal('show');
+                    }
+                });
+            });
+        });
+    </script>
     <!-- /.scripts -->
 </body>
 
