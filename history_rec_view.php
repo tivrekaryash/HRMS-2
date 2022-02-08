@@ -178,7 +178,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all salary records
-                            $result = $conn->query("SELECT * FROM employee_salary where clearance = 'cleared' order by employee_id");
+                            $result = $conn->query("SELECT * FROM employee_salary where clearance = 'cleared' order by employee_id, salary_date desc");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
