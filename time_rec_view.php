@@ -95,29 +95,24 @@ $count = $_GET["c"];
                             <br><br>
                             <?php
 
-                            // retrieves all attendace records
-                            $result = $conn->query("SELECT * FROM attendance");
+                            // retrieves all employee records
+                            $result = $conn->query("SELECT * FROM attendance where clock_out is null");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Date" . "</th><th>" . "Clocked-in" . "</th><th>" . "Clocked-out" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee Name" . "</th><th>" . "Clock-in" . "</th><th>" . "Clock-out" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
 
-                                    $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
-                                    $emprow = $emprow->fetch_assoc();
+                                    $emp_row = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
+                                    $emp_row = $emp_row->fetch_assoc();
 
-                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["salary_amount"] . "</td><td>" . $row["salary_date"] . "</td><td>" . $row["clearance"] . "</td>";
-
-                                    if ($row["clearance"] == "cleared") {
-                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Col</button></td></tr>";
-                                    } else {
+                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $row["clock_in"] . "</td>";
                             ?>
-                                        <td><a href='attendance_clock_out.php?clr=<?php echo $row["salary_id"]; ?>'><button type='submit' class='btn btn-warning'>Clock-out</button></a></td>
+                                        <td><button>Clock-out</button></td>
                                         </tr>
                             <?php
-                                    }
                                 }
 
                                 echo "</table>";
