@@ -167,6 +167,35 @@ include 'db_conn.php';
           </li>
         </ul>
       </li>
+      <li class="nav-item">
+        <a href="finance_rec_view.php" class="nav-link">
+          <i class="nav-icon fas fa-clock"></i>
+          <p>
+            Time and Attendance
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="time_rec_view.php?c=0" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Attendance</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="time_rec_view.php?c=1" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Overtime Pay Setter</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="time_rec_view.php?c=2" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Leaves</p>
+            </a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </nav>
   <!-- /.sidebar-menu -->

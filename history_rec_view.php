@@ -344,7 +344,7 @@ $count = $_GET["c"];
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body-hisJob">
 
                                 </div>
                                 <div class="modal-footer">
@@ -374,7 +374,7 @@ $count = $_GET["c"];
                                     },
                                     success: function(response) {
                                         // Add response in Modal body
-                                        $('.modal-body').html(response);
+                                        $('.modal-body-hisJob').html(response);
 
                                         // Display Modal
                                         $('#modal_view_HisJob').modal('show');

@@ -154,6 +154,20 @@ $emp_res = $emp_res->fetch_assoc();
               </div>
             </div>
             <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-primary">
+                <div class="inner">
+                  <h4 style="font-weight:bold;">Time and Attendance</h4>
+                  <h4><br></h4>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <a href="time_rec_view.php?c=0" class="small-box-footer">Manage <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
 
           </div>
           <!-- /.row -->

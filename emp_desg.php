@@ -26,7 +26,7 @@ require_once 'db_conn.php';
 
                         <div class="form-group">
                             <label for="desig_upd" class="form-label">Select Designation: </label>
-                            <select id="desig_upd" class="form-control select2bs4" name="desig_upd" style="width: 100%;" required>
+                            <select id="desig_upd" class="form-control select2bs4" name="desig_upd" style="width:100%;" required>
                                 <?php
                                 // retrieving all Designation
                                 $result_des = $conn->query("select * from designations");
