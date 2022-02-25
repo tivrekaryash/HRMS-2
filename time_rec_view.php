@@ -89,7 +89,7 @@ $count = $_GET["c"];
                         <!-- attendace -->
                         <div class="tab-pane fade <?php if ($count == 0) echo "show active"; ?>" id="attendace" role="tabpanel" aria-labelledby="attendace-tab">
                             <button type="button" data-toggle="modal" data-target="#modal_clock_in" class="btn btn-outline-success" style="float:right">
-                                <i class="fas fa-stopwatch"></i> Clock in
+                                <i class="fas fa-stopwatch"></i> Clock-in
 
                             </button>
                             <br><br>
@@ -111,11 +111,10 @@ $count = $_GET["c"];
                                     echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["salary_amount"] . "</td><td>" . $row["salary_date"] . "</td><td>" . $row["clearance"] . "</td>";
 
                                     if ($row["clearance"] == "cleared") {
-                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td></tr>";
+                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Col</button></td></tr>";
                                     } else {
                             ?>
-                                        <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_edit_sal<?php echo $row["employee_id"]; ?>">Edit</button></td>
-                                        <td><a href='emp_sal_clear.php?clr=<?php echo $row["salary_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></a></td>
+                                        <td><a href='attendance_clock_out.php?clr=<?php echo $row["salary_id"]; ?>'><button type='submit' class='btn btn-warning'>Clock-out</button></a></td>
                                         </tr>
                             <?php
                                     }
@@ -149,11 +148,11 @@ $count = $_GET["c"];
                                         <form name="attendace_form" action="attendance_clock_in.php" method="POST">
 
                                             <div class="form-group">
-                                                <label for="select_emp" class="form-label">Select Employee: </label>
-                                                <select id="select_emp" class="form-control select2bs4" name="select_emp" style="width: 100%;" required>
+                                                <label for="att_emp" class="form-label">Select Employee: </label>
+                                                <select id="att_emp" class="form-control select2bs4" name="att_emp" style="width: 100%;" required>
                                                     <?php
                                                     // retrieving all employee_information
-                                                    $result = $conn->query("select * from employee_information where designation_id is null");
+                                                    $result = $conn->query("select * from employee_information");
 
                                                     while ($row = $result->fetch_assoc()) {
                                                         // displaying each employee_information in the list
@@ -164,7 +163,7 @@ $count = $_GET["c"];
                                             </div><br>
 
                                             <div class="form-inline">
-                                                <label for="dob_upd" class="form-label">Date: </label>
+                                                <label for="att_date" class="form-label">Date: </label>
                                                 <div class="col-sm-2">
                                                     <input type="date" class="form-control" id="att_date" name="att_date" required>
                                                 </div>
@@ -204,6 +203,7 @@ $count = $_GET["c"];
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
+
     <!-- scripts -->
     <?php include 'scripts.php'; ?>
     <!-- /.scripts -->
