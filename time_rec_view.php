@@ -96,7 +96,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all employee records
-                            $result = $conn->query("SELECT * FROM attendance where clock_out is null");
+                            $result = $conn->query("SELECT * FROM attendance where clock_out is null order by employee_id");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -156,23 +156,6 @@ $count = $_GET["c"];
                                                     ?>
                                                 </select>
                                             </div><br>
-
-                                            <div class="form-inline">
-                                                <label for="att_date" class="form-label">Date: </label>
-                                                <div class="col-sm-2">
-                                                    <input type="date" class="form-control" id="att_date" name="att_date" required>
-                                                </div>
-                                            </div>
-                                            <br>
-
-                                            <div class="form-inline">
-                                                <label for="att_date" class="form-label">Date: </label>
-                                                <div class="col-sm-2">
-                                                    <input type="date" class="form-control" id="att_date" name="att_date" required>
-                                                </div>
-                                            </div>
-                                            <br>
-
 
                                             <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 
