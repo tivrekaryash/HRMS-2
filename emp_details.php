@@ -70,24 +70,24 @@ $count = $_GET["c"];
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" id="empTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if($count == 0) echo "active";?>" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="<?php if($count == 0) echo "true";?>">Details</a>
+                            <a class="nav-link <?php if ($count == 0) echo "active"; ?>" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="<?php if ($count == 0) echo "true"; ?>">Details</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if($count == 1) echo "active";?>" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab" aria-controls="contacts" aria-selected="<?php if($count == 1) echo "true";?>">Contacts</a>
+                            <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab" aria-controls="contacts" aria-selected="<?php if ($count == 1) echo "true"; ?>">Contacts</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if($count == 2) echo "active";?>" id="qualifications-tab" data-toggle="tab" href="#qualifications" role="tab" aria-controls="qualifications" aria-selected="<?php if($count == 2) echo "true";?>">Qualifications</a>
+                            <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="qualifications-tab" data-toggle="tab" href="#qualifications" role="tab" aria-controls="qualifications" aria-selected="<?php if ($count == 2) echo "true"; ?>">Qualifications</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if($count == 3) echo "active";?>" id="empDesg-tab" data-toggle="tab" href="#empDesg" role="tab" aria-controls="empDesg" aria-selected="<?php if($count == 3) echo "true";?>">Employee designations &nbsp;
+                            <a class="nav-link <?php if ($count == 3) echo "active"; ?>" id="empDesg-tab" data-toggle="tab" href="#empDesg" role="tab" aria-controls="empDesg" aria-selected="<?php if ($count == 3) echo "true"; ?>">Employee designations &nbsp;
                                 <?php
-                                    // retrieving number of employees without designations
-                                    $result = mysqli_query($conn, "select count(*) from employee_information where designation_id is null");
-                                    $row = $result->fetch_assoc();
+                                // retrieving number of employees without designations
+                                $result = mysqli_query($conn, "select count(*) from employee_information where designation_id is null");
+                                $row = $result->fetch_assoc();
 
-                                    // if there is atleast one employee without a designation, shows a count of employees without designations
-                                    if($row["count(*)"] > 0)
-                                        echo "<span data-toggle='tooltip' data-placement='top' title='△ Designations Not Set △' class='badge badge-danger right'>" . $row["count(*)"] . "</span>";
+                                // if there is atleast one employee without a designation, shows a count of employees without designations
+                                if ($row["count(*)"] > 0)
+                                    echo "<span data-toggle='tooltip' data-placement='top' title='△ Designations Not Set △' class='badge badge-danger right'>" . $row["count(*)"] . "</span>";
                                 ?>
                             </a>
                         </li>
@@ -95,7 +95,7 @@ $count = $_GET["c"];
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div class="tab-pane fade <?php if($count == 0) echo "show active";?>" id="details" role="tabpanel" aria-labelledby="details-tab">
+                        <div class="tab-pane fade <?php if ($count == 0) echo "show active"; ?>" id="details" role="tabpanel" aria-labelledby="details-tab">
                             <?php
 
                             // retrieves all employee information records
@@ -135,7 +135,7 @@ $count = $_GET["c"];
                             ?>
                         </div><!-- /.Details -->
 
-                        <div class="tab-pane fade <?php if($count == 1) echo "show active";?>" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+                        <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
                             <?php
 
                             // retrieves all employee_phnum records
@@ -184,7 +184,7 @@ $count = $_GET["c"];
                             ?>
                         </div><!-- /.Contacts -->
 
-                        <div class="tab-pane fade<?php if($count == 2) echo "show active";?>" id="qualifications" role="tabpanel" aria-labelledby="qualifications-tab">
+                        <div class="tab-pane fade<?php if ($count == 2) echo "show active"; ?>" id="qualifications" role="tabpanel" aria-labelledby="qualifications-tab">
                             <?php
 
                             // retrieves all employee_qualifications records
@@ -227,7 +227,7 @@ $count = $_GET["c"];
                             ?>
                         </div><!-- /.Qualifications -->
 
-                        <div class="tab-pane fade <?php if($count == 3) echo "show active";?>" id="empDesg" role="tabpanel" aria-labelledby="empDesg-tab">
+                        <div class="tab-pane fade <?php if ($count == 3) echo "show active"; ?>" id="empDesg" role="tabpanel" aria-labelledby="empDesg-tab">
                             <button type="button" data-toggle="modal" data-target="#modal_set_desg" class="btn btn-outline-success" style="float:right">
                                 <i class="fas fa-user-cog"></i> Set Designation
                             </button><br><br>
@@ -256,7 +256,7 @@ $count = $_GET["c"];
                                     </tr>
 
                             <?php
-                                    include 'emp_desg.php'; 
+                                    include 'emp_desg.php';
                                 }
 
                                 echo "</table>";
@@ -265,64 +265,65 @@ $count = $_GET["c"];
                             }
 
                             ?>
-                        
+                        </div><!-- /.Employee designations -->
+
                         <!-- Modal-Set Designations -->
                         <div class="modal fade" id="modal_set_desg" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
-                                <div class="modal-dialog modal-dialog-scrollable modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Designation form: </h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="container p-5 my-2 border">
-                                                <h2>Assign designation:</h2><br>
-                                                <form name="set_desg_form" action="emp_desg_set.php" method="POST">
+                            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Designation form: </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container p-5 my-2 border">
+                                            <h2>Assign designation:</h2><br>
+                                            <form name="set_desg_form" action="emp_desg_set.php" method="POST">
 
-                                                    <div class="form-group">
-                                                        <label for="empname" class="form-label">Select Employee: </label>
-                                                        <select id="empname" class="form-control select2bs4" name="empname" style="width: 100%;" required>
-                                                            <?php
-                                                            // retrieving all employee_information
-                                                            $result = $conn->query("select * from employee_information where designation_id is null");
+                                                <div class="form-group">
+                                                    <label for="empname" class="form-label">Select Employee: </label>
+                                                    <select id="empname" class="form-control select2bs4" name="empname" style="width:100%;" required>
+                                                        <?php
+                                                        // retrieving all employee_information
+                                                        $result = $conn->query("select * from employee_information where designation_id is null");
 
-                                                            while ($row = $result->fetch_assoc()) {
-                                                                // displaying each employee_information in the list
-                                                                echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                    </div><br>
+                                                        while ($row = $result->fetch_assoc()) {
+                                                            // displaying each employee_information in the list
+                                                            echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div><br>
 
-                                                    <div class="form-group">
-                                                        <label for="design" class="form-label">Select Designation: </label>
-                                                        <select id="design" class="form-control select2bs4" name="design" style="width: 100%;" required>
-                                                            <?php
-                                                            // retrieving all Designation
-                                                            $result = $conn->query("select * from designations");
+                                                <div class="form-group">
+                                                    <label for="design" class="form-label">Select Designation: </label>
+                                                    <select id="design" class="form-control select2bs4" name="design" style="width:100%;" required>
+                                                        <?php
+                                                        // retrieving all Designation
+                                                        $result = $conn->query("select * from designations");
 
-                                                            while ($row = $result->fetch_assoc()) {
-                                                                // displaying each Designation in the list
-                                                                echo "<option value = '$row[designation_id]'>" . $row["designation"] . "</option>";
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                    </div><br>
+                                                        while ($row = $result->fetch_assoc()) {
+                                                            // displaying each Designation in the list
+                                                            echo "<option value = '$row[designation_id]'>" . $row["designation"] . "</option>";
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div><br>
 
-                                                    <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+                                                <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <br>
+                                            </form>
                                         </div>
                                     </div>
+                                    <div class="modal-footer">
+                                        <br>
+                                    </div>
                                 </div>
-                            </div><!-- /.Modal -->
-                        </div><!-- /.Employee designations -->
+                            </div>
+                        </div><!-- /.Modal -->
+
 
 
                     </div><!-- /.Tab-panes -->
