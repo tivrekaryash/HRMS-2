@@ -110,7 +110,7 @@ $count = $_GET["c"];
 
                                     echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $row["clock_in"] . "</td>";
                             ?>
-                                        <td><button>Clock-out</button></td>
+                                        <td><a href="attendance_clock_out.php?aid=<?php echo $row['attendance_id']?>"><button  type="submit" class="btn btn-warning">Clock-out</button></a></td>
                                         </tr>
                             <?php
                                 }
@@ -164,6 +164,15 @@ $count = $_GET["c"];
                                                 </div>
                                             </div>
                                             <br>
+
+                                            <div class="form-inline">
+                                                <label for="att_date" class="form-label">Date: </label>
+                                                <div class="col-sm-2">
+                                                    <input type="date" class="form-control" id="att_date" name="att_date" required>
+                                                </div>
+                                            </div>
+                                            <br>
+
 
                                             <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 
