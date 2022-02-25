@@ -97,7 +97,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all job History information records
-                            $result = $conn->query("SELECT * FROM job_history order by employee_id, job_start_date desc");
+                            $result = $conn->query("SELECT history_id, employee_id, designation_id, max(job_start_date) as job_start_date FROM job_history group by employee_id");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
