@@ -2,7 +2,7 @@
 include 'db_conn.php'; 
 
 $userid = $_POST['userid'];
-$result = mysqli_query($conn, "select * from leaves where employee_id='$userid' AND approval='approved' order by leave_id desc");
+$result = mysqli_query($conn, "select * from leaves where employee_id='$userid' AND approval='approved' order by leave_start_date desc");
 
 $response = "<table style='text-align:center; background-color:white;' class='table table-bordered table-hover'><tr><th>Employee ID</th><th>Employee Name</th><th>Leave Type</th><th>Start Date</th><th>End Date</th><th>Reason</th><th>Approval</th></tr>";
 

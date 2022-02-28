@@ -271,7 +271,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all leaves records
-                            $result = $conn->query("SELECT leave_id, employee_id, max(type_id) as type_id, max(leave_start_date) as leave_start_date, max(leave_end_date) as leave_end_date, reason, approval FROM leaves where approval='approved' group by employee_id");
+                            $result = $conn->query("SELECT * FROM leaves where approval='approved' group by employee_id");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
