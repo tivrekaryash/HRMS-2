@@ -182,7 +182,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Amount (Rs.)" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Amount (Rs.)" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th><th>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -190,7 +190,13 @@ $count = $_GET["c"];
                                     $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
                                     $emprow = $emprow->fetch_assoc();
 
-                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["salary_amount"] . "</td><td>" . $row["salary_date"] . "</td><td>" . $row["clearance"] . "</td></tr>";
+                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["salary_amount"] . "</td><td>" . $row["salary_date"] . "</td><td>" . $row["clearance"] . "</td>";
+                            ?>
+
+
+                                    <td><button data-id="<?php echo $row["employee_id"]; ?>" class="btn btn-info salhisinfo">View</button></td>
+                                    </tr>
+                            <?php
                                 }
 
                                 echo "</table>";
@@ -356,6 +362,29 @@ $count = $_GET["c"];
                     </div>
                     <!-- /.Modal -->
 
+                    <!-- Modal salhis View -->
+                    <div class="modal fade" id="modal_view_Hissal" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+                        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Salary History</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                </div>
+                                <div class="modal-body-hissal">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.Modal -->
+
                     <!-- scripts -->
                     <?php include 'scripts.php'; ?>
                     <script type='text/javascript'>
@@ -367,7 +396,7 @@ $count = $_GET["c"];
 
                                 // AJAX request
                                 $.ajax({
-                                    url: 'ajaxfile.php',
+                                    url: 'ajax_hisJob.php',
                                     type: 'post',
                                     data: {
                                         userid: userid
@@ -378,6 +407,30 @@ $count = $_GET["c"];
 
                                         // Display Modal
                                         $('#modal_view_HisJob').modal('show');
+                                    }
+                                });
+                            });
+                        });
+
+                        $(document).ready(function() {
+
+                            $('.salhisinfo').click(function() {
+
+                                var userid = $(this).data('id');
+
+                                // AJAX request
+                                $.ajax({
+                                    url: 'ajax_hissal.php',
+                                    type: 'post',
+                                    data: {
+                                        userid: userid
+                                    },
+                                    success: function(response) {
+                                        // Add response in Modal body
+                                        $('.modal-body-hissal').html(response);
+
+                                        // Display Modal
+                                        $('#modal_view_Hissal').modal('show');
                                     }
                                 });
                             });
