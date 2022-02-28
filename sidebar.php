@@ -200,6 +200,12 @@ include 'db_conn.php';
               <p>Leave management</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="time_rec_view.php?c=4" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Leave Records</p>
+            </a>
+          </li>
         </ul>
       </li>
     </ul>

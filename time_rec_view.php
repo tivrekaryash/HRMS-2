@@ -86,6 +86,10 @@ $count = $_GET["c"];
                             <a class="nav-link <?php if ($count == 3) echo "active"; ?>" id="leaves-tab" data-toggle="tab" href="#leaves" role="tab" aria-controls="leaves" aria-selected="<?php if ($count == 3) echo "true";
                                                                                                                                                                                             else echo "false"; ?>">Leave management</a>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link <?php if ($count == 4) echo "active"; ?>" id="leaverec-tab" data-toggle="tab" href="#leaverec" role="tab" aria-controls="leaverec" aria-selected="<?php if ($count == 4) echo "true";
+                                                                                                                                                                                                    else echo "false"; ?>">Leave Records</a>
+                        </li>
                     </ul>
 
                     <!-- Tab panes -->
@@ -181,7 +185,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Type ID" . "</th><th>" . "Leave Type" . "</th><th>" . "</th><th colspan = '2'>" . "Action" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Type ID" . "</th><th>" . "Leave Type" ."</th><th colspan = '2'>" . "Actions" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -246,8 +250,7 @@ $count = $_GET["c"];
 
                                     }
 
-                                    echo "<td><button data-id=".$row["leave_id"]." class='btn btn-info leaveinfo'>View</button></td></tr>";
-                                    
+                                    echo "<td><button data-id=" . $row["leave_id"] . " class='btn btn-info leaveinfo'>View</button></td></tr>";
                                 }
 
                                 echo "</table>";
@@ -259,7 +262,57 @@ $count = $_GET["c"];
                             }
 
                             ?>
-                        </div><!-- /.leave management -->
+                        </div>
+                        <!-- /.leave management -->
+
+                        <!-- leave records -->
+                        <div class="tab-pane fade <?php if ($count == 4) echo "show active"; ?>" id="leaverec" role="tabpanel" aria-labelledby="leaverec-tab">
+                            <br>
+                            <p>These are Leave records:</p>
+                            <br>
+                            <?php
+
+                            // retrieves all leaves records
+                            $result = $conn->query("SELECT leave_id, employee_id, type_id, max(leave_start_date) as leave_start_date, leave_end_date, reason, approval FROM leaves group by employee_id");
+
+                            if ($result->num_rows > 0) {
+                                // displaying header for tabular form
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee Name" . "</th><th>" . "Type" . "</th><th>" . "Start Date" . "</th><th>" . "End Date" .  "</th><th>" . "Reason" . "</th><th>" . "Approval" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+
+                                // displaying data along with adding buttons for update and delete
+                                while ($row = $result->fetch_assoc()) {
+
+                                    // fetches employee details
+                                    $emp_row = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
+                                    $emp_row = $emp_row->fetch_assoc();
+
+                                    // fetches type details
+                                    $type_row = mysqli_query($conn, "select * from leave_types where type_id = '$row[type_id]'");
+                                    $type_row = $type_row->fetch_assoc();
+
+                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $type_row["types"] . "</td><td>" . $row["leave_start_date"] . "</td><td>" . $row["leave_end_date"] . "</td><td>" . $row["reason"] . "</td><td>" . $row["approval"] . "</td>";
+                                    if ($row["approval"] == "approved") {
+                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Approved</button></td>";
+                                    } else {
+                            ?>
+                                        <td><a href='leave_accept.php?lacc=<?php echo $row["leave_id"]; ?>'><button type='submit' class='btn btn-success'>Approve</button></a></td>
+                            <?php
+
+                                    }
+
+                                    echo "<td><button data-id=" . $row["leave_id"] . " class='btn btn-info leaveinfo'>View</button></td></tr>";
+                                }
+
+                                echo "</table>";
+                            } else {
+                                echo "no records inserted";
+
+                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
+                                $res = $conn->query("ALTER TABLE leaves AUTO_INCREMENT = 1");
+                            }
+
+                            ?>
+                        </div><!-- /.leave records -->
 
 
                     </div><!-- /.Tab-panes -->

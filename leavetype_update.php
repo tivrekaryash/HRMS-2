@@ -6,7 +6,7 @@ require_once 'db_conn.php';
 
 <!-- modal_upadte_leave_type -->
 <div class="modal fade" id="modal_update_leavetype<?php echo $row["type_id"]; ?>" data-backdrop="static" data-keyboard="false" style="overflow:hidden;" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-sm">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Leave Type Update form: </h5>
