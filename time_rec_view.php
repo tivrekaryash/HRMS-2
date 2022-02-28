@@ -79,8 +79,12 @@ $count = $_GET["c"];
                                                                                                                                                                                             else echo "false"; ?>">Attendance records</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="leaves-tab" data-toggle="tab" href="#leaves" role="tab" aria-controls="leaves" aria-selected="<?php if ($count == 2) echo "true";
-                                                                                                                                                                                            else echo "false"; ?>">Leaves</a>
+                            <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="leave_types-tab" data-toggle="tab" href="#leave_types" role="tab" aria-controls="leave_types" aria-selected="<?php if ($count == 2) echo "true";
+                                                                                                                                                                                                            else echo "false"; ?>">Leave types</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link <?php if ($count == 3) echo "active"; ?>" id="leaves-tab" data-toggle="tab" href="#leaves" role="tab" aria-controls="leaves" aria-selected="<?php if ($count == 3) echo "true";
+                                                                                                                                                                                            else echo "false"; ?>">Leave management</a>
                         </li>
                     </ul>
 
@@ -163,34 +167,76 @@ $count = $_GET["c"];
                             ?>
                         </div><!-- /.attendace History-->
 
-                        <!-- leaves -->
-                        <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="leaves" role="tabpanel" aria-labelledby="leaves-tab">
-                            <button type="button" data-toggle="modal" data-target="#modal_insert_leave" class="btn btn-outline-success" style="float:right">
-                                <i class="fas fa-scroll"></i> Add Leave
+                        <!-- leave types -->
+                        <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="leave_types" role="tabpanel" aria-labelledby="leave_types-tab">
+                            <button type="button" data-toggle="modal" data-target="#modal_insert_leavetype" class="btn btn-outline-success" style="float:right">
+                                <i class="fas fa-scroll"></i> Add Types
 
                             </button>
                             <br><br>
                             <?php
 
-                            // retrieves all employee records
-                            $result = $conn->query("SELECT * FROM leaves");
+                            // retrieves all leave_types records
+                            $result = $conn->query("SELECT * FROM leave_types");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee Name" . "</th><th>" . "Date" . "</th><th>" . "reason" . "</th><th colspan = '2'>" . "Approval" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Type ID" . "</th><th>" . "Leave Type" . "</th><th>" . "</th><th colspan = '2'>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
 
-                                    $emp_row = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
-                                    $emp_row = $emp_row->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $row["leave_date"] . $row["reason"] . "</td>";
+                                    echo "<tr><td>" . $row["type_id"] . "</td><td>" . $emp_row["types"] . "</td>";
                             ?>
-                                    <td><a href="leave_accept.php?lid=<?php echo $row['leave_id'] ?>"><button type="submit" class="btn btn-success">Accept</button></a></td>
-                                    <td><a href="leave_reject.php?lid=<?php echo $row['leave_id'] ?>"><button type="submit" class="btn btn-danger">Reject</button></a></td>
+                                    <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_leavetype<?php echo $row["type_id"]; ?>">Update</button></td>
+                                    <td><a href="leavetype_delete.php?lid=<?php echo $row['leave_id'] ?>"><button type="submit" class="btn btn-danger">Delete</button></a></td>
                                     </tr>
                             <?php
+
+                                    include 'leavetype_update.php';
+                                }
+
+                                echo "</table>";
+                            } else {
+                                echo "no records inserted";
+
+                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
+                                $res = $conn->query("ALTER TABLE leave_types AUTO_INCREMENT = 1");
+                            }
+
+                            ?>
+                        </div>
+                        <!-- /.leave types -->
+
+                        <!-- leave management -->
+                        <div class="tab-pane fade <?php if ($count == 3) echo "show active"; ?>" id="leaves" role="tabpanel" aria-labelledby="leaves-tab">
+                            <button type="button" data-toggle="modal" data-target="#modal_insert_leave" class="btn btn-outline-success" style="float:right">
+                                <i class="fas fa-scroll"></i> Add Leaves
+
+                            </button>
+                            <br><br>
+                            <?php
+
+                            // retrieves all leaves records
+                            $result = $conn->query("SELECT * FROM leaves");
+
+                            if ($result->num_rows > 0) {
+                                // displaying header for tabular form
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee Name" . "</th><th>" . "Clock-in" . "</th><th>" . "Clock-out" . "</th></tr>";
+
+                                // displaying data along with adding buttons for update and delete
+                                while ($row = $result->fetch_assoc()) {
+
+
+                                    echo "<tr><td>" . $row["type_id"] . "</td><td>" . $emp_row["types"] . "</td>";
+                            ?>
+                                    <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_leavetype<?php echo $row["leave_id"]; ?>">Update</button></td>
+                                    <td><a href="leavetype_delete.php?lid=<?php echo $row['leave_id'] ?>"><button type="submit" class="btn btn-danger">Delete</button></a></td>
+                                    </tr>
+                            <?php
+
+                                    include 'leavetype_update.php';
                                 }
 
                                 echo "</table>";
@@ -202,7 +248,7 @@ $count = $_GET["c"];
                             }
 
                             ?>
-                        </div><!-- /.leaves -->
+                        </div><!-- /.leave management -->
 
 
                     </div><!-- /.Tab-panes -->
@@ -248,6 +294,123 @@ $count = $_GET["c"];
                             </div>
                         </div>
                     </div><!-- /.Modal -->
+
+                    <!-- modal_add_leave_type -->
+                    <div class="modal fade" id="modal_insert_leavetype" data-backdrop="static" data-keyboard="false" style="overflow:hidden;" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Leave Type form: </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container p-5 my-2 border">
+                                        <h2>Enter details here:</h2><br>
+                                        <form name="attendace_form" action="leavetype_insert.php" method="POST">
+
+                                            <div class="form-group">
+                                                <label for="leavetype" class="form-label">Leave type: </label>
+                                                <input type="text" class="form-control" id="leavetype" name="leavetype" required>
+                                            </div>
+                                            <br>
+
+                                            <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.Modal -->
+
+                    <!-- modal_add_leave -->
+                    <div class="modal fade" id="modal_insert_leave" data-backdrop="static" data-keyboard="false" style="overflow:hidden;" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Leave form: </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container p-5 my-2 border">
+                                        <h2>Enter details here:</h2><br>
+                                        <form name="attendace_form" action="leave_insert.php" method="POST">
+
+                                            <div class="form-group">
+                                                <label for="leavetype" class="form-label">Select Type: </label>
+                                                <select id="leavetype" class="form-control select2bs4" name="leavetype" style="width: 100%;" required>
+                                                    <?php
+                                                    // retrieving all leave_types
+                                                    $result = $conn->query("select * from leave_types");
+
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        // displaying each leave_types in the list
+                                                        echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div><br>
+
+
+                                            <div class="form-group">
+                                                <label for="leave_emp" class="form-label">Select Employee: </label>
+                                                <select id="leave_emp" class="form-control select2bs4" name="leave_emp" style="width: 100%;" required>
+                                                    <?php
+                                                    // retrieving all employee_information
+                                                    $result = $conn->query("select * from employee_information");
+
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        // displaying each employee_information in the list
+                                                        echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div><br>
+
+                                            <div class="form-inline">
+                                                <label for="leave_sdate" class="form-label">Leave Start Date: </label>
+                                                <div class="col-sm-2">
+                                                    <input type="date" class="form-control" id="leave_sdate" name="leave_sdate" required>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-inline">
+                                                <label for="leave_edate" class="form-label">Leave End Date: </label>
+                                                <div class="col-sm-2">
+                                                    <input type="date" class="form-control" id="leave_edate" name="leave_edate" required>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group">
+                                                <label for="reason" class="form-label">Reason: </label>
+                                                <textarea type="text" class="form-control" rows="5" cols="33" id="reason" name="reason"></textarea>
+                                            </div>
+                                            <br>
+
+                                            <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.Modal -->
+
+
+
+
 
 
                 </div><!-- /.container-fluid -->

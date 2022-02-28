@@ -185,13 +185,19 @@ include 'db_conn.php';
           <li class="nav-item">
             <a href="time_rec_view.php?c=1" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p>Overtime Pay Setter</p>
+              <p>Attendance records</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="time_rec_view.php?c=2" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p>Leaves</p>
+              <p>Leave Types</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="time_rec_view.php?c=3" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Leave management</p>
             </a>
           </li>
         </ul>
