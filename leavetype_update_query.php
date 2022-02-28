@@ -11,6 +11,6 @@ $res = $conn->query("UPDATE leave_types SET types='$leavetype' WHERE type_id='$u
 
 // redirects to display employee information after closing connection
 $conn->close();
-header("location:emp_details.php?c=0");
+header("location:time_rec_view.php?c=2");
 exit;
 ?>

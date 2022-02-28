@@ -190,7 +190,7 @@ $count = $_GET["c"];
                                     echo "<tr><td>" . $row["type_id"] . "</td><td>" . $row["types"] . "</td>";
                             ?>
                                     <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_leavetype<?php echo $row["type_id"]; ?>">Update</button></td>
-                                    <td><a href="leavetype_delete.php?lid=<?php echo $row['leave_id'] ?>"><button type="submit" class="btn btn-danger">Delete</button></a></td>
+                                    <td><a href="leavetype_delete.php?lid=<?php echo $row['type_id'] ?>"><button type="submit" class="btn btn-danger">Delete</button></a></td>
                                     </tr>
                             <?php
 
@@ -219,30 +219,38 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all leaves records
-                            $result = $conn->query("SELECT * FROM leaves");
+                            $result = $conn->query("SELECT leave_id, employee_id, type_id, max(leave_start_date) as leave_start_date, leave_end_date, reason, approval FROM leaves group by employee_id");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee Name" . "</th><th>" . "Type" . "</th><th>" . "Start Date" . "</th><th>" . "End Date" .  "</th><th>" . "Reason" . "</th><th>" . "Approval" . "</th><th colspan = '2'>" . "Action" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee Name" . "</th><th>" . "Type" . "</th><th>" . "Start Date" . "</th><th>" . "End Date" .  "</th><th>" . "Reason" . "</th><th>" . "Approval" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
 
+                                    // fetches employee details
+                                    $emp_row = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
+                                    $emp_row = $emp_row->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $row["type_id"] . "</td><td>" . $row["leave_start_date"] . "</td><td>" . $row["leave_end_date"] . "</td><td>" . $row["reason"] . "</td><td>" . $row["approval"] . "</td>";
-                                    if ($row["approval"] == "accepted") {
-                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Accepted</button></td></tr>";
+                                    // fetches type details
+                                    $type_row = mysqli_query($conn, "select * from leave_types where type_id = '$row[type_id]'");
+                                    $type_row = $type_row->fetch_assoc();
+
+                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $type_row["types"] . "</td><td>" . $row["leave_start_date"] . "</td><td>" . $row["leave_end_date"] . "</td><td>" . $row["reason"] . "</td><td>" . $row["approval"] . "</td>";
+                                    if ($row["approval"] == "approved") {
+                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Approved</button></td>";
                                     } else {
                             ?>
-                                        <td><a href='leave_accept.php?lacc=<?php echo $row["leave_id"]; ?>'><button type='submit' class='btn btn-success'>Accept</button></a></td>
-                                        <td><button data-id="<?php echo $row["leave_id"]; ?>" class="btn btn-info leaveinfo">View</button></td>
-                                        </tr>
+                                        <td><a href='leave_accept.php?lacc=<?php echo $row["leave_id"]; ?>'><button type='submit' class='btn btn-success'>Approve</button></a></td>
                             <?php
 
                                     }
 
-                                    echo "</table>";
+                                    echo "<td><button data-id=".$row["leave_id"]." class='btn btn-info leaveinfo'>View</button></td></tr>";
+                                    
                                 }
+
+                                echo "</table>";
                             } else {
                                 echo "no records inserted";
 
@@ -355,7 +363,7 @@ $count = $_GET["c"];
 
                                                     while ($row = $result->fetch_assoc()) {
                                                         // displaying each leave_types in the list
-                                                        echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
+                                                        echo "<option value = '$row[type_id]'>" . $row["types"] . "</option>";
                                                     }
                                                     ?>
                                                 </select>
