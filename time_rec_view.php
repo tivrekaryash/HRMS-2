@@ -223,7 +223,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all leaves records
-                            $result = $conn->query("SELECT leave_id, employee_id, type_id, max(leave_start_date) as leave_start_date, leave_end_date, reason, approval FROM leaves group by employee_id");
+                            $result = $conn->query("SELECT * FROM leaves where approval='pending' order by employee_id");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -242,15 +242,13 @@ $count = $_GET["c"];
 
                                     echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $type_row["types"] . "</td><td>" . $row["leave_start_date"] . "</td><td>" . $row["leave_end_date"] . "</td><td>" . $row["reason"] . "</td><td>" . $row["approval"] . "</td>";
                                     if ($row["approval"] == "approved") {
-                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Approved</button></td>";
+                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Approved</button></td></tr>";
                                     } else {
                             ?>
-                                        <td><a href='leave_accept.php?lacc=<?php echo $row["leave_id"]; ?>'><button type='submit' class='btn btn-success'>Approve</button></a></td>
+                                        <td><a href='leave_accept.php?lacc=<?php echo $row["leave_id"]; ?>'><button type='submit' class='btn btn-success'>Approve</button></a></td></tr>
                             <?php
 
                                     }
-
-                                    echo "<td><button data-id=" . $row["leave_id"] . " class='btn btn-info leaveinfo'>View</button></td></tr>";
                                 }
 
                                 echo "</table>";
@@ -273,7 +271,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all leaves records
-                            $result = $conn->query("SELECT leave_id, employee_id, type_id, max(leave_start_date) as leave_start_date, leave_end_date, reason, approval FROM leaves group by employee_id");
+                            $result = $conn->query("SELECT max(leave_id) as leave_id, employee_id, type_id, leave_start_date, leave_end_date, reason, approval FROM leaves group by employee_id");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -291,16 +289,7 @@ $count = $_GET["c"];
                                     $type_row = $type_row->fetch_assoc();
 
                                     echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $type_row["types"] . "</td><td>" . $row["leave_start_date"] . "</td><td>" . $row["leave_end_date"] . "</td><td>" . $row["reason"] . "</td><td>" . $row["approval"] . "</td>";
-                                    if ($row["approval"] == "approved") {
-                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Approved</button></td>";
-                                    } else {
-                            ?>
-                                        <td><a href='leave_accept.php?lacc=<?php echo $row["leave_id"]; ?>'><button type='submit' class='btn btn-success'>Approve</button></a></td>
-                            <?php
-
-                                    }
-
-                                    echo "<td><button data-id=" . $row["leave_id"] . " class='btn btn-info leaveinfo'>View</button></td></tr>";
+                                    echo "<td><button data-id=" . $row["employee_id"] . " class='btn btn-info leaveinfo'>View</button></td></tr>";
                                 }
 
                                 echo "</table>";
