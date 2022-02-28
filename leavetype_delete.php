@@ -5,6 +5,9 @@ include 'db_conn.php';
 // leave type id that needs to be deleted
 $del_id = $_GET['lid'];
 
+// deleting leaves
+$sql = mysqli_query($conn, "delete from leaves where type_id = '$del_id'");
+
 // deleting leave type
 $sql = mysqli_query($conn, "delete from leave_types where type_id = '$del_id'");
 
