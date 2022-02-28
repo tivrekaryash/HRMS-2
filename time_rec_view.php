@@ -235,6 +235,7 @@ $count = $_GET["c"];
                                     } else {
                             ?>
                                         <td><a href='leave_accept.php?lacc=<?php echo $row["leave_id"]; ?>'><button type='submit' class='btn btn-success'>Accept</button></a></td>
+                                        <td><button data-id="<?php echo $row["leave_id"]; ?>" class="btn btn-info leaveinfo">View</button></td>
                                         </tr>
                             <?php
 
@@ -410,9 +411,28 @@ $count = $_GET["c"];
                         </div>
                     </div><!-- /.Modal -->
 
+                    <!-- Modal leave View -->
+                    <div class="modal fade" id="modal_view_Leaves" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+                        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
 
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Leave Records</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
 
+                                </div>
+                                <div class="modal-body-leave">
 
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.Modal -->
 
 
                 </div><!-- /.container-fluid -->
@@ -438,6 +458,32 @@ $count = $_GET["c"];
 
     <!-- scripts -->
     <?php include 'scripts.php'; ?>
+    <script type='text/javascript'>
+        $(document).ready(function() {
+
+            $('.leaveinfo').click(function() {
+
+                var userid = $(this).data('id');
+
+                // AJAX request
+                $.ajax({
+                    url: 'ajax_leaves.php',
+                    type: 'post',
+                    data: {
+                        userid: userid
+                    },
+                    success: function(response) {
+                        // Add response in Modal body
+                        $('.modal-body-leave').html(response);
+
+                        // Display Modal
+                        $('#modal_view_Leaves').modal('show');
+                    }
+                });
+            });
+        });
+    </script>
+
     <!-- /.scripts -->
 </body>
 
