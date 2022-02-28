@@ -8,7 +8,7 @@ $sal_amt = $_POST['sal_amt_upd'];
 $upd_id = $_POST['emp_id'];
 
 // updates employee's salary
-$res = $conn->query("UPDATE employee_salary SET salary_amount='$sal_amt' WHERE employee_id='$upd_id'");
+$res = $conn->query("UPDATE employee_salary SET salary_amount='$sal_amt' WHERE salary_id='$upd_id'");
 
 // redirects to display employee information after closing connection
 $conn->close();

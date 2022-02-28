@@ -114,7 +114,7 @@ $count = $_GET["c"];
                                         echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td></tr>";
                                     } else {
                             ?>
-                                        <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_edit_sal<?php echo $row["employee_id"]; ?>">Edit</button></td>
+                                        <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_edit_sal<?php echo $row["salary_id"]; ?>">Edit</button></td>
                                         <td><a href='emp_sal_clear.php?clr=<?php echo $row["salary_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></a></td>
                                         </tr>
                             <?php

@@ -4,7 +4,7 @@ require_once 'db_conn.php';
 ?>
 
 <!-- Modal-Edit Salary -->
-<div class="modal fade" id="modal_edit_sal<?php echo $row["employee_id"]; ?>" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+<div class="modal fade" id="modal_edit_sal<?php echo $row["salary_id"]; ?>" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -38,7 +38,7 @@ require_once 'db_conn.php';
                         </div>
                         <br>
 
-                        <input type="hidden" id="emp_id" name="emp_id" value="<?php echo $row["employee_id"]; ?>">
+                        <input type="hidden" id="emp_id" name="emp_id" value="<?php echo $row["salary_id"]; ?>">
 
                         <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 
