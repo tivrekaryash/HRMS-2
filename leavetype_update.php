@@ -25,6 +25,8 @@ require_once 'db_conn.php';
                         </div>
                         <br>
 
+                        <input type="hidden" id="lt_id" name="lt_id" value="<?php echo $row["type_id"]; ?>">
+
                         <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 
                     </form>
