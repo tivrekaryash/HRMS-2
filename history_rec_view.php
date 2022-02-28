@@ -97,7 +97,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all job History information records
-                            $result = $conn->query("SELECT history_id, employee_id, max(designation_id) as designation_id, max(job_start_date) as job_start_date FROM job_history group by employee_id");
+                            $result = $conn->query("SELECT * FROM job_history group by employee_id desc");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -178,7 +178,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all salary records
-                            $result = $conn->query("SELECT salary_id, employee_id, max(salary_amount) as salary_amount, max(salary_date) as salary_date, clearance FROM employee_salary where clearance='cleared' group by employee_id");
+                            $result = $conn->query("SELECT * FROM employee_salary where clearance='cleared' group by employee_id desc");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
