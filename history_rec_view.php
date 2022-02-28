@@ -178,7 +178,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all salary records
-                            $result = $conn->query("SELECT * FROM employee_salary where clearance = 'cleared' order by employee_id, salary_date desc");
+                            $result = $conn->query("SELECT salary_id, employee_id, salary_amount, max(salary_date) as salary_date, clearance FROM employee_salary group by employee_id");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
