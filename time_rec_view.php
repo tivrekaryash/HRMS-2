@@ -223,21 +223,25 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee Name" . "</th><th>" . "Type" . "</th><th>" . "Start Date" . "</th><th>" . "End Date" .  "</th><th>" . "Reason" . "</th><th colspan = '2'>" . "Approval" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee Name" . "</th><th>" . "Type" . "</th><th>" . "Start Date" . "</th><th>" . "End Date" .  "</th><th>" . "Reason" . "</th><th>" . "Approval" . "</th><th colspan = '2'>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
 
 
-                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $row["type_id"] . $row["leave_start_date"] . $row["leave_end_date"] . $row["reason"] . "</td>";
+                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $row["type_id"] . "</td><td>" . $row["leave_start_date"] . "</td><td>" . $row["leave_end_date"] . "</td><td>" . $row["reason"] . "</td><td>" . $row["approval"] . "</td>";
+                                    if ($row["approval"] == "accepted") {
+                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Accepted</button></td></tr>";
+                                    } else {
                             ?>
-                                    
-                                    </tr>
+                                        <td><a href='leave_accept.php?lacc=<?php echo $row["leave_id"]; ?>'><button type='submit' class='btn btn-success'>Accept</button></a></td>
+                                        </tr>
                             <?php
 
-                                }
+                                    }
 
-                                echo "</table>";
+                                    echo "</table>";
+                                }
                             } else {
                                 echo "no records inserted";
 
