@@ -187,7 +187,7 @@ $count = $_GET["c"];
                                 while ($row = $result->fetch_assoc()) {
 
 
-                                    echo "<tr><td>" . $row["type_id"] . "</td><td>" . $emp_row["types"] . "</td>";
+                                    echo "<tr><td>" . $row["type_id"] . "</td><td>" . $row["types"] . "</td>";
                             ?>
                                     <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_leavetype<?php echo $row["type_id"]; ?>">Update</button></td>
                                     <td><a href="leavetype_delete.php?lid=<?php echo $row['leave_id'] ?>"><button type="submit" class="btn btn-danger">Delete</button></a></td>
@@ -223,20 +223,18 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee Name" . "</th><th>" . "Clock-in" . "</th><th>" . "Clock-out" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee Name" . "</th><th>" . "Type" . "</th><th>" . "Start Date" . "</th><th>" . "End Date" .  "</th><th>" . "Reason" . "</th><th colspan = '2'>" . "Approval" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
 
 
-                                    echo "<tr><td>" . $row["type_id"] . "</td><td>" . $emp_row["types"] . "</td>";
+                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $row["type_id"] . $row["leave_start_date"] . $row["leave_end_date"] . $row["reason"] . "</td>";
                             ?>
-                                    <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_leavetype<?php echo $row["leave_id"]; ?>">Update</button></td>
-                                    <td><a href="leavetype_delete.php?lid=<?php echo $row['leave_id'] ?>"><button type="submit" class="btn btn-danger">Delete</button></a></td>
+                                    
                                     </tr>
                             <?php
 
-                                    include 'leavetype_update.php';
                                 }
 
                                 echo "</table>";
