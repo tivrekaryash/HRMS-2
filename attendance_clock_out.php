@@ -28,6 +28,7 @@ $desig_res = $conn->query("select * from designations where designation_id = '$r
 $desig_res = $desig_res->fetch_assoc();
 
 // calculates amount of overtime pay accumulated for the shift
+$hours -= 8;
 $amount = $hours * $desig_res["amt_per_hour"];
 
 // stores the difference as extra hours worked if any

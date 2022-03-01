@@ -5,7 +5,7 @@ include 'db_conn.php';
 // employee id that needs to be deleted
 $del_id = $_GET['del'];
 
-//-----------------------------------------------------qualification-----------------------------------------------------------//
+//---------------------------------------------------qualification-------------------------------------------------------------//
 
 // getting no. of qualification records to be deleted
 $result = $conn->query("SELECT * FROM employee_qualifications where employee_id = '$del_id'");
@@ -21,27 +21,47 @@ while( $row = $result->fetch_assoc() )
 // deleting disciplinary history records
 $res = mysqli_query($conn,"delete from disciplinary_history where employee_id = '$del_id'");
 
-//---------------------------------------------------------job-----------------------------------------------------------------//
+//--------------------------------------------------------job------------------------------------------------------------------//
 
 // deleting job history records
 $res = mysqli_query($conn,"delete from job_history where employee_id = '$del_id'");
 
-//---------------------------------------------------------salary--------------------------------------------------------------//
+//-------------------------------------------------------salary----------------------------------------------------------------//
 
 // deleting salary history records
 $res = mysqli_query($conn,"delete from employee_salary where employee_id = '$del_id'");
 
-//---------------------------------------------------phone number--------------------------------------------------------------//
+//----------------------------------------------------phone number-------------------------------------------------------------//
 
 // deleting employees contact details
 $res = mysqli_query($conn,"delete from employee_phnum where employee_id = '$del_id'");
 
-//---------------------------------------------------compensation--------------------------------------------------------------//
+//----------------------------------------------------compensation-------------------------------------------------------------//
 
 // deleting employees compensation details
 $res = mysqli_query($conn,"delete from compensation where employee_id = '$del_id'");
 
-//----------------------------------------------------main record--------------------------------------------------------------//
+//-----------------------------------------------------attendance--------------------------------------------------------------//
+
+// deleting employees attendance details
+$res = mysqli_query($conn,"delete from attendance where employee_id = '$del_id'");
+
+//-------------------------------------------------------leaves----------------------------------------------------------------//
+
+// deleting employees leave details
+$res = mysqli_query($conn,"delete from leaves where employee_id = '$del_id'");
+
+//----------------------------------------------------login details------------------------------------------------------------//
+
+// deleting employees login details
+$res = mysqli_query($conn,"delete from login_details where employee_id = '$del_id'");
+
+//-------------------------------------------------overtime pay details--------------------------------------------------------//
+
+// deleting employees overtime pay details
+$res = mysqli_query($conn,"delete from overtime_pay_emp where employee_id = '$del_id'");
+
+//-----------------------------------------------------main record-------------------------------------------------------------//
 
 // candidate can now be re-accepted
 $res = mysqli_query($conn, "update candidate_information set employee_id = NULL where employee_id = '$del_id'");
