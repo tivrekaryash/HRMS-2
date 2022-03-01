@@ -136,6 +136,12 @@ include 'db_conn.php';
               <p>Salary History</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="history_rec_view.php?c=3" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Overtime Pay History</p>
+            </a>
+          </li>
         </ul>
       </li>
       <li class="nav-item">

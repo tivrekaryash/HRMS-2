@@ -10,6 +10,6 @@ $res = $conn->query("UPDATE overtime_pay_emp SET clearance='cleared' WHERE otp_p
 
 // redirects to display salary information after closing connection
 $conn->close();
-header("location:finance_rec_view.php?c=2");
+header("location:finance_rec_view.php?c=1");
 exit;
 ?>
