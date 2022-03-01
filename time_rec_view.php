@@ -339,7 +339,7 @@ $count = $_GET["c"];
 
                                             <div class="form-group">
                                                 <label for="shift">Example select</label>
-                                                <select id="shift" class="custom-select" required>
+                                                <select id="shift" name="shift" class="custom-select" required>
                                                     <option value="urgent" selected>Urgent</option>
                                                     <option value="8:00 am to 4:00 pm">8:00 am to 4:00 pm</option>
                                                     <option value="4:00 pm to 12:00 pm">4:00 pm to 12:00 pm</option>
