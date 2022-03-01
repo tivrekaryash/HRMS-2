@@ -20,7 +20,7 @@ require_once 'db_conn.php';
 
                         <div class="form-group">
                             <label for="otpdesig_upd" class="form-label">Select Designation: </label>
-                            <select id="otpdesig_upd" class="custom-select" name="otpdesig_upd" style="width:100%;" required>
+                            <select id="otpdesig_upd" class="custom-select" name="otpdesig_upd" style="width:100%;" disabled>
                                 <?php
                                 // retrieving all Designation
                                 $result_des = $conn->query("select * from designations");
