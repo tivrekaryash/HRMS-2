@@ -185,7 +185,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Type ID" . "</th><th>" . "Leave Type" ."</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Type ID" . "</th><th>" . "Leave Type" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -245,7 +245,8 @@ $count = $_GET["c"];
                                         echo "<td><button type='submit' class='btn btn-secondary' disabled>Approved</button></td></tr>";
                                     } else {
                             ?>
-                                        <td><a href='leave_accept.php?lacc=<?php echo $row["leave_id"]; ?>'><button type='submit' class='btn btn-success'>Approve</button></a></td></tr>
+                                        <td><a href='leave_accept.php?lacc=<?php echo $row["leave_id"]; ?>'><button type='submit' class='btn btn-success'>Approve</button></a></td>
+                                        </tr>
                             <?php
 
                                     }
@@ -333,6 +334,16 @@ $count = $_GET["c"];
                                                         echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
                                                     }
                                                     ?>
+                                                </select>
+                                            </div><br>
+
+                                            <div class="form-group">
+                                                <label for="shift">Example select</label>
+                                                <select id="shift" class="custom-select" required>
+                                                    <option value="urgent" selected>Urgent</option>
+                                                    <option value="8:00 am to 4:00 pm">8:00 am to 4:00 pm</option>
+                                                    <option value="4:00 pm to 12:00 pm">4:00 pm to 12:00 pm</option>
+                                                    <option value="12:00 am to 8:00 am">12:00 am to 8:00 am</option>
                                                 </select>
                                             </div><br>
 
