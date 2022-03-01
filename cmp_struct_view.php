@@ -136,7 +136,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Designation ID" . "</th><th>" . "Department" . "</th><th>" . "Designation" . "</th><th>" . "Base Salary(Rs.)" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Designation ID" . "</th><th>" . "Department" . "</th><th>" . "Designation" . "</th><th>" . "Base Salary(Rs.)" .  "</th><th>" . "Overtime Pay (Rs.)" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -144,7 +144,7 @@ $count = $_GET["c"];
                                     $res = $conn->query("select * from department where department_id = $row[department_id]");
                                     $res = $res->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["designation_id"] . "</td><td>" . $res["department_name"] . "</td><td>" . $row["designation"] . "</td><td>" . $row["base_salary"] . "</td>";
+                                    echo "<tr><td>" . $row["designation_id"] . "</td><td>" . $res["department_name"] . "</td><td>" . $row["designation"] . "</td><td>" . $row["base_salary"] .  "</td><td>" . $row["amt_per_hour"] ."</td>";
 
                             ?>
 
@@ -248,6 +248,12 @@ $count = $_GET["c"];
                                             <div class="form-group">
                                                 <label for="basesal" class="form-label">Base Salary: </label>
                                                 <input type="number" class="form-control" id="basesal" name="basesal" required>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group">
+                                                <label for="otp_amt" class="form-label">Overtime Pay: </label>
+                                                <input type="number" class="form-control" id="otp_amt" name="otp_amt" placeholder="Amount-per-hour(Rs)" required>
                                             </div>
                                             <br>
 

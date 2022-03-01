@@ -35,6 +35,12 @@ require_once 'db_conn.php';
                         </div>
                         <br>
 
+                        <div class="form-group">
+                            <label for="otp_amt_upd" class="form-label">Overtime Pay: </label>
+                            <input type="number" class="form-control" id="otp_amt_upd" name="otp_amt_upd" value="<?php echo $row["amt_per_hour"]; ?>" placeholder="Amount-per-hour(Rs)" required>
+                        </div>
+                        <br>
+
                         <input type="hidden" id="desgid" name="desgid" value="<?php echo $row["designation_id"]; ?>">
 
                         <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
