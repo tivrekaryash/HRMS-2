@@ -128,7 +128,7 @@ $count = $_GET["c"];
                                 echo "no records inserted";
 
                                 // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-                                $res = $conn->query("ALTER TABLE employee_salary AUTO_INCREMENT = 1");
+                                $res = $conn->query("ALTER TABLE attendance AUTO_INCREMENT = 1");
                             }
 
                             ?>
@@ -146,7 +146,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee Name" . "</th><th>" . "Clock-in" . "</th><th>" . "Clock-out" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee Name" . "</th><th>" . "Clock-in" . "</th><th>" . "Clock-out" . "</th><th>" . "Shift" ."</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -154,7 +154,7 @@ $count = $_GET["c"];
                                     $emp_row = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
                                     $emp_row = $emp_row->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $row["clock_in"] . "</td>";
+                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $row["clock_in"] . "</td><td>" . $row["clock_out"] ."</td><td>" . $row["shift"] ."</td>";
                             ?>
                                     </tr>
                             <?php
@@ -165,7 +165,7 @@ $count = $_GET["c"];
                                 echo "no records inserted";
 
                                 // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-                                $res = $conn->query("ALTER TABLE employee_salary AUTO_INCREMENT = 1");
+                                $res = $conn->query("ALTER TABLE attendance AUTO_INCREMENT = 1");
                             }
 
                             ?>
