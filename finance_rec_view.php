@@ -155,7 +155,12 @@ $count = $_GET["c"];
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
-                                    echo "<tr><td>" . $row["designation_id"] . "</td><td>" . $row["designation"] . "</td><td>" . $row["amt_per_hour"] . "</td>";
+
+                                    // fetches designation info (for name)
+                                    $res_des = $conn->query("SELECT * FROM designations where designation_id = '$row[designation_id]'");
+                                    $res_des = $res_des->fetch_assoc();
+
+                                    echo "<tr><td>" . $row["designation_id"] . "</td><td>" . $res_des["designation"] . "</td><td>" . $row["amt_per_hour"] . "</td>";
 
                             ?>
 
