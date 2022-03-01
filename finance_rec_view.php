@@ -75,15 +75,11 @@ $count = $_GET["c"];
                                                                                                                                                                                     else echo "false"; ?>">Salary</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="setOtp-tab" data-toggle="tab" href="#setOtp" role="tab" aria-controls="setOtp" aria-selected="<?php if ($count == 1) echo "true";
-                                                                                                                                                                                            else echo "false"; ?>">Set Overtime Payment</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="Otp-tab" data-toggle="tab" href="#Otp" role="tab" aria-controls="Otp" aria-selected="<?php if ($count == 2) echo "true";
+                            <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="Otp-tab" data-toggle="tab" href="#Otp" role="tab" aria-controls="Otp" aria-selected="<?php if ($count == 1) echo "true";
                                                                                                                                                                                     else echo "false"; ?>">Overtime Payment</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if ($count == 3) echo "active"; ?>" id="Comp-tab" data-toggle="tab" href="#Comp" role="tab" aria-controls="Comp" aria-selected="<?php if ($count == 3) echo "true";
+                            <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="Comp-tab" data-toggle="tab" href="#Comp" role="tab" aria-controls="Comp" aria-selected="<?php if ($count == 2) echo "true";
                                                                                                                                                                                         else echo "false"; ?>">Compensation</a>
                         </li>
                     </ul>
@@ -137,51 +133,8 @@ $count = $_GET["c"];
                             ?>
                         </div><!-- /.Salary -->
 
-                        <!-- Set Overtime Pay -->
-                        <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="setOtp" role="tabpanel" aria-labelledby="setOtp-tab">
-                            <button type="button" data-toggle="modal" data-target="#modal_insert_setOtp" class="btn btn-outline-success" style="float:right">
-                                <i class="fas fa-coins"></i> Set Overtime
-
-                            </button>
-                            <br><br>
-                            <?php
-
-                            // retrieves all Set Overtime information records
-                            $result = $conn->query("SELECT * FROM overtime_pay_set");
-
-                            if ($result->num_rows > 0) {
-                                // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Designation  ID" . "</th><th>" . "Designation" . "</th><th>" . "Amount-Per-hour(Rs)" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
-
-                                // displaying data along with adding buttons for update and delete
-                                while ($row = $result->fetch_assoc()) {
-
-                                    // fetches designation info (for name)
-                                    $res_des = $conn->query("SELECT * FROM designations where designation_id = '$row[designation_id]'");
-                                    $res_des = $res_des->fetch_assoc();
-
-                                    echo "<tr><td>" . $row["designation_id"] . "</td><td>" . $res_des["designation"] . "</td><td>" . $row["amt_per_hour"] . "</td>";
-
-                            ?>
-
-                                    <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_otp<?php echo $row["set_pay_id"]; ?>">Update</button></td>
-                                    <td><a href="overtimepay_delete.php?del=<?php echo $row["set_pay_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
-                                    </tr>
-
-                            <?php
-                                    include 'overtimepay_upd.php';
-                                }
-
-                                echo "</table>";
-                            } else {
-                                echo "no records inserted";
-                            }
-
-                            ?>
-                        </div><!-- /.Set Overtime Pay  -->
-
                         <!-- Overtime Pay -->
-                        <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="Otp" role="tabpanel" aria-labelledby="Otp-tab">
+                        <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="Otp" role="tabpanel" aria-labelledby="Otp-tab">
                             <a href="otp_emp_add.php"><button type="button" class="btn btn-outline-success" style="float:right">
                                     <i class="fas fa-wallet"></i> Add new
 
@@ -219,7 +172,7 @@ $count = $_GET["c"];
                         </div><!-- /.Overtime Pay  -->
 
                         <!-- Compensation -->
-                        <div class="tab-pane fade <?php if ($count == 3) echo "show active"; ?>" id="Comp" role="tabpanel" aria-labelledby="Comp-tab">
+                        <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="Comp" role="tabpanel" aria-labelledby="Comp-tab">
                             <button type="button" data-toggle="modal" data-target="#modal_insert_comp" class="btn btn-outline-success" style="float:right">
                                 <i class="fas fa-file-invoice"></i>&nbsp; Add New
 
@@ -335,54 +288,6 @@ $count = $_GET["c"];
                             </div>
                         </div>
                     </div><!-- /.Modal -->
-
-                    <!-- Modal-overtime -->
-                    <div class="modal fade" id="modal_insert_setOtp" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
-                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Overtime Payment form: </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container p-5 my-2 border">
-                                        <h2>Enter details here:</h2><br>
-                                        <form name="otp_insert_form" action="overtimetp_insert.php" method="POST">
-
-                                            <div class="form-group">
-                                                <label for="otpdesig" class="form-label">Select Designation: </label>
-                                                <select id="otpdesig" class="form-control select2bs4" name="otpdesig" style="width: 100%;" required>
-                                                    <?php
-                                                    // retrieving all departments
-                                                    $result = $conn->query("select * from designations");
-
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        // displaying each department in the list
-                                                        echo "<option value = '$row[designation_id]'>" . $row["designation"] . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div><br>
-
-                                            <div class="form-inline">
-                                                <label for="otpamt" class="form-label">Amount-Per-Hour(Rs): </label>
-                                                <div class="col-sm-2">
-                                                    <input type="number" class="form-control" id="otpamt" name="otpamt" required>
-                                                </div>
-                                            </div>
-                                            <br>
-
-                                            <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.Modal -->
 
                 </div><!-- /.container-fluid -->
             </section>
