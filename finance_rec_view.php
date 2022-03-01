@@ -178,180 +178,223 @@ $count = $_GET["c"];
                         <!-- Overtime Pay -->
                         <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="Otp" role="tabpanel" aria-labelledby="Otp-tab">
                             <button type="button" data-toggle="modal" data-target="#" class="btn btn-outline-success" style="float:right">
-                                <i class="fas fa-wallet"></i> Clear Due
+                                <i class="fas fa-wallet"></i> Add new
 
                             </button>
                             <br><br>
-                            To be discussed
-                        </div><!-- /.Overtime Pay  -->
+                            <div class="tab-pane fade <?php if ($count == 0) echo "show active"; ?>" id="Sal" role="tabpanel" aria-labelledby="Sal-tab">
+                                <a href="emp_add_sal.php"><button type="button" class="btn btn-outline-success" style="float:right">
+                                        <i class="fas fa-wallet"></i> Add New
 
-                        <!-- Compensation -->
-                        <div class="tab-pane fade <?php if ($count == 3) echo "show active"; ?>" id="Comp" role="tabpanel" aria-labelledby="Comp-tab">
-                            <button type="button" data-toggle="modal" data-target="#modal_insert_comp" class="btn btn-outline-success" style="float:right">
-                                <i class="fas fa-file-invoice"></i>&nbsp; Add New
+                                    </button></a>
+                                <br><br>
+                                <?php
 
-                            </button>
-                            <br><br>
-                            <?php
+                                // retrieves all salary records
+                                $result = $conn->query("SELECT * FROM overtime_pay_emp where clearance = 'pending' order by employee_id");
 
-                            // retrieves all compensation records
-                            $result = $conn->query("SELECT * FROM compensation order by employee_id");
+                                if ($result->num_rows > 0) {
+                                    // displaying header for tabular form
+                                    echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Amount (Rs.)" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
 
-                            if ($result->num_rows > 0) {
-                                // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Type" . "</th><th>" . "Description" . "</th><th>" . "Amount" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th><th>" . "Clear" . "</th></tr>";
+                                    // displaying data along with adding buttons for update and delete
+                                    while ($row = $result->fetch_assoc()) {
 
-                                // displaying data along with adding buttons for update and delete
-                                while ($row = $result->fetch_assoc()) {
+                                        $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
+                                        $emprow = $emprow->fetch_assoc();
 
-                                    $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
-                                    $emprow = $emprow->fetch_assoc();
+                                        echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["salary_amount"] . "</td><td>" . $row["salary_date"] . "</td><td>" . $row["clearance"] . "</td>";
 
-                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["compensation_type"] . "</td><td>" . $row["compensation_description"] . "</td><td>" . $row["compensation_amt"] . "</td><td>" . $row["cmp_Date"] . "</td><td>" . $row["clearance"] . "</td>";
-
-                                    if ($row["clearance"] == "cleared") {
-                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td></tr>";
-                                    } else {
-                            ?>
-                                        <td><a href='comp_clear.php?acc=<?php echo $row["compensation_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></td>
-                                        </tr>
-                            <?php
+                                        if ($row["clearance"] == "cleared") {
+                                            echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td></tr>";
+                                        } else {
+                                ?>
+                                            <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_edit_sal<?php echo $row["salary_id"]; ?>">Edit</button></td>
+                                            <td><a href='emp_sal_clear.php?clr=<?php echo $row["salary_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></a></td>
+                                            </tr>
+                                <?php
+                                        }
+                                        include 'emp_sal_upd.php';
                                     }
+
+                                    echo "</table>";
+                                } else {
+                                    echo "no records inserted";
+
+                                    // resetting counter in case there are no records (CHeck if there are any tables to be reset)
+                                    $res = $conn->query("ALTER TABLE employee_salary AUTO_INCREMENT = 1");
                                 }
 
-                                echo "</table>";
-                            } else {
-                                echo "no records inserted";
+                                ?>
+                            </div><!-- /.Overtime Pay  -->
 
-                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-                                $res = $conn->query("ALTER TABLE compensation AUTO_INCREMENT = 1");
-                            }
+                            <!-- Compensation -->
+                            <div class="tab-pane fade <?php if ($count == 3) echo "show active"; ?>" id="Comp" role="tabpanel" aria-labelledby="Comp-tab">
+                                <button type="button" data-toggle="modal" data-target="#modal_insert_comp" class="btn btn-outline-success" style="float:right">
+                                    <i class="fas fa-file-invoice"></i>&nbsp; Add New
 
-                            ?>
-                        </div><!-- /.Compensation -->
+                                </button>
+                                <br><br>
+                                <?php
 
-                    </div><!-- /.Tab-panes -->
+                                // retrieves all compensation records
+                                $result = $conn->query("SELECT * FROM compensation order by employee_id");
 
-                    <!-- Modal-Compensation Insert -->
-                    <div class="modal fade" id="modal_insert_comp" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
-                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Compensation form: </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container p-5 my-2 border">
-                                        <h2>Enter Compensation Record:</h2><br>
-                                        <form name="Comp_form" action="comp_insert.php" method="POST">
+                                if ($result->num_rows > 0) {
+                                    // displaying header for tabular form
+                                    echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Type" . "</th><th>" . "Description" . "</th><th>" . "Amount" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th><th>" . "Clear" . "</th></tr>";
 
-                                            <div class="form-inline">
-                                                <label for="compdate" class="form-label">Date : </label>
-                                                <div class="col-sm-2">
-                                                    <input type="date" class="form-control" id="compdate" name="compdate" required>
-                                                </div>
-                                            </div>
-                                            <br>
+                                    // displaying data along with adding buttons for update and delete
+                                    while ($row = $result->fetch_assoc()) {
 
-                                            <div class="form-group">
-                                                <label for="emp" class="form-label">Select Employee: </label>
-                                                <select id="emp" class="form-control select2bs4" name="emp" style="width: 100%;" required>
-                                                    <?php
-                                                    // retrieving all employee_information
-                                                    $result = $conn->query("select * from employee_information");
+                                        $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
+                                        $emprow = $emprow->fetch_assoc();
 
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        // displaying each employee_information in the list
-                                                        echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div><br>
+                                        echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["compensation_type"] . "</td><td>" . $row["compensation_description"] . "</td><td>" . $row["compensation_amt"] . "</td><td>" . $row["cmp_Date"] . "</td><td>" . $row["clearance"] . "</td>";
 
-                                            <div class="form-group">
-                                                <label for="comptype" class="form-label">Type: </label>
-                                                <input type="text" class="form-control" id="comptype" name="comptype" required>
-                                            </div>
-                                            <br>
+                                        if ($row["clearance"] == "cleared") {
+                                            echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td></tr>";
+                                        } else {
+                                ?>
+                                            <td><a href='comp_clear.php?acc=<?php echo $row["compensation_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></td>
+                                            </tr>
+                                <?php
+                                        }
+                                    }
 
-                                            <div class="form-inline">
-                                                <label for="compamt" class="form-label">Amount (Rs): </label>
-                                                <div class="col-sm-2">
-                                                    <input type="number" class="form-control" id="compamt" name="compamt" required>
-                                                </div>
-                                            </div>
-                                            <br>
+                                    echo "</table>";
+                                } else {
+                                    echo "no records inserted";
 
-                                            <div class="form-group">
-                                                <label for="compdesc" class="form-label">Description: </label>
-                                                <textarea type="text" class="form-control" rows="5" cols="33" id="compdesc" name="compdesc"></textarea>
-                                            </div>
-                                            <br>
+                                    // resetting counter in case there are no records (CHeck if there are any tables to be reset)
+                                    $res = $conn->query("ALTER TABLE compensation AUTO_INCREMENT = 1");
+                                }
 
+                                ?>
+                            </div><!-- /.Compensation -->
 
-                                            <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+                        </div><!-- /.Tab-panes -->
 
-                                        </form>
+                        <!-- Modal-Compensation Insert -->
+                        <div class="modal fade" id="modal_insert_comp" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+                            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Compensation form: </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.Modal -->
+                                    <div class="modal-body">
+                                        <div class="container p-5 my-2 border">
+                                            <h2>Enter Compensation Record:</h2><br>
+                                            <form name="Comp_form" action="comp_insert.php" method="POST">
 
-                    <!-- Modal-overtime Update -->
-                    <div class="modal fade" id="modal_insert_setOtp" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
-                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Overtime Payment form: </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container p-5 my-2 border">
-                                        <h2>Enter details here:</h2><br>
-                                        <form name="otp_insert_form" action="overtimetp_insert.php" method="POST">
-
-                                        <div class="form-group">
-                                                <label for="otpdesig" class="form-label">Select Department: </label>
-                                                <select id="otpdesig" class="form-control select2bs4" name="otpdesig" style="width: 100%;" required>
-                                                    <?php
-                                                    // retrieving all departments
-                                                    $result = $conn->query("select * from department");
-
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        // displaying each department in the list
-                                                        echo "<option>" . $row["department_name"] . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div><br>
-
-                                            <div class="form-inline">
-                                                <label for="otpamt" class="form-label">Amount-Per-Hour(Rs): </label>
-                                                <div class="col-sm-2">
-                                                    <input type="number" class="form-control" id="otpamt" name="otpamt" required>
+                                                <div class="form-inline">
+                                                    <label for="compdate" class="form-label">Date : </label>
+                                                    <div class="col-sm-2">
+                                                        <input type="date" class="form-control" id="compdate" name="compdate" required>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <br>
+                                                <br>
 
-                                            <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+                                                <div class="form-group">
+                                                    <label for="emp" class="form-label">Select Employee: </label>
+                                                    <select id="emp" class="form-control select2bs4" name="emp" style="width: 100%;" required>
+                                                        <?php
+                                                        // retrieving all employee_information
+                                                        $result = $conn->query("select * from employee_information");
 
-                                        </form>
+                                                        while ($row = $result->fetch_assoc()) {
+                                                            // displaying each employee_information in the list
+                                                            echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div><br>
+
+                                                <div class="form-group">
+                                                    <label for="comptype" class="form-label">Type: </label>
+                                                    <input type="text" class="form-control" id="comptype" name="comptype" required>
+                                                </div>
+                                                <br>
+
+                                                <div class="form-inline">
+                                                    <label for="compamt" class="form-label">Amount (Rs): </label>
+                                                    <div class="col-sm-2">
+                                                        <input type="number" class="form-control" id="compamt" name="compamt" required>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="form-group">
+                                                    <label for="compdesc" class="form-label">Description: </label>
+                                                    <textarea type="text" class="form-control" rows="5" cols="33" id="compdesc" name="compdesc"></textarea>
+                                                </div>
+                                                <br>
+
+
+                                                <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <br>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <!-- /.Modal -->
+                        </div><!-- /.Modal -->
 
-                </div><!-- /.container-fluid -->
+                        <!-- Modal-overtime Update -->
+                        <div class="modal fade" id="modal_insert_setOtp" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+                            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Overtime Payment form: </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container p-5 my-2 border">
+                                            <h2>Enter details here:</h2><br>
+                                            <form name="otp_insert_form" action="overtimetp_insert.php" method="POST">
+
+                                                <div class="form-group">
+                                                    <label for="otpdesig" class="form-label">Select Department: </label>
+                                                    <select id="otpdesig" class="form-control select2bs4" name="otpdesig" style="width: 100%;" required>
+                                                        <?php
+                                                        // retrieving all departments
+                                                        $result = $conn->query("select * from department");
+
+                                                        while ($row = $result->fetch_assoc()) {
+                                                            // displaying each department in the list
+                                                            echo "<option>" . $row["department_name"] . "</option>";
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div><br>
+
+                                                <div class="form-inline">
+                                                    <label for="otpamt" class="form-label">Amount-Per-Hour(Rs): </label>
+                                                    <div class="col-sm-2">
+                                                        <input type="number" class="form-control" id="otpamt" name="otpamt" required>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.Modal -->
+
+                    </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
         </div>
