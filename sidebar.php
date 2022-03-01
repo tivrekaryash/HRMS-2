@@ -156,17 +156,11 @@ include 'db_conn.php';
           <li class="nav-item">
             <a href="finance_rec_view.php?c=1" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p>Set Overtime Pay</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="finance_rec_view.php?c=2" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
               <p>Overtime Pay</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="finance_rec_view.php?c=3" class="nav-link">
+            <a href="finance_rec_view.php?c=2" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Compensation</p>
             </a>
