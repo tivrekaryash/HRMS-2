@@ -346,7 +346,7 @@ $count = $_GET["c"];
                             </div>
                         </div><!-- /.Modal -->
 
-                        <!-- Modal-overtime Update -->
+                        <!-- Modal-overtime -->
                         <div class="modal fade" id="modal_insert_setOtp" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
                             <div class="modal-dialog modal-dialog-scrollable modal-lg">
                                 <div class="modal-content">
@@ -370,7 +370,7 @@ $count = $_GET["c"];
 
                                                         while ($row = $result->fetch_assoc()) {
                                                             // displaying each department in the list
-                                                            echo "<option>" . $row["designation"] . "</option>";
+                                                            echo "<option value = '$row[designation_id]'>" . $row["designation"] . "</option>";
                                                         }
                                                         ?>
                                                     </select>
