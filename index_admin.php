@@ -178,7 +178,7 @@ $emp_res = $emp_res->fetch_assoc();
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-      <strong>Copyright &copy; 2021-2022 <a href="#">EVA</a>.</strong>
+      <strong>Copyright &copy; 2021-2022 <a href="https://twitter.com/evangelion_co?lang=en">EVA</a>.</strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 0.1.1
