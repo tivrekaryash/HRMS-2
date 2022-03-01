@@ -143,7 +143,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee Name" . "</th><th>" . "Clock-in" . "</th><th>" . "Clock-out" . "</th><th>" . "Shift" ."</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee Name" . "</th><th>" . "Clock-in" . "</th><th>" . "Clock-out" . "</th><th>" . "Shift" . "</th><th>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -151,9 +151,9 @@ $count = $_GET["c"];
                                     $emp_row = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
                                     $emp_row = $emp_row->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $row["clock_in"] . "</td><td>" . $row["clock_out"] ."</td><td>" . $row["shift"] ."</td>";
+                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $row["clock_in"] . "</td><td>" . $row["clock_out"] . "</td><td>" . $row["shift"] . "</td>";
+                                    echo "<td><button data-id=" . $row["employee_id"] . " class='btn btn-info attinfo'>View</button></td></tr>";
                             ?>
-                                    </tr>
                             <?php
                                 }
 
@@ -489,6 +489,29 @@ $count = $_GET["c"];
                     </div>
                     <!-- /.Modal -->
 
+                    <!-- attendance view View -->
+                    <div class="modal fade" id="modal_view_att" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+                        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Attendance Records</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                </div>
+                                <div class="modal-body-att">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.Modal -->
+
 
                 </div><!-- /.container-fluid -->
             </section>
@@ -533,6 +556,30 @@ $count = $_GET["c"];
 
                         // Display Modal
                         $('#modal_view_Leaves').modal('show');
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function() {
+
+            $('.attinfo').click(function() {
+
+                var userid = $(this).data('id');
+
+                // AJAX request
+                $.ajax({
+                    url: 'ajax_attendance.php',
+                    type: 'post',
+                    data: {
+                        userid: userid
+                    },
+                    success: function(response) {
+                        // Add response in Modal body
+                        $('.modal-body-att').html(response);
+
+                        // Display Modal
+                        $('#modal_view_att').modal('show');
                     }
                 });
             });
