@@ -82,6 +82,10 @@ $count = $_GET["c"];
                             <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="Hissal-tab" data-toggle="tab" href="#Hissal" role="tab" aria-controls="Hissal" aria-selected="<?php if ($count == 2) echo "true";
                                                                                                                                                                                             else echo "false"; ?>">Salary History</a>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link <?php if ($count == 3) echo "active"; ?>" id="HisOtp-tab" data-toggle="tab" href="#HisOtp" role="tab" aria-controls="HisOtp" aria-selected="<?php if ($count == 3) echo "true";
+                                                                                                                                                                                            else echo "false"; ?>">Overtime Pay History</a>
+                        </li>
                     </ul>
 
                     <!-- Tab panes -->
@@ -205,6 +209,44 @@ $count = $_GET["c"];
 
                                 // resetting counter in case there are no records (CHeck if there are any tables to be reset)
                                 $res = $conn->query("ALTER TABLE employee_salary AUTO_INCREMENT = 1");
+                            }
+
+                            ?>
+                        </div>
+                        <!-- /.Salary Hsitory -->
+
+                        <!-- Overtime Pay Hsitory -->
+                        <div class="tab-pane fade <?php if ($count == 3) echo "show active"; ?>" id="HisOtp" role="tabpanel" aria-labelledby="HisOtp-tab">
+                            <?php
+
+                            // retrieves all overtime_pay_emp records
+                            $result = $conn->query("SELECT * FROM overtime_pay_emp where clearance='cleared' group by employee_id desc");
+
+                            if ($result->num_rows > 0) {
+                                // displaying header for tabular form
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Date" .  "</th><th>" . "Hours Worked" . "</th><th>" . "Total amount(Rs.)" . "</th><th>" . "Clearance" . "</th></tr>";
+
+                                // displaying data along with adding buttons for update and delete
+                                while ($row = $result->fetch_assoc()) {
+
+                                    $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
+                                    $emprow = $emprow->fetch_assoc();
+
+                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["otp_date"] . "</td><td>" . $row["hrs_worked"] .  "</td><td>" . $row["total_amt"] . "</td><td>" . $row["clearance"] . "</td>";
+                            ?>
+
+
+                                    <td><button data-id="<?php echo $row["employee_id"]; ?>" class="btn btn-info otphisinfo">View</button></td>
+                                    </tr>
+                            <?php
+                                }
+
+                                echo "</table>";
+                            } else {
+                                echo "no records inserted";
+
+                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
+                                $res = $conn->query("ALTER TABLE overtime_pay_emp AUTO_INCREMENT = 1");
                             }
 
                             ?>
@@ -346,7 +388,7 @@ $count = $_GET["c"];
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Job History</h4>
+                                    <h4 class="modal-title">Job History:</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                 </div>
@@ -369,11 +411,34 @@ $count = $_GET["c"];
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Salary History</h4>
+                                    <h4 class="modal-title">Salary History:</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                 </div>
                                 <div class="modal-body-hissal">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.Modal -->
+
+                    <!-- Modal HisOtp View -->
+                    <div class="modal fade" id="modal_view_HisOtp" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+                        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Overtime Pay History:</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                </div>
+                                <div class="modal-body-HisOtp">
 
                                 </div>
                                 <div class="modal-footer">
@@ -431,6 +496,30 @@ $count = $_GET["c"];
 
                                         // Display Modal
                                         $('#modal_view_Hissal').modal('show');
+                                    }
+                                });
+                            });
+                        });
+
+                        $(document).ready(function() {
+
+                            $('.otphisinfo').click(function() {
+
+                                var userid = $(this).data('id');
+
+                                // AJAX request
+                                $.ajax({
+                                    url: 'ajax_HisOtp.php',
+                                    type: 'post',
+                                    data: {
+                                        userid: userid
+                                    },
+                                    success: function(response) {
+                                        // Add response in Modal body
+                                        $('.modal-body-HisOtp').html(response);
+
+                                        // Display Modal
+                                        $('#modal_view_HisOtp').modal('show');
                                     }
                                 });
                             });

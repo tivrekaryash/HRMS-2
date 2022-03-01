@@ -135,40 +135,37 @@ $count = $_GET["c"];
 
                         <!-- Overtime Pay -->
                         <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="Otp" role="tabpanel" aria-labelledby="Otp-tab">
-                            <a href="otp_emp_add.php"><button type="button" class="btn btn-outline-success" style="float:right">
-                                    <i class="fas fa-wallet"></i> Add new
+                            <br>
+                            <p>These are Overtime Pay (per day) records:</p>
+                            <br>
+                            <?php
 
-                                </button></a>
-                                <br><br>
-                                <?php
+                            // retrieves all overtime_pay_emp records
+                            $result = $conn->query("SELECT * FROM overtime_pay_emp where clearance = 'pending' order by employee_id");
 
-                                // retrieves all overtime_pay_emp records
-                                $result = $conn->query("SELECT * FROM overtime_pay_emp where clearance = 'pending' order by employee_id");
+                            if ($result->num_rows > 0) {
+                                // displaying header for tabular form
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Date" .  "</th><th>" . "Hours Worked" . "</th><th>" . "Total amount" . "</th><th>" . "Clearance" . "</th><th>" . "Clear" . "</th></tr>";
 
-                                if ($result->num_rows > 0) {
-                                    // displaying header for tabular form
-                                    echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Date" .  "</th><th>" . "Hours Worked" . "</th><th>" . "Total amount" . "</th><th>" . "Clearance" . "</th><th>" . "Clear" . "</th></tr>";
+                                // displaying data along with adding buttons for update and delete
+                                while ($row = $result->fetch_assoc()) {
 
-                                    // displaying data along with adding buttons for update and delete
-                                    while ($row = $result->fetch_assoc()) {
+                                    $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
+                                    $emprow = $emprow->fetch_assoc();
 
-                                        $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
-                                        $emprow = $emprow->fetch_assoc();
-
-                                        echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["otp_date"] . "</td><td>" . $row["hrs_worked"] .  "</td><td>" . $row["total_amt"] . "</td><td>" . $row["clearance"] . "</td>";
-                                ?>
-                                        <td><a href='otp_emp_clear.php?clr=<?php echo $row["otp_pay_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></a></td>
-                                        </tr>
-                                <?php
-                                    }
-
-                                    echo "</table>";
-                                } else {
-                                    echo "no records inserted";
-
+                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["otp_date"] . "</td><td>" . $row["hrs_worked"] .  "</td><td>" . $row["total_amt"] . "</td><td>" . $row["clearance"] . "</td>";
+                            ?>
+                                    <td><a href='otp_emp_clear.php?clr=<?php echo $row["otp_pay_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></a></td>
+                                    </tr>
+                            <?php
                                 }
 
-                                ?>
+                                echo "</table>";
+                            } else {
+                                echo "no records inserted";
+                            }
+
+                            ?>
                         </div><!-- /.Overtime Pay  -->
 
                         <!-- Compensation -->
