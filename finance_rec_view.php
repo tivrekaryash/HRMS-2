@@ -75,11 +75,15 @@ $count = $_GET["c"];
                                                                                                                                                                                     else echo "false"; ?>">Salary</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="Otp-tab" data-toggle="tab" href="#Otp" role="tab" aria-controls="Otp" aria-selected="<?php if ($count == 1) echo "true";
+                            <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="setOtp-tab" data-toggle="tab" href="#setOtp" role="tab" aria-controls="setOtp" aria-selected="<?php if ($count == 1) echo "true";
+                                                                                                                                                                                    else echo "false"; ?>">Set Overtime Payment</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="Otp-tab" data-toggle="tab" href="#Otp" role="tab" aria-controls="Otp" aria-selected="<?php if ($count == 2) echo "true";
                                                                                                                                                                                     else echo "false"; ?>">Overtime Payment</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="Comp-tab" data-toggle="tab" href="#Comp" role="tab" aria-controls="Comp" aria-selected="<?php if ($count == 2) echo "true";
+                            <a class="nav-link <?php if ($count == 3) echo "active"; ?>" id="Comp-tab" data-toggle="tab" href="#Comp" role="tab" aria-controls="Comp" aria-selected="<?php if ($count == 3) echo "true";
                                                                                                                                                                                         else echo "false"; ?>">Compensation</a>
                         </li>
                     </ul>
@@ -119,7 +123,7 @@ $count = $_GET["c"];
                                         </tr>
                             <?php
                                     }
-                                    include 'emp_sal_upd.php'; 
+                                    include 'emp_sal_upd.php';
                                 }
 
                                 echo "</table>";
@@ -133,8 +137,18 @@ $count = $_GET["c"];
                             ?>
                         </div><!-- /.Salary -->
 
+                        <!-- Set Overtime Pay -->
+                        <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="setOtp" role="tabpanel" aria-labelledby="setOtp-tab">
+                            <button type="button" data-toggle="modal" data-target="#" class="btn btn-outline-success" style="float:right">
+                            <i class="fas fa-money-check-edit"></i> Set Overtime
+
+                            </button>
+                            <br><br>
+                            Set
+                        </div><!-- /.Set Overtime Pay  -->
+
                         <!-- Overtime Pay -->
-                        <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="Otp" role="tabpanel" aria-labelledby="Otp-tab">
+                        <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="Otp" role="tabpanel" aria-labelledby="Otp-tab">
                             <button type="button" data-toggle="modal" data-target="#" class="btn btn-outline-success" style="float:right">
                                 <i class="fas fa-wallet"></i> Clear Due
 
@@ -144,7 +158,7 @@ $count = $_GET["c"];
                         </div><!-- /.Overtime Pay  -->
 
                         <!-- Compensation -->
-                        <div class="tab-pane fade <?php if ($count == 2) echo "show active"; ?>" id="Comp" role="tabpanel" aria-labelledby="Comp-tab">
+                        <div class="tab-pane fade <?php if ($count == 3) echo "show active"; ?>" id="Comp" role="tabpanel" aria-labelledby="Comp-tab">
                             <button type="button" data-toggle="modal" data-target="#modal_insert_comp" class="btn btn-outline-success" style="float:right">
                                 <i class="fas fa-file-invoice"></i>&nbsp; Add New
 
