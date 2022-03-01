@@ -76,7 +76,7 @@ $count = $_GET["c"];
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="setOtp-tab" data-toggle="tab" href="#setOtp" role="tab" aria-controls="setOtp" aria-selected="<?php if ($count == 1) echo "true";
-                                                                                                                                                                                    else echo "false"; ?>">Set Overtime Payment</a>
+                                                                                                                                                                                            else echo "false"; ?>">Set Overtime Payment</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="Otp-tab" data-toggle="tab" href="#Otp" role="tab" aria-controls="Otp" aria-selected="<?php if ($count == 2) echo "true";
@@ -139,12 +139,40 @@ $count = $_GET["c"];
 
                         <!-- Set Overtime Pay -->
                         <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="setOtp" role="tabpanel" aria-labelledby="setOtp-tab">
-                            <button type="button" data-toggle="modal" data-target="#" class="btn btn-outline-success" style="float:right">
-                            <i class="fas fa-money-check-edit"></i> Set Overtime
+                            <button type="button" data-toggle="modal" data-target="#modal_insert_setOtp" class="btn btn-outline-success" style="float:right">
+                                <i class="fas fa-coins"></i> Set Overtime
 
                             </button>
                             <br><br>
-                            Set
+                            <?php
+
+                            // retrieves all Set Overtime information records
+                            $result = $conn->query("SELECT * FROM overtime_pay_set");
+
+                            if ($result->num_rows > 0) {
+                                // displaying header for tabular form
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Designation  ID" . "</th><th>" . "Designation" . "</th><th>" . "Amount-Per-hour(Rs)" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+
+                                // displaying data along with adding buttons for update and delete
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr><td>" . $row["designation_id"] . "</td><td>" . $row["designation"] . "</td><td>" . $row["amt_per_hour"] . "</td>";
+
+                            ?>
+
+                                    <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_otp<?php echo $row["set_pay_id"]; ?>">Update</button></td>
+                                    <td><a href="overtimepay_delete.php?del=<?php echo $row["set_pay_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
+                                    </tr>
+
+                            <?php
+                                    include 'overtimepay_upd.php';
+                                }
+
+                                echo "</table>";
+                            } else {
+                                echo "no records inserted";
+                            }
+
+                            ?>
                         </div><!-- /.Set Overtime Pay  -->
 
                         <!-- Overtime Pay -->
@@ -256,7 +284,6 @@ $count = $_GET["c"];
                                             </div>
                                             <br>
 
-
                                             <div class="form-group">
                                                 <label for="compdesc" class="form-label">Description: </label>
                                                 <textarea type="text" class="form-control" rows="5" cols="33" id="compdesc" name="compdesc"></textarea>
@@ -275,6 +302,57 @@ $count = $_GET["c"];
                             </div>
                         </div>
                     </div><!-- /.Modal -->
+
+                    <!-- Modal-overtime Update -->
+                    <div class="modal fade" id="modal_insert_setOtp" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Overtime Pay Update form: </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container p-5 my-2 border">
+                                        <h2>Update details here:</h2><br>
+                                        <form name="dept_upd_form" action="overtimetp_insert.php" method="POST">
+
+                                            <div class="form-group">
+                                                <label for="otpdesig" class="form-label">Select Designation: </label>
+                                                <select id="otpdesig" class="custom-select" name="otpdesig" style="width:100%;" required>
+                                                    <?php
+                                                    // retrieving all Designation
+                                                    $result_des = $conn->query("select * from designations");
+
+                                                    while ($row_des = $result_des->fetch_assoc()) {
+                                                        // displaying each Designation in the list
+                                                        if ($row["designation_id"] == $row_des["designation_id"])
+                                                            echo "<option value = '$row_des[designation_id]' selected='selected'>" . $row_des["designation"] . "</option>";
+                                                        else
+                                                            echo "<option value = '$row_des[designation_id]'>" . $row_des["designation"] . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div><br>
+
+                                            <div class="form-inline">
+                                                <label for="otpamt" class="form-label">Amount-Per-Hour(Rs): </label>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" id="otpamt" name="otpamt" required>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.Modal -->
 
                 </div><!-- /.container-fluid -->
             </section>
