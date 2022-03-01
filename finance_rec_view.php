@@ -194,7 +194,7 @@ $count = $_GET["c"];
 
                                 if ($result->num_rows > 0) {
                                     // displaying header for tabular form
-                                    echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Date" .  "</th><th>" . "Hours Worked" . "</th><th>" . "Total amount" . "</th><th>" . "Clearance" . "</th><th>" . "Action" . "</th></tr>";
+                                    echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Date" .  "</th><th>" . "Hours Worked" . "</th><th>" . "Total amount" . "</th><th>" . "Clearance" . "</th><th>" . "Clear" . "</th></tr>";
 
                                     // displaying data along with adding buttons for update and delete
                                     while ($row = $result->fetch_assoc()) {
@@ -203,17 +203,10 @@ $count = $_GET["c"];
                                         $emprow = $emprow->fetch_assoc();
 
                                         echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["otp_date"] . "</td><td>" . $row["hrs_worked"] .  "</td><td>" . $row["total_amt"] . "</td><td>" . $row["clearance"] . "</td>";
-
-                                        if ($row["clearance"] == "cleared") {
-                                            echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td></tr>";
-                                        } else {
                                 ?>
-                                            <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_edit_otpay<?php echo $row["otp_pay_id"]; ?>">Edit</button></td>
-                                            <td><a href='otp_emp_clear.php?clr=<?php echo $row["otp_pay_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></a></td>
-                                            </tr>
+                                        <td><a href='otp_emp_clear.php?clr=<?php echo $row["otp_pay_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></a></td>
+                                        </tr>
                                 <?php
-                                        }
-                                        include 'otp_emp_upd.php';
                                     }
 
                                     echo "</table>";
