@@ -362,15 +362,15 @@ $count = $_GET["c"];
                                             <form name="otp_insert_form" action="overtimetp_insert.php" method="POST">
 
                                                 <div class="form-group">
-                                                    <label for="otpdesig" class="form-label">Select Department: </label>
+                                                    <label for="otpdesig" class="form-label">Select Designation: </label>
                                                     <select id="otpdesig" class="form-control select2bs4" name="otpdesig" style="width: 100%;" required>
                                                         <?php
                                                         // retrieving all departments
-                                                        $result = $conn->query("select * from department");
+                                                        $result = $conn->query("select * from designations");
 
                                                         while ($row = $result->fetch_assoc()) {
                                                             // displaying each department in the list
-                                                            echo "<option>" . $row["department_name"] . "</option>";
+                                                            echo "<option>" . $row["designation"] . "</option>";
                                                         }
                                                         ?>
                                                     </select>
