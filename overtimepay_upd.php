@@ -4,7 +4,7 @@ require_once 'db_conn.php';
 ?>
 
 <!-- Modal-overtime Update -->
-<div class="modal fade" id="modal_update_otp<?php echo $row["set_pay_id"]; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modal_update_otp<?php echo $row["set_pay_id"]; ?>" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,7 +16,7 @@ require_once 'db_conn.php';
             <div class="modal-body">
                 <div class="container p-5 my-2 border">
                     <h2>Update details here:</h2><br>
-                    <form name="dept_upd_form" action="overtimetp_update.php" method="POST">
+                    <form name="otp_upd_form" action="overtimetp_update.php" method="POST">
 
                         <div class="form-group">
                             <label for="otpdesig_upd" class="form-label">Select Designation: </label>
