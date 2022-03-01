@@ -126,9 +126,6 @@ $count = $_GET["c"];
                                 echo "</table>";
                             } else {
                                 echo "no records inserted";
-
-                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-                                $res = $conn->query("ALTER TABLE attendance AUTO_INCREMENT = 1");
                             }
 
                             ?>
@@ -142,7 +139,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all attendance records
-                            $result = $conn->query("SELECT * FROM attendance where clock_out is null order by employee_id");
+                            $result = $conn->query("SELECT * FROM attendance where clock_out is not null group by employee_id desc");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -163,9 +160,6 @@ $count = $_GET["c"];
                                 echo "</table>";
                             } else {
                                 echo "no records inserted";
-
-                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-                                $res = $conn->query("ALTER TABLE attendance AUTO_INCREMENT = 1");
                             }
 
                             ?>
