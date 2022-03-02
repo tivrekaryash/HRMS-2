@@ -225,15 +225,15 @@ $count = $_GET["c"];
                                         <form name="desg_form" action="designation_insert.php" method="POST">
 
                                             <div class="form-group">
-                                                <label for="deptname" class="form-label">Select Designation: </label>
+                                                <label for="deptname" class="form-label">Select Department: </label>
                                                 <select id="deptname" class="form-control select2bs4" name="deptname" style="width: 100%;" required>
                                                     <?php
                                                     // retrieving all departments
-                                                    $result = $conn->query("select * from designations");
+                                                    $result = $conn->query("select * from department");
 
                                                     while ($row = $result->fetch_assoc()) {
                                                         // displaying each department in the list
-                                                        echo "<option>" . $row["designation"] . "</option>";
+                                                        echo "<option>" . $row["department_name"] . "</option>";
                                                     }
                                                     ?>
                                                 </select>

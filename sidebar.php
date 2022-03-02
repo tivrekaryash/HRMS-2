@@ -121,7 +121,7 @@ include 'db_conn.php';
           <li class="nav-item">
             <a href="history_rec_view.php?c=0" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p>Job History</p>
+              <p>Job History</p> 
             </a>
           </li>
           <li class="nav-item">
