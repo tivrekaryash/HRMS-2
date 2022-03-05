@@ -136,7 +136,7 @@ $count = $_GET["c"];
                         <!-- Overtime Pay -->
                         <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="Otp" role="tabpanel" aria-labelledby="Otp-tab">
                             <br>
-                            <p>These are Overtime Pay (per day) records:</p>
+                            <p>These are Overtime Pay records:</p>
                             <br>
                             <?php
 
