@@ -6,7 +6,7 @@ require_once 'db_conn.php';
 $clearance_id = $_GET['clr'];
 
 // clears record
-$res = $conn->query("UPDATE overtime_pay_emp SET clearance='cleared' WHERE otp_pay_id='$clearance_id'");
+$res = $conn->query("UPDATE overtime_pay_emp SET clearance='cleared' WHERE employee_id='$clearance_id'");
 
 // redirects to display salary information after closing connection
 $conn->close();

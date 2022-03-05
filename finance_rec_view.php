@@ -141,7 +141,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all overtime_pay_emp records
-                            $result = $conn->query("SELECT * FROM overtime_pay_emp where clearance = 'pending' order by employee_id");
+                            $result = $conn->query("SELECT * FROM overtime_pay_emp where clearance = 'pending' group by employee_id order by otp_pay_id  desc");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -155,7 +155,7 @@ $count = $_GET["c"];
 
                                     echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["otp_date"] . "</td><td>" . $row["hrs_worked"] .  "</td><td>" . $row["total_amt"] . "</td><td>" . $row["clearance"] . "</td>";
                             ?>
-                                    <td><a href='otp_emp_clear.php?clr=<?php echo $row["otp_pay_id"]; ?>'><button type='submit' class='btn btn-success'>Clear All</button></a></td>
+                                    <td><a href='otp_emp_clear.php?clr=<?php echo $row["employee_id"]; ?>'><button type='submit' class='btn btn-success'>Clear All</button></a></td>
                                     <td><button data-id="<?php echo $row["employee_id"]; ?>" class="btn btn-info otppayinfo">View</button></td>
                                     </tr>
                             <?php

@@ -2,7 +2,7 @@
 include 'db_conn.php'; 
 
 $userid = $_POST['userid'];
-$result = mysqli_query($conn, "select * from overtime_pay_emp where employee_id='$userid' order by otp_pay_id desc");
+$result = mysqli_query($conn, "select * from overtime_pay_emp where employee_id='$userid' and clearance='pending' order by otp_pay_id desc");
 
 $response = "<table style='text-align:center; background-color:white;' class='table table-bordered table-hover'><tr><th>Employee ID</th><th>Employee Name</th><th>Date</th><th>Hours-Worked</th><th>Amount(Rs.)</th></tr>";
 
