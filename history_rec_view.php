@@ -149,7 +149,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Behaviour Standard" . "</th><th>" . "Disciplinary Action" . "</th><th>" . "Date" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Behaviour Standard" . "</th><th>" . "Disciplinary Action" . "</th><th>" . "Date" .  "</th><th>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -160,6 +160,7 @@ $count = $_GET["c"];
                                     echo "<tr><td>" . $row["history_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["behaviour_standard"] . "</td><td>" . $row["disciplinary_action"] . "</td><td>" . $row["dis_date"] . "</td>";
 
                             ?>
+                                    <td><button data-id="<?php echo $row["employee_id"]; ?>" class="btn btn-info HisDiscinfo">View</button></td>
                                     </tr>
 
                             <?php
@@ -445,6 +446,29 @@ $count = $_GET["c"];
                     </div>
                     <!-- /.Modal -->
 
+                    <!-- Modal HisDiscinfo View -->
+                    <div class="modal fade" id="modal_view_HisDisc" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+                        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Disciplinary History:</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                </div>
+                                <div class="modal-body-HisDisc">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.Modal -->
+
                     <!-- scripts -->
                     <?php include 'scripts.php'; ?>
                     <script type='text/javascript'>
@@ -515,6 +539,30 @@ $count = $_GET["c"];
 
                                         // Display Modal
                                         $('#modal_view_HisOtp').modal('show');
+                                    }
+                                });
+                            });
+                        });
+
+                        $(document).ready(function() {
+
+                            $('.HisDiscinfo').click(function() {
+
+                                var userid = $(this).data('id');
+
+                                // AJAX request
+                                $.ajax({
+                                    url: 'ajax_HisDisc.php',
+                                    type: 'post',
+                                    data: {
+                                        userid: userid
+                                    },
+                                    success: function(response) {
+                                        // Add response in Modal body
+                                        $('.modal-body-HisDisc').html(response);
+
+                                        // Display Modal
+                                        $('#modal_view_HisDisc').modal('show');
                                     }
                                 });
                             });

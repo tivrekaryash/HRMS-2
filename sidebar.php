@@ -156,7 +156,7 @@ include 'db_conn.php';
           <li class="nav-item">
             <a href="finance_rec_view.php?c=0" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p>Salary</p>
+              <p>Salary Pay</p>
             </a>
           </li>
           <li class="nav-item">

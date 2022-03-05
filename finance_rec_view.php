@@ -72,7 +72,7 @@ $count = $_GET["c"];
                     <ul class="nav nav-tabs" id="finTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link <?php if ($count == 0) echo "active"; ?>" id="Sal-tab" data-toggle="tab" href="#Sal" role="tab" aria-controls="Sal" aria-selected="<?php if ($count == 0) echo "true";
-                                                                                                                                                                                    else echo "false"; ?>">Salary</a>
+                                                                                                                                                                                    else echo "false"; ?>">Salary Payment</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="Otp-tab" data-toggle="tab" href="#Otp" role="tab" aria-controls="Otp" aria-selected="<?php if ($count == 1) echo "true";
@@ -145,7 +145,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Date" .  "</th><th>" . "Hours Worked" . "</th><th>" . "Total amount" . "</th><th>" . "Clearance" . "</th><th>" . "Clear" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Date" .  "</th><th>" . "Total Hours-Worked" . "</th><th>" . "Total amount(Rs.)" . "</th><th>" . "Clearance" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -155,7 +155,8 @@ $count = $_GET["c"];
 
                                     echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["otp_date"] . "</td><td>" . $row["hrs_worked"] .  "</td><td>" . $row["total_amt"] . "</td><td>" . $row["clearance"] . "</td>";
                             ?>
-                                    <td><a href='otp_emp_clear.php?clr=<?php echo $row["otp_pay_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></a></td>
+                                    <td><a href='otp_emp_clear.php?clr=<?php echo $row["otp_pay_id"]; ?>'><button type='submit' class='btn btn-success'>Clear All</button></a></td>
+                                    <td><button data-id="<?php echo $row["employee_id"]; ?>" class="btn btn-info otppayinfo">View</button></td>
                                     </tr>
                             <?php
                                 }
@@ -182,7 +183,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Type" . "</th><th>" . "Description" . "</th><th>" . "Amount" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th><th>" . "Clear" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Type" . "</th><th>" . "Description" . "</th><th>" . "Amount" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -193,10 +194,11 @@ $count = $_GET["c"];
                                     echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["compensation_type"] . "</td><td>" . $row["compensation_description"] . "</td><td>" . $row["compensation_amt"] . "</td><td>" . $row["cmp_Date"] . "</td><td>" . $row["clearance"] . "</td>";
 
                                     if ($row["clearance"] == "cleared") {
-                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td></tr>";
+                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td>";
+                                        echo "<td><button data-id=" . $row["employee_id"] . " class='btn btn-info compinfo'>View</button></td></tr>";
                                     } else {
                             ?>
-                                        <td><a href='comp_clear.php?acc=<?php echo $row["compensation_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></td>
+                                        <td colspan = '2'><a href='comp_clear.php?acc=<?php echo $row["compensation_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></td>
                                         </tr>
                             <?php
                                     }
@@ -286,6 +288,52 @@ $count = $_GET["c"];
                         </div>
                     </div><!-- /.Modal -->
 
+                    <!-- Modal otppayinfo View -->
+                    <div class="modal fade" id="modal_view_Otppay" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+                        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Overtime Pay Records (per day):</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                </div>
+                                <div class="modal-body-Otppay">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.Modal -->
+
+                    <!-- Modal compinfo View -->
+                    <div class="modal fade" id="modal_view_comp" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+                        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Compensation Records:</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                </div>
+                                <div class="modal-body-comp">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.Modal -->
+
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
@@ -309,6 +357,55 @@ $count = $_GET["c"];
 
     <!-- scripts -->
     <?php include 'scripts.php'; ?>
+    <script type='text/javascript'>
+        $(document).ready(function() {
+
+            $('.otppayinfo').click(function() {
+
+                var userid = $(this).data('id');
+
+                // AJAX request
+                $.ajax({
+                    url: 'ajax_Otppay.php',
+                    type: 'post',
+                    data: {
+                        userid: userid
+                    },
+                    success: function(response) {
+                        // Add response in Modal body
+                        $('.modal-body-Otppay').html(response);
+
+                        // Display Modal
+                        $('#modal_view_Otppay').modal('show');
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function() {
+
+            $('.compinfo').click(function() {
+
+                var userid = $(this).data('id');
+
+                // AJAX request
+                $.ajax({
+                    url: 'ajax_comp.php',
+                    type: 'post',
+                    data: {
+                        userid: userid
+                    },
+                    success: function(response) {
+                        // Add response in Modal body
+                        $('.modal-body-comp').html(response);
+
+                        // Display Modal
+                        $('#modal_view_comp').modal('show');
+                    }
+                });
+            });
+        });
+    </script>
     <!-- /.scripts -->
 </body>
 
