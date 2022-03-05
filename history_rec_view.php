@@ -145,11 +145,11 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all disciplinary history information records
-                            $result = $conn->query("SELECT * FROM disciplinary_history");
+                            $result = $conn->query("SELECT * FROM disciplinary_history group by employee_id order by history_id desc");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "History ID" . "</th><th>" . "Employee" . "</th><th>" . "Behaviour Standard" . "</th><th>" . "Disciplinary Action" . "</th><th>" . "Date" .  "</th><th>" . "Action" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Behaviour Standard" . "</th><th>" . "Disciplinary Action" . "</th><th>" . "Date" .  "</th><th>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -157,7 +157,7 @@ $count = $_GET["c"];
                                     $res = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
                                     $emprow = $res->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["history_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["behaviour_standard"] . "</td><td>" . $row["disciplinary_action"] . "</td><td>" . $row["dis_date"] . "</td>";
+                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["behaviour_standard"] . "</td><td>" . $row["disciplinary_action"] . "</td><td>" . $row["dis_date"] . "</td>";
 
                             ?>
                                     <td><button data-id="<?php echo $row["employee_id"]; ?>" class="btn btn-info HisDiscinfo">View</button></td>
