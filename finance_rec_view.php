@@ -178,12 +178,12 @@ $count = $_GET["c"];
                             <br><br>
                             <?php
 
-                            // retrieves all compensation records
-                            $result = $conn->query("SELECT * FROM compensation order by employee_id");
+                            // retrieves all cleared compensation records
+                            $result = $conn->query("SELECT * FROM compensation where clearance = 'pending' order by compensation_id desc");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Type" . "</th><th>" . "Description" . "</th><th>" . "Amount" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Type" . "</th><th>" . "Description" . "</th><th>" . "Amount" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th><th>" . "Clear" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -192,24 +192,37 @@ $count = $_GET["c"];
                                     $emprow = $emprow->fetch_assoc();
 
                                     echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["compensation_type"] . "</td><td>" . $row["compensation_description"] . "</td><td>" . $row["compensation_amt"] . "</td><td>" . $row["cmp_Date"] . "</td><td>" . $row["clearance"] . "</td>";
-
-                                    if ($row["clearance"] == "cleared") {
-                                        echo "<td><button type='submit' class='btn btn-secondary' disabled>Cleared</button></td>";
-                                        echo "<td><button data-id=" . $row["employee_id"] . " class='btn btn-info compinfo'>View</button></td></tr>";
-                                    } else {
                             ?>
-                                        <td colspan = '2'><a href='comp_clear.php?acc=<?php echo $row["compensation_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></td>
+                                        <td><a href='comp_clear.php?acc=<?php echo $row["compensation_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></td>
                                         </tr>
                             <?php
-                                    }
                                 }
 
                                 echo "</table>";
                             } else {
                                 echo "no records inserted";
+                            }
 
-                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-                                $res = $conn->query("ALTER TABLE compensation AUTO_INCREMENT = 1");
+                            // retrieves all cleared compensation records
+                            $result = $conn->query("SELECT * FROM compensation where clearance = 'cleared' group by employee_id order by compensation_id desc");
+
+                            if ($result->num_rows > 0) {
+                                // displaying header for tabular form
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Type" . "</th><th>" . "Description" . "</th><th>" . "Amount" . "</th><th>" . "Date" . "</th><th>" . "Clearance" . "</th><th>" . "View" . "</th></tr>";
+
+                                // displaying data along with adding buttons for update and delete
+                                while ($row = $result->fetch_assoc()) {
+
+                                    $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
+                                    $emprow = $emprow->fetch_assoc();
+
+                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["compensation_type"] . "</td><td>" . $row["compensation_description"] . "</td><td>" . $row["compensation_amt"] . "</td><td>" . $row["cmp_Date"] . "</td><td>" . $row["clearance"] . "</td>";
+                                    echo "<td><button data-id=" . $row["employee_id"] . " class='btn btn-info compinfo'>View</button></td></tr>";
+                                }
+
+                                echo "</table>";
+                            } else {
+                                echo "no records inserted";
                             }
 
                             ?>

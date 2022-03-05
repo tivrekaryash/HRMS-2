@@ -2,7 +2,7 @@
 include 'db_conn.php'; 
 
 $userid = $_POST['userid'];
-$result = mysqli_query($conn, "select * from compensation where employee_id='$userid' order by compensation_id desc");
+$result = mysqli_query($conn, "select * from compensation where employee_id='$userid' and clearance='cleared' order by compensation_id desc");
 
 $response = "<table style='text-align:center; background-color:white;' class='table table-bordered table-hover'><tr><th>Employee ID</th><th>Employee Name</th><th>Type</th><th>Description</th><th>Amount(Rs.)</th><th>Date</th><th>Clearance</th></tr>";
 
