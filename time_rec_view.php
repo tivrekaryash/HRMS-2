@@ -104,7 +104,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all attendance records
-                            $result = $conn->query("SELECT * FROM attendance where clock_out is null order by employee_id");
+                            $result = $conn->query("SELECT * FROM attendance where clock_out = clock_in order by employee_id");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -235,11 +235,12 @@ $count = $_GET["c"];
                                     $type_row = $type_row->fetch_assoc();
 
                                     echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $type_row["types"] . "</td><td>" . $row["leave_start_date"] . "</td><td>" . $row["leave_end_date"] . "</td><td>" . $row["reason"] . "</td><td>" . $row["approval"] . "</td>";
-                                    if ($row["approval"] == "approved") {
+                                    if ($row["approval"] == "accepted") {
                                         echo "<td><button type='submit' class='btn btn-secondary' disabled>Approved</button></td></tr>";
                                     } else {
                             ?>
-                                        <td><a href='leave_accept.php?lacc=<?php echo $row["leave_id"]; ?>'><button type='submit' class='btn btn-success'>Approve</button></a></td>
+                                        <td><a href='leave_accept.php?lacc=<?php echo $row["leave_id"]; ?>'><button type='submit' class='btn btn-success'>Accept</button></a></td>
+                                        <td><a href='leave_reject.php?lacc=<?php echo $row["leave_id"]; ?>'><button type='submit' class='btn btn-danger'>Reject</button></a></td>
                                         </tr>
                             <?php
 
@@ -332,7 +333,7 @@ $count = $_GET["c"];
                                             </div><br>
 
                                             <div class="form-group">
-                                                <label for="shift">Example select</label>
+                                                <label for="shift">Select shift:</label>
                                                 <select id="shift" name="shift" class="custom-select" required>
                                                     <option value="urgent" selected>Urgent</option>
                                                     <option value="8:00 am to 4:00 pm">8:00 am to 4:00 pm</option>

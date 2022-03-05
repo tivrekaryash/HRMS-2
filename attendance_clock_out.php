@@ -10,7 +10,7 @@ date_default_timezone_set('Asia/Calcutta');
 $clockout_date = $clockout_date->format('Y-m-d H:i:s');
 
 // stores updated data into the database
-$res = $conn->query("UPDATE attendance SET clock_out = '$clockout_date' where attendance_id = '$attend_id'");
+$res = $conn->query("UPDATE attendance SET clock_out_val = '1' where attendance_id = '$attend_id'");
 
 // fetches attendance data
 $res = $conn->query("select * from attendance where attendance_id = '$attend_id'");

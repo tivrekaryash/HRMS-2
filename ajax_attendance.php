@@ -10,7 +10,14 @@ while ($row = mysqli_fetch_array($result)) {
     $res = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
     $emprow = $res->fetch_assoc();
 
-    $response .= "<tr><td>" . $row['employee_id'] . "</td>";
+    $hours = floor(abs(strtotime($row["clock_out"]) - strtotime($row["clock_in"]))/3600);
+
+    if( $hours < 8 )
+        $response .= "<tr class='table-danger'><td>" . $row['employee_id'] . "</td>";
+
+    else
+        $response .= "<tr><td>" . $row['employee_id'] . "</td>";
+    
     $response .= "<td>" . $emprow['employee_name'] . "</td>";
     $response .= "<td>" . $row['clock_in'] . "</td>";
     $response .= "<td>" . $row['clock_out'] . "</td>";
