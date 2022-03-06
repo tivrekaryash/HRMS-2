@@ -16,21 +16,21 @@ require_once 'db_conn.php';
             <div class="modal-body">
                 <div class="container p-5 my-2 border">
                     <h2>Edit Salary Amount:</h2><br>
-                    <form name="desig_form" action="emp_desg_upd.php" method="POST">
+                    <form name="desig_form" action="emp_per_sal_upd.php" method="POST">
 
                         <div class="form-group">
                             <label for="emp_fname_upd" class="form-label">Full Name: </label>
-                            <input type="text" class="form-control" id="emp_fname_upd" name="emp_fname_upd" value="<?php echo $row["employee_name"] ?>" disabled>
+                            <input type="text" class="form-control" id="emp_fname_upd" name="emp_fname_upd" value="<?php echo $res_emp["employee_name"] ?>" disabled>
                         </div>
                         <br>
 
                         <div class="form-group">
                             <label for="emp_psal_upd" class="form-label">Amount (Rs.): </label>
-                            <input type="number" class="form-control" id="emp_psal_upd" name="emp_psal_upd" value="<?php echo $row["employee_name"] ?>" required>
+                            <input type="number" class="form-control" id="emp_psal_upd" name="emp_psal_upd" value="<?php echo $row["salary_amount_rec"] ?>" required>
                         </div>
                         <br>
 
-                        <input type="hidden" id="emp_id" name="emp_id" value="<?php echo $row["employee_id"]; ?>">
+                        <input type="hidden" id="emp_id" name="emp_id" value="<?php echo $res_emp["employee_id"]; ?>">
 
                         <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 
