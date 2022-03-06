@@ -88,12 +88,12 @@ $count = $_GET["c"];
                     <div class="tab-content">
                         <!-- Salary -->
                         <div class="tab-pane fade <?php if ($count == 0) echo "show active"; ?>" id="Sal" role="tabpanel" aria-labelledby="Sal-tab">
-                            <a href="emp_clear_all.php"><button type="button" class="btn btn-warning" style="float:left; border-radius: 25px;">
-                                    <i class="fas fa-coins"></i> Clear All
-
-                                </button></a>
                             <a href="emp_add_sal.php"><button type="button" class="btn btn-outline-success" style="float:right">
                                     <i class="fas fa-wallet"></i> Add New
+
+                                </button></a>
+                            <a href="emp_clear_all.php"><button type="button" class="btn btn-warning" style="float:right; border-radius: 25px;">
+                                    <i class="fas fa-coins"></i> Clear All
 
                                 </button></a>
                             <br><br>
