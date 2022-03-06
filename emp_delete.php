@@ -31,6 +31,11 @@ $res = mysqli_query($conn,"delete from job_history where employee_id = '$del_id'
 // deleting salary history records
 $res = mysqli_query($conn,"delete from employee_salary where employee_id = '$del_id'");
 
+//---------------------------------------------------personal salary-----------------------------------------------------------//
+
+// deleting employee's salary record
+$res = mysqli_query($conn,"delete from emp_personal_sal where employee_id = '$del_id'");
+
 //----------------------------------------------------phone number-------------------------------------------------------------//
 
 // deleting employees contact details
