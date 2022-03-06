@@ -72,11 +72,31 @@ $count = $_GET["c"];
                     <ul class="nav nav-tabs" id="finTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link <?php if ($count == 0) echo "active"; ?>" id="Sal-tab" data-toggle="tab" href="#Sal" role="tab" aria-controls="Sal" aria-selected="<?php if ($count == 0) echo "true";
-                                                                                                                                                                                    else echo "false"; ?>">Salary Payment</a>
+                                                                                                                                                                                    else echo "false"; ?>">Salary Payment &nbsp;
+                                <?php
+                                // retrieving number of employees without designations
+                                $result = mysqli_query($conn, "select count(*) from employee_information where designation_id is null");
+                                $row = $result->fetch_assoc();
+
+                                // if there is atleast one employee without a designation, shows a count of employees without designations
+                                if ($row["count(*)"] > 0)
+                                    echo "<span data-toggle='tooltip' data-placement='top' title='△ Pending salary clearance △' class='badge badge-warning right'>" . $row["count(*)"] . "</span>";
+                                ?>
+                                </a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="Otp-tab" data-toggle="tab" href="#Otp" role="tab" aria-controls="Otp" aria-selected="<?php if ($count == 1) echo "true";
-                                                                                                                                                                                    else echo "false"; ?>">Overtime Payment</a>
+                                                                                                                                                                                    else echo "false"; ?>">Overtime Payment &nbsp;
+                                <?php
+                                // retrieving number of employees without designations
+                                $result = mysqli_query($conn, "select count(*) from employee_information where designation_id is null");
+                                $row = $result->fetch_assoc();
+
+                                // if there is atleast one employee without a designation, shows a count of employees without designations
+                                if ($row["count(*)"] > 0)
+                                    echo "<span data-toggle='tooltip' data-placement='top' title='△ Pending Overtime Pay clearance △' class='badge badge-waring right'>" . $row["count(*)"] . "</span>";
+                                ?>
+                                </a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link <?php if ($count == 2) echo "active"; ?>" id="Comp-tab" data-toggle="tab" href="#Comp" role="tab" aria-controls="Comp" aria-selected="<?php if ($count == 2) echo "true";

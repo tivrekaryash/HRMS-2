@@ -78,9 +78,7 @@ include 'db_conn.php';
               echo $res["count(employee_id)"];
 
               echo "</span>";
-            }
-
-            else
+            } else
               echo "<span data-toggle='tooltip' data-placement='right' title='△ Set Designations △' class='badge badge-danger right'>▲</span>";
             ?>
           </p>
@@ -121,7 +119,7 @@ include 'db_conn.php';
           <li class="nav-item">
             <a href="history_rec_view.php?c=0" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p>Job History</p> 
+              <p>Job History</p>
             </a>
           </li>
           <li class="nav-item">
@@ -149,6 +147,22 @@ include 'db_conn.php';
           <i class="nav-icon fas fa-money-check"></i>
           <p>
             Financial Records
+            <?php
+            $res = $conn->query("select count(*) from employee_information where designation_id is null");
+            $res = $res->fetch_assoc();
+
+            if ($res["count(*)"] == 0) {
+              echo "<span data-toggle='tooltip' data-placement='right' title='Total Employees' class='badge badge-info right'>";
+
+              // fetching employee data from db
+              $res = $conn->query("SELECT count(employee_id) FROM employee_information");
+              $res = $res->fetch_assoc();
+              echo $res["count(employee_id)"];
+
+              echo "</span>";
+            } else
+              echo "<span data-toggle='tooltip' data-placement='right' title='△ Due Amount to be cleared △' class='badge badge-warning right'>▲</span>";
+            ?>
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
@@ -157,12 +171,28 @@ include 'db_conn.php';
             <a href="finance_rec_view.php?c=0" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Salary Pay</p>
+              <span class="badge badge-warning right">
+              <?php
+              // fetching candidate data from db
+              $res = $conn->query("SELECT count(candidate_id) FROM candidate_information where employee_id is null");
+              $res = $res->fetch_assoc();
+              echo $res["count(candidate_id)"];
+              ?>
+            </span>
             </a>
           </li>
           <li class="nav-item">
             <a href="finance_rec_view.php?c=1" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Overtime Pay</p>
+              <span class="badge badge-warning right">
+              <?php
+              // fetching candidate data from db
+              $res = $conn->query("SELECT count(candidate_id) FROM candidate_information where employee_id is null");
+              $res = $res->fetch_assoc();
+              echo $res["count(candidate_id)"];
+              ?>
+            </span>
             </a>
           </li>
           <li class="nav-item">
