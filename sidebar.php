@@ -148,20 +148,16 @@ include 'db_conn.php';
           <p>
             Financial Records
             <?php
-            $res = $conn->query("select count(*) from employee_information where designation_id is null");
+            // fetches number of uncleared employee salary records
+            $res = $conn->query("select count(salary_id) from employee_salary where clearance = 'pending'");
             $res = $res->fetch_assoc();
+            // fetches number of uncleared employee overtime pay records
+            $res_otp = $conn->query("select count(otp_pay_id) from overtime_pay_emp where clearance = 'pending'");
+            $res_otp = $res_otp->fetch_assoc();
 
-            if ($res["count(*)"] == 0) {
-              echo "<span data-toggle='tooltip' data-placement='right' title='Total Employees' class='badge badge-info right'>";
-
-              // fetching employee data from db
-              $res = $conn->query("SELECT count(employee_id) FROM employee_information");
-              $res = $res->fetch_assoc();
-              echo $res["count(employee_id)"];
-
-              echo "</span>";
-            } else
+            if ($res["count(salary_id)"] != 0 || $res_otp["count(otp_pay_id)"] != 0) {
               echo "<span data-toggle='tooltip' data-placement='right' title='△ Due Amount to be cleared △' class='badge badge-warning right'>▲</span>";
+            }
             ?>
             <i class="right fas fa-angle-left"></i>
           </p>
@@ -171,28 +167,28 @@ include 'db_conn.php';
             <a href="finance_rec_view.php?c=0" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Salary Pay</p>
-              <span class="badge badge-warning right">
               <?php
-              // fetching candidate data from db
-              $res = $conn->query("SELECT count(candidate_id) FROM candidate_information where employee_id is null");
-              $res = $res->fetch_assoc();
-              echo $res["count(candidate_id)"];
+              // badge displays number of salary records pending if any
+              if ($res["count(salary_id)"] != 0) {
+                echo "<span class='badge badge-warning right'>";
+                echo $res["count(salary_id)"];
+                echo "</span>";
+              }
               ?>
-            </span>
             </a>
           </li>
           <li class="nav-item">
             <a href="finance_rec_view.php?c=1" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Overtime Pay</p>
-              <span class="badge badge-warning right">
               <?php
-              // fetching candidate data from db
-              $res = $conn->query("SELECT count(candidate_id) FROM candidate_information where employee_id is null");
-              $res = $res->fetch_assoc();
-              echo $res["count(candidate_id)"];
+              // badge displays number of overtime pay records pending if any
+              if ($res_otp["count(otp_pay_id)"] != 0) {
+                echo "<span class='badge badge-warning right'>";
+                echo $res["count(salary_id)"];
+                echo "</span>";
+              }
               ?>
-            </span>
             </a>
           </li>
           <li class="nav-item">
