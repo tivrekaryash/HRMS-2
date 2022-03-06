@@ -150,10 +150,15 @@ $count = $_GET["c"];
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
 
+                                    // fetches employee information
                                     $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
                                     $emprow = $emprow->fetch_assoc();
 
-                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["otp_date"] . "</td><td>" . $row["hrs_worked"] .  "</td><td>" . $row["total_amt"] . "</td><td>" . $row["clearance"] . "</td>";
+                                    // for the sum of all uncleared records for a specific employee
+                                    $empamt = mysqli_query($conn, "select sum(hrs_worked) as hrs_worked, sum(total_amt) as total_amt from overtime_pay_emp where employee_id = '$row[employee_id]'");
+                                    $empamt = $empamt->fetch_assoc();
+
+                                    echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["otp_date"] . "</td><td>" . $empamt["hrs_worked"] .  "</td><td>" . $empamt["total_amt"] . "</td><td>" . $row["clearance"] . "</td>";
                             ?>
                                     <td><a href='otp_emp_clear.php?clr=<?php echo $row["employee_id"]; ?>'><button type='submit' class='btn btn-success'>Clear All</button></a></td>
                                     <td><button data-id="<?php echo $row["employee_id"]; ?>" class="btn btn-info otppayinfo">View</button></td>
