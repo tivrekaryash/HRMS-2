@@ -3,7 +3,7 @@
 require_once 'db_conn.php';
 
 // fetches leave id to be rejected
-$del = $_GET['lacc'];
+$upd_id = $_GET['lacc'];
 
 // rejects the leave
 $res = $conn->query("UPDATE leaves SET approval='rejected' WHERE leave_id='$upd_id'");

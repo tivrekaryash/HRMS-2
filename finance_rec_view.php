@@ -88,6 +88,10 @@ $count = $_GET["c"];
                     <div class="tab-content">
                         <!-- Salary -->
                         <div class="tab-pane fade <?php if ($count == 0) echo "show active"; ?>" id="Sal" role="tabpanel" aria-labelledby="Sal-tab">
+                            <a href="emp_clear_sal.php"><button type="button" class="btn btn-warning" style="float:left; border-radius: 25px;">
+                                    <i class="fas fa-coins"></i> Clear All
+
+                                </button></a>
                             <a href="emp_add_sal.php"><button type="button" class="btn btn-outline-success" style="float:right">
                                     <i class="fas fa-wallet"></i> Add New
 
@@ -195,8 +199,8 @@ $count = $_GET["c"];
 
                                     echo "<tr><td>" . $emprow["employee_id"] . "</td><td>" . $emprow["employee_name"] . "</td><td>" . $row["compensation_type"] . "</td><td>" . $row["compensation_description"] . "</td><td>" . $row["compensation_amt"] . "</td><td>" . $row["cmp_Date"] . "</td><td>" . $row["clearance"] . "</td>";
                             ?>
-                                        <td><a href='comp_clear.php?acc=<?php echo $row["compensation_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></td>
-                                        </tr>
+                                    <td><a href='comp_clear.php?acc=<?php echo $row["compensation_id"]; ?>'><button type='submit' class='btn btn-success'>Clear</button></td>
+                                    </tr>
                             <?php
                                 }
 
