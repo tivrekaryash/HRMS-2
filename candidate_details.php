@@ -100,10 +100,6 @@ include 'db_conn.php';
                         echo "</table>";
                     } else {
                         echo "no records inserted";
-
-                        // resetting counter when there are no records
-                        $res = $conn->query("ALTER TABLE candidate_information AUTO_INCREMENT = 1");
-                        $res = $conn->query("ALTER TABLE candidate_qualifications AUTO_INCREMENT = 1");
                     }
 
                     // closing connection

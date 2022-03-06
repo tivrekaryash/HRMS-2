@@ -5,9 +5,9 @@ require_once 'db_conn.php';
 $attend_id = $_GET["aid"];
 
 // fetches current date and time
-$clockout_date = new DateTime();
+$overtime_date = new DateTime();
 date_default_timezone_set('Asia/Calcutta');
-$clockout_date = $clockout_date->format('Y-m-d H:i:s');
+$overtime_date = $overtime_date->format('Y-m-d');
 
 // clocks the employee out
 $res = $conn->query("UPDATE attendance SET clock_out_val = '1' where attendance_id = '$attend_id'");
@@ -36,7 +36,7 @@ if ($hours > 0) {
     $amount = $hours * $desig_res["amt_per_hour"];
 
     // stores the difference as extra hours worked if any
-    $res = $conn->query("insert into overtime_pay_emp (employee_id, otp_date, hrs_worked, total_amt) values ('$res[employee_id]', '$clockout_date', '$hours', '$amount')");
+    $res = $conn->query("insert into overtime_pay_emp (employee_id, otp_date, hrs_worked, total_amt) values ('$res[employee_id]', '$overtime_date', '$hours', '$amount')");
 }
 
 // redirects to display candidate information after closing connection

@@ -122,14 +122,6 @@ $count = $_GET["c"];
                                 echo "</table>";
                             } else {
                                 echo "no records inserted";
-
-                                // resetting counter in case there are no records
-                                $res = $conn->query("ALTER TABLE employee_qualifications AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE employee_phnum AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE job_history AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE disciplinary_history AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE base_salary_history AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE employee_information AUTO_INCREMENT = 1");
                             }
 
                             ?>
@@ -171,14 +163,6 @@ $count = $_GET["c"];
                                 echo "</table>";
                             } else {
                                 echo "no records inserted";
-
-                                // resetting counter in case there are no records
-                                $res = $conn->query("ALTER TABLE employee_qualifications AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE employee_phnum AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE job_history AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE disciplinary_history AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE base_salary_history AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE employee_information AUTO_INCREMENT = 1");
                             }
 
                             ?>
@@ -214,14 +198,6 @@ $count = $_GET["c"];
                                 echo "</table>";
                             } else {
                                 echo "no records inserted";
-
-                                // resetting counter in case there are no records
-                                $res = $conn->query("ALTER TABLE employee_qualifications AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE employee_phnum AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE job_history AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE disciplinary_history AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE base_salary_history AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE employee_information AUTO_INCREMENT = 1");
                             }
 
                             ?>

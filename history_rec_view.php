@@ -126,9 +126,6 @@ $count = $_GET["c"];
                                 echo "</table>";
                             } else {
                                 echo "no records inserted";
-
-                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-                                $res = $conn->query("ALTER TABLE job_history AUTO_INCREMENT = 1");
                             }
 
                             ?>
@@ -170,9 +167,6 @@ $count = $_GET["c"];
                                 echo "</table>";
                             } else {
                                 echo "no records inserted";
-
-                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-                                $res = $conn->query("ALTER TABLE disciplinary_history AUTO_INCREMENT = 1");
                             }
 
                             ?>
@@ -207,9 +201,6 @@ $count = $_GET["c"];
                                 echo "</table>";
                             } else {
                                 echo "no records inserted";
-
-                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-                                $res = $conn->query("ALTER TABLE employee_salary AUTO_INCREMENT = 1");
                             }
 
                             ?>
@@ -220,16 +211,17 @@ $count = $_GET["c"];
                         <div class="tab-pane fade <?php if ($count == 3) echo "show active"; ?>" id="HisOtp" role="tabpanel" aria-labelledby="HisOtp-tab">
                             <?php
 
-                            // retrieves all overtime_pay_emp records
+                            // retrieves all cleared overtime payment records
                             $result = $conn->query("SELECT * FROM overtime_pay_emp where clearance='cleared' group by employee_id desc");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
                                 echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee" . "</th><th>" . "Date" .  "</th><th>" . "Hours Worked" . "</th><th>" . "Amount(Rs.)" . "</th><th>" . "Clearance" . "</th></tr>";
 
-                                // displaying data along with adding buttons for update and delete
+                                // displaying data along with adding button for view
                                 while ($row = $result->fetch_assoc()) {
 
+                                    // fetches employee information
                                     $emprow = mysqli_query($conn, "select * from employee_information where employee_id = '$row[employee_id]'");
                                     $emprow = $emprow->fetch_assoc();
 

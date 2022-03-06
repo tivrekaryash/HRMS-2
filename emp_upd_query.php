@@ -9,9 +9,6 @@ $age = $_POST['age_upd'];
 $gender = $_POST['gender_upd'];
 $address = $_POST['address_upd'];
 $email = $_POST['email_upd'];
-//$phnum_hm = $_POST['phnum_hm'];
-//$phnum_wk = $_POST['phnum_wk'];
-//$phnum_mb = $_POST['phnum_mb'];
 $upd_id = $_POST['eid']; 
 
 // stores updated data into the database

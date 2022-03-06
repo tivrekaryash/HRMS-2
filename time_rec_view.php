@@ -198,9 +198,6 @@ $count = $_GET["c"];
                                 echo "</table>";
                             } else {
                                 echo "no records inserted";
-
-                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-                                $res = $conn->query("ALTER TABLE leave_types AUTO_INCREMENT = 1");
                             }
 
                             ?>
@@ -288,9 +285,6 @@ $count = $_GET["c"];
                                 echo "</table>";
                             } else {
                                 echo "no records inserted";
-
-                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-                                $res = $conn->query("ALTER TABLE leaves AUTO_INCREMENT = 1");
                             }
 
                             ?>

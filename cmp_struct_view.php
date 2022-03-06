@@ -113,10 +113,6 @@ $count = $_GET["c"];
                                 echo "</table>";
                             } else {
                                 echo "no records inserted";
-
-                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-                                $res = $conn->query("ALTER TABLE department AUTO_INCREMENT = 1");
-                                $res = $conn->query("ALTER TABLE designations AUTO_INCREMENT = 1");
                             }
 
                             ?>
@@ -159,9 +155,6 @@ $count = $_GET["c"];
                                 echo "</table>";
                             } else {
                                 echo "no records inserted";
-
-                                // resetting counter in case there are no records (CHeck if there are any tables to be reset)
-                                $res = $conn->query("ALTER TABLE designations AUTO_INCREMENT = 1");
                             }
 
                             ?>
