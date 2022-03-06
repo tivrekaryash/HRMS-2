@@ -232,7 +232,7 @@ $count = $_GET["c"];
                                     $type_row = $type_row->fetch_assoc();
 
                                     echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $emp_row["employee_name"] . "</td><td>" . $type_row["types"] . "</td><td>" . $row["leave_start_date"] . "</td><td>" . $row["leave_end_date"] . "</td><td>" . $row["reason"] . "</td><td>" . $row["approval"] . "</td>";
-                                    if ($row["approval"] == "accepted") {
+                                    if ($row["approval"] == "approved") {
                                         echo "<td><button type='submit' class='btn btn-secondary' disabled>Approved</button></td></tr>";
                                     } else {
                             ?>
