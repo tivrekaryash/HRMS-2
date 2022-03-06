@@ -147,6 +147,7 @@ include 'db_conn.php';
           <i class="nav-icon fas fa-money-check"></i>
           <p>
             Financial Records
+            <i class="right fas fa-angle-left"></i>
             <?php
             // fetches number of uncleared employee salary records
             $res = $conn->query("select count(salary_id) from employee_salary where clearance = 'pending'");
@@ -159,7 +160,6 @@ include 'db_conn.php';
               echo "<span data-toggle='tooltip' data-placement='right' title='△ Due Amount to be cleared △' class='badge badge-warning right'>▲</span>";
             }
             ?>
-            <i class="right fas fa-angle-left"></i>
           </p>
         </a>
         <ul class="nav nav-treeview">
