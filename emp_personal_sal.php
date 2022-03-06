@@ -30,7 +30,7 @@ require_once 'db_conn.php';
                         </div>
                         <br>
 
-                        <input type="hidden" id="emp_id" name="emp_id" value="<?php echo $res_emp["employee_id"]; ?>">
+                        <input type="hidden" id="psal_id" name="psal_id" value="<?php echo $row["personal_sal_id"]; ?>">
 
                         <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 
