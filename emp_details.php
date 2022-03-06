@@ -250,20 +250,25 @@ $count = $_GET["c"];
                             <br><br>
 
                             <?php
-                            // retrieves all employees that don't have designations assigned to them
-                            $result = $conn->query("SELECT * FROM employee_information where designation_id IS NOT NULL");
+                            // retrieves all employees' salaries who have designations
+                            $result = $conn->query("SELECT * FROM emp_personal_sal");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee name" . "</th><th>" . "Designation" . "</th><th>" . "Personal Salary Amount(Rs.)" . "</th><th>" . "Action" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee name" . "</th><th>" . "Designation" . "</th><th>" . "Salary Amount(Rs.)" . "</th><th>" . "Edit Salary" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
 
-                                    $res_des = $conn->query("select * from designations where designation_id = '$row[designation_id]'");
+                                    // retreiving employee information
+                                    $res_emp = $conn->query("select * from employee_information where employee_id = '$row[employee_id]'");
+                                    $res_emp = $res_emp->fetch_assoc();
+
+                                    // retreiving employee designation information
+                                    $res_des = $conn->query("select * from designations where designation_id = '$res_emp[designation_id]'");
                                     $res_des = $res_des->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $row["employee_name"] . "</td><td>" . $res_des["designation"] . "</td><td>" . $row["salary_amount_rec"] . "</td>";
+                                    echo "<tr><td>" . $res_emp["employee_id"] . "</td><td>" . $res_emp["employee_name"] . "</td><td>" . $res_des["designation"] . "</td><td>" . $row["salary_amount_rec"] . "</td>";
 
                             ?>
 
