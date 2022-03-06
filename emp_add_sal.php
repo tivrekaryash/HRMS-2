@@ -11,11 +11,11 @@ $result = mysqli_query($conn, "select * from employee_information where designat
 
 while ($row = $result->fetch_assoc()) {
     // fetching base salary
-    $res = mysqli_query($conn, "select base_salary from designations where designation_id = '$row[designation_id]'");
+    $res = mysqli_query($conn, "select salary_amount_rec from emp_personal_sal where employee_id = '$row[employee_id]'");
     $res = $res->fetch_assoc();
 
     // inserting employee salary
-    $res = mysqli_query($conn, "INSERT INTO employee_salary (employee_id, salary_amount, salary_date) values ($row[employee_id], $res[base_salary], '$sal_date')");
+    $res = mysqli_query($conn, "INSERT INTO employee_salary (employee_id, salary_amount, salary_date) values ($row[employee_id], $res[salary_amount_rec], '$sal_date')");
 }
 
 // redirects to display candidate information after closing connection
