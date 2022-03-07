@@ -29,7 +29,7 @@ require_once 'db_conn.php';
 
                         <div class="form-group">
                             <label for="phnum_hm" class="form-label">Phone (Home) number: (+91) </label>
-                            <input type="number_format" class="form-control" id="phnum_hm" name="phnum_hm" minlength="10" maxlength="10" value="<?php echo $row["phnum_home"]; ?>" required>
+                            <input type="number_format" class="form-control" id="phnum_hm" name="phnum_hm" minlength="10" maxlength="10" value="<?php echo $row["phnum_home"]; ?>">
                         </div>
                         <br>
 
@@ -41,7 +41,7 @@ require_once 'db_conn.php';
 
                         <div class="form-group">
                             <label for="phnum_mb" class="form-label">Phone (Mobile) number: (+91) </label>
-                            <input type="number_format" class="form-control" id="phnum_mb" name="phnum_mb" minlength="10" maxlength="10" value="<?php echo $row["phnum_mobile"]; ?>" required>
+                            <input type="number_format" class="form-control" id="phnum_mb" name="phnum_mb" minlength="10" maxlength="10" value="<?php echo $row["phnum_mobile"]; ?>">
                         </div>
                         <br>
 
