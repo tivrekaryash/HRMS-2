@@ -80,7 +80,9 @@ include 'db_conn.php';
 
                         // displaying data from db
                         while ($row = $result->fetch_assoc()) {
-                            echo "<tr><td>" . $row["candidate_id"] . "</td><td id = 'fname_td'>" . $row["candidate_fullname"] . "</td><td id = 'dob_td'>" . $row["candidate_dob"] . "</td><td id = 'age_td'>" . $row["candidate_age"] . "</td><td id = 'gender_td'>" . $row["candidate_gender"] . "</td><td id = 'address_td'>" . $row["candidate_address"] . "</td><td id = 'phnum_td'>" . $row["phnum"] . "</td><td id = 'email_td'>" . $row["candidate_email"] . "</td>";
+                            $candidate_phone = $row["phnum"];
+                            $candidate_email = $row["candidate_email"];
+                            echo "<tr><td>" . $row["candidate_id"] . "</td><td id = 'fname_td'>" . $row["candidate_fullname"] . "</td><td id = 'dob_td'>" . $row["candidate_dob"] . "</td><td id = 'age_td'>" . $row["candidate_age"] . "</td><td id = 'gender_td'>" . $row["candidate_gender"] . "</td><td id = 'address_td'>" . $row["candidate_address"] . "</td><td id = 'phnum_td'> <a href='tel:$candidate_phone' class='hyperlinked_phones'>$candidate_phone</a></td><td id = 'email_td'><a href='mailto:$candidate_email' class='hyperlinked_emails'>$candidate_email</a></td>";
                     ?>
                             <td><a href="candidate_delete.php?del=<?php echo $row["candidate_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
                             <?php

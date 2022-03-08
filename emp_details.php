@@ -110,7 +110,8 @@ $count = $_GET["c"];
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
-                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $row["employee_name"] . "</td><td>" . $row["employee_dob"] . "</td><td>" . $row["employee_age"] . "</td><td>" . $row["employee_gender"] . "</td><td>" . $row["employee_address"] . "</td><td>" . $row["employee_email"] . "</td>";
+                                    $employee_email = $row["employee_email"];
+                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $row["employee_name"] . "</td><td>" . $row["employee_dob"] . "</td><td>" . $row["employee_age"] . "</td><td>" . $row["employee_gender"] . "</td><td>" . $row["employee_address"] . "</td><td><a href='mailto:$employee_email' class='hyperlinked_emails'>$employee_email</a></td>";
 
                             ?>
 
@@ -146,13 +147,17 @@ $count = $_GET["c"];
                                     $res = $conn->query("select * from employee_information where employee_id = $row[employee_id]");
                                     $res = $res->fetch_assoc();
 
+                                    $employee_home_number = $row["phnum_home"];
+                                    $employee_work_number = $row["phnum_work"];
+                                    $employee_mobile_number = $row["phnum_mobile"];
+
                                     echo "<tr><td>" . $row["phnum_id"] . "</td><td>" . $res["employee_name"] . "</td><td>";
                                     if ($row["phnum_home"] == null) echo "Null</td><td>";
-                                    else echo $row["phnum_home"] . "</td><td>";
+                                    else echo "<a href='tel:$employee_home_number>' class='hyperlinked_phones'>$employee_home_number</a></td><td>"; /*$row["phnum_home"] . "</td><td>";*/
                                     if ($row["phnum_work"] == null) echo "Null</td><td>";
-                                    else echo $row["phnum_work"] . "</td><td>";
+                                    else echo "<a href='tel:$employee_work_number>' class='hyperlinked_phones'>$employee_work_number</a></td><td>";/*$row["phnum_work"] . "</td><td>";*/
                                     if ($row["phnum_mobile"] == null) echo "Null</td>";
-                                    else echo $row["phnum_mobile"] . "</td>";
+                                    else echo "<a href='tel:$employee_mobile_number>' class='hyperlinked_phones'>$employee_mobile_number</a></td>";/*$row["phnum_mobile"] . "</td>";*/
 
                             ?>
 

@@ -13,6 +13,13 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
+
+* { 
+    outline: 1px solid red;
+    outline-offset: -1px;
+  }
+*/
+
 :root {
     --blue: #007bff;
     --indigo: #6610f2;
@@ -55,6 +62,69 @@ html {
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent
+}
+
+.hyperlinked_emails{
+    background-color: lightblue;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.hyperlinked_phones{
+    background-color: lightgreen;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+a:link{
+    color:black;
+}
+
+.empty-state {
+    width: 750px;
+    margin: 40px auto;
+    
+    
+    border-radius: 4px;
+}
+
+.empty-state__content {
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.empty-state__content .empty-state__icon {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    border-radius: 200px;
+    justify-content: center;
+    background-color: #dbdbdb;
+   
+}
+
+.empty-state__content .empty-state__icon img {
+    width: 170px;
+}
+
+.empty-state__content .empty-state__message {
+    color: #28a745;
+    font-size: 2.0rem;
+    font-weight: 500;
+    margin-top: 0.85rem;
+}
+
+.empty-state__content .empty-state__help {
+    color: #343a40;
+    font-size: 1.0rem;
+    font-weight: 700;
+}
+
+.ioniconsposition{
+    text-align: center;
 }
 
 article,
@@ -53739,47 +53809,6 @@ a.text-muted:hover {
     border-color: #4b545c!important
 }
 
-.empty-state {
-    width: 750px;
-    margin: 40px auto;
-    background: #fff;
-    box-shadow: 1px 2px 10px #e1e3ec;
-    border-radius: 4px;
-}
-
-.empty-state__content {
-    padding: 48px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.empty-state__content .empty-state__icon {
-    width: 200px;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    border-radius: 200px;
-    justify-content: center;
-    background-color: #28a745;
-    box-shadow: 0px 2px 1px #e1e3ec;
-}
-
-.empty-state__content .empty-state__icon img {
-    width: 170px;
-}
-
-.empty-state__content .empty-state__message {
-    color: #28a745;
-    font-size: 2.0rem;
-    font-weight: 500;
-    margin-top: 0.85rem;
-}
-
-.empty-state__content .empty-state__help {
-    color: #343a40;
-    font-size: 1.0rem;
-}
 
 
 /*# sourceMappingURL=adminlte.min.css.map */
