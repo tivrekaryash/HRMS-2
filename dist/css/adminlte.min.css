@@ -13,7 +13,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
-
+/*
 * { 
     outline: 1px solid red;
     outline-offset: -1px;
@@ -93,11 +93,12 @@ a:link{
     display: flex;
     align-items: center;
     flex-direction: column;
+    
 }
 
 .empty-state__content .empty-state__icon {
-    width: 200px;
-    height: 200px;
+    width: 165px;
+    height: 165px;
     display: flex;
     align-items: center;
     border-radius: 200px;
@@ -111,7 +112,10 @@ a:link{
 }
 
 .empty-state__content .empty-state__message {
-    color: #28a745;
+    padding: 5px 10px;
+    background-color: #dbdbdb;
+    color: #585858;
+    border-radius: 5px;
     font-size: 2.0rem;
     font-weight: 500;
     margin-top: 0.85rem;

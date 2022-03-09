@@ -125,7 +125,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='history.jpg'>
+                               </div>
+                               <div class='empty-state__message'>No Job History Records were found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Update Jobs by clicking the button Add New.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -166,7 +176,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='history.jpg'>
+                               </div>
+                               <div class='empty-state__message'>No Disciplinary Records were found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add Disciplinary Records by clicking the button Add New.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -200,7 +220,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='history.jpg'>
+                               </div>
+                               <div class='empty-state__message'>No Salary Records were found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add Disciplinary Records by clicking the button Add New.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -234,7 +264,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='history.jpg'>
+                               </div>
+                               <div class='empty-state__message'>No Overtime Pay Records were found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add Overtime Records by clicking the button Add New.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
