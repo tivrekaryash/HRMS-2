@@ -138,7 +138,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Employee name" . "</th><th>" . "Home" . "</th><th>" . "Work" . "</th><th>" . "Mobile" . "</th><th>" . "Action" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID." . "</th><th>" . "Employee name" . "</th><th>" . "Home" . "</th><th>" . "Work" . "</th><th>" . "Mobile" . "</th><th>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -146,12 +146,12 @@ $count = $_GET["c"];
                                     $res = $conn->query("select * from employee_information where employee_id = $row[employee_id]");
                                     $res = $res->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["phnum_id"] . "</td><td>" . $res["employee_name"] . "</td><td>";
-                                    if ($row["phnum_home"] == null) echo "Null</td><td>";
+                                    echo "<tr><td>" . $res["employee_id"] . "</td><td>" . $res["employee_name"] . "</td><td>";
+                                    if ($row["phnum_home"] == null || $row["phnum_home"] == 0) echo "Not added</td><td>";
                                     else echo $row["phnum_home"] . "</td><td>";
-                                    if ($row["phnum_work"] == null) echo "Null</td><td>";
+                                    if ($row["phnum_work"] == null || $row["phnum_work"] == 0) echo "Not added</td><td>";
                                     else echo $row["phnum_work"] . "</td><td>";
-                                    if ($row["phnum_mobile"] == null) echo "Null</td>";
+                                    if ($row["phnum_mobile"] == null || $row["phnum_mobile"] == 0) echo "Not added</td>";
                                     else echo $row["phnum_mobile"] . "</td>";
 
                             ?>

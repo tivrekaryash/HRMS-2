@@ -11,6 +11,6 @@ $res = $conn->query("UPDATE emp_personal_sal SET salary_amount_rec='$sal_amt' WH
 
 // redirects to display employee information after closing connection
 $conn->close();
-header("location:emp_details.php?c=3");
+header("location:emp_details.php?c=4");
 exit;
 ?>
