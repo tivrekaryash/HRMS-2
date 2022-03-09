@@ -154,7 +154,7 @@ $count = $_GET["c"];
                                 echo" <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <img src='finance.jpg'>
+                               <img src='finance.png'>
                                </div>
                                <div class='empty-state__message'>All Past Salary Payments are Cleared<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
@@ -205,7 +205,7 @@ $count = $_GET["c"];
                                 echo" <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <img src='finance.jpg'>
+                               <img src='finance.png'>
                                </div>
                                <div class='empty-state__message'>All Past Overtime Payments are Cleared<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
@@ -254,7 +254,7 @@ $count = $_GET["c"];
                                 echo" <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <img src='finance.jpg'>
+                               <img src='finance.png'>
                                </div>
                                <div class='empty-state__message'>All Past Compensations are Cleared<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>

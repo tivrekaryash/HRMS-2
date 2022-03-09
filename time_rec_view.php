@@ -125,7 +125,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='timeattendance.png'>
+                               </div>
+                               <div class='empty-state__message'>No Clock-in Records were found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Clock-in an Employee by clicking the button Clock-in.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -134,7 +144,7 @@ $count = $_GET["c"];
                         <!-- attendace history-->
                         <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="Hisatt" role="tabpanel" aria-labelledby="Hisatt-tab">
                             <br>
-                            <p>These are attendance records:</p>
+                            
                             <br>
                             <?php
 
@@ -159,7 +169,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='timeattendance.png'>
+                               </div>
+                               <div class='empty-state__message'>No Attendance Records were found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Clock-in an Employee in the Attendance Panel.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -197,7 +217,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='timeattendance.png'>
+                               </div>
+                               <div class='empty-state__message'>List of Leaves Not Added!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add new Types of Leaves by clicking Add Types.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -246,7 +276,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='timeattendance.png'>
+                               </div>
+                               <div class='empty-state__message'>No Current Leaves Requests were found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add Leaves for Employee by clicking Add Leaves.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -256,7 +296,7 @@ $count = $_GET["c"];
                         <!-- leave records -->
                         <div class="tab-pane fade <?php if ($count == 4) echo "show active"; ?>" id="leaverec" role="tabpanel" aria-labelledby="leaverec-tab">
                             <br>
-                            <p>These are Leave records:</p>
+                            
                             <br>
                             <?php
 
@@ -284,7 +324,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='timeattendance.png'>
+                               </div>
+                               <div class='empty-state__message'>No Past Leaves Records were found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add Leaves for Employee in Leave Management Panel.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>

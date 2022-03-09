@@ -128,7 +128,7 @@ $count = $_GET["c"];
                                 echo" <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <img src='history.jpg'>
+                               <img src='history.png'>
                                </div>
                                <div class='empty-state__message'>No Job History Records were found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
@@ -179,7 +179,7 @@ $count = $_GET["c"];
                                 echo" <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <img src='history.jpg'>
+                               <img src='history.png'>
                                </div>
                                <div class='empty-state__message'>No Disciplinary Records were found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
@@ -223,7 +223,7 @@ $count = $_GET["c"];
                                 echo" <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <img src='history.jpg'>
+                               <img src='history.png'>
                                </div>
                                <div class='empty-state__message'>No Salary Records were found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
@@ -267,7 +267,7 @@ $count = $_GET["c"];
                                 echo" <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <img src='history.jpg'>
+                               <img src='history.png'>
                                </div>
                                <div class='empty-state__message'>No Overtime Pay Records were found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
