@@ -227,7 +227,7 @@ $count = $_GET["c"];
                                </div>
                                <div class='empty-state__message'>No Salary Records were found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
-                               Add Disciplinary Records by clicking the button Add New.
+                               Add Salary Records in Financial Records Panel.
                                </div>
                                </div>
                                </div>";
@@ -271,7 +271,7 @@ $count = $_GET["c"];
                                </div>
                                <div class='empty-state__message'>No Overtime Pay Records were found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
-                               Add Overtime Records by clicking the button Add New.
+                               Add Overtime Records in Financial Records Panel.
                                </div>
                                </div>
                                </div>";
