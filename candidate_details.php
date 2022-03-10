@@ -101,7 +101,17 @@ include 'db_conn.php';
                         }
                         echo "</table>";
                     } else {
-                        echo "no records inserted";
+                        echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='candidate.png'>
+                               </div>
+                               <div class='empty-state__message'>No Candidate Records were Added!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add Candidate Records by clicking the button Add New.
+                               </div>
+                               </div>
+                               </div>";
                     }
 
                     // closing connection

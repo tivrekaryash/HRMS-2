@@ -125,7 +125,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='candidate.png'>
+                               </div>
+                               <div class='empty-state__message'>No Employee Records were Found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Employee Records Will be recieved from Candidate Details.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -170,7 +180,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='candidate.png'>
+                               </div>
+                               <div class='empty-state__message'>No Employee Records were Found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Employee Records Will be recieved from Candidate Details.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -205,7 +225,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='candidate.png'>
+                               </div>
+                               <div class='empty-state__message'>No Employee Records were Found!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Employee Records Will be recieved from Candidate Details.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -245,7 +275,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='candidate.png'>
+                               </div>
+                               <div class='empty-state__message'>Designate Your Employees Now!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Click Set Designations to Designate Your Employees
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -286,7 +326,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='candidate.png'>
+                               </div>
+                               <div class='empty-state__message'>Decide Salary for your Employees!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               We wont tip you on Salary Decision, Thats On You!
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>

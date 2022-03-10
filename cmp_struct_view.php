@@ -112,7 +112,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='department.png'>
+                               </div>
+                               <div class='empty-state__message'>Decide Department for your Employees!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add New Departments by clicking Add New
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -154,7 +164,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo" <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <img src='department.png'>
+                               </div>
+                               <div class='empty-state__message'>Decide Designations for your Employees!<ion-icon name='checkmark-circle-outline' class='ioniconsposition'></ion-icon></div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add new Designations by Clicking Add New
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
