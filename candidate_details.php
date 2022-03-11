@@ -47,8 +47,8 @@ include 'db_conn.php';
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="index_admin.php">Home</a></li>
-                                <li class="breadcrumb-item"><a href="index_admin.php">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                                 <li class="breadcrumb-item active">Candidates</li>
                             </ol>
                         </div><!-- /.col -->

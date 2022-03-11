@@ -21,7 +21,7 @@ if( $res->num_rows > 0 )
     if( $row["login_role"] == "HR" )
     {
         // redirects to admin dashboard and closes connection
-        header("location:index_admin.php");
+        header("location:index.php");
         $conn->close();
         exit;
     }
