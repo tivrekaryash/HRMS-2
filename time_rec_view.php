@@ -517,7 +517,7 @@ $count = $_GET["c"];
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                 </div>
-                                <div class="modal-body-leave">
+                                <div id="modal-body-leave" class="modal-body">
 
                                 </div>
                                 <div class="modal-footer">
@@ -540,7 +540,7 @@ $count = $_GET["c"];
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                 </div>
-                                <div class="modal-body-att">
+                                <div id="modal-body-att" class="modal-body">
 
                                 </div>
                                 <div class="modal-footer">
@@ -588,7 +588,7 @@ $count = $_GET["c"];
                     },
                     success: function(response) {
                         // Add response in Modal body
-                        $('.modal-body-leave').html(response);
+                        $('#modal-body-leave').html(response);
 
                         // Display Modal
                         $('#modal_view_Leaves').modal('show');
@@ -612,7 +612,7 @@ $count = $_GET["c"];
                     },
                     success: function(response) {
                         // Add response in Modal body
-                        $('.modal-body-att').html(response);
+                        $('#modal-body-att').html(response);
 
                         // Display Modal
                         $('#modal_view_att').modal('show');

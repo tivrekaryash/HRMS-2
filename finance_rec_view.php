@@ -72,7 +72,7 @@ $count = $_GET["c"];
                     <ul class="nav nav-tabs" id="finTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link <?php if ($count == 0) echo "active"; ?>" id="Sal-tab" data-toggle="tab" href="#Sal" role="tab" aria-controls="Sal" aria-selected="<?php if ($count == 0) echo "true";
-                                                                                                                                                                                    else echo "false"; ?>">Salary Payment &nbsp;
+                                                                                                                                                                                    else echo "false"; ?>">Salary Payments &nbsp;
                                 <?php
                                 // retrieving number of employees without designations
                                 $result = mysqli_query($conn, "select count(*) from employee_information where designation_id is null");
@@ -86,7 +86,7 @@ $count = $_GET["c"];
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="Otp-tab" data-toggle="tab" href="#Otp" role="tab" aria-controls="Otp" aria-selected="<?php if ($count == 1) echo "true";
-                                                                                                                                                                                    else echo "false"; ?>">Overtime Payment &nbsp;
+                                                                                                                                                                                    else echo "false"; ?>">Overtime Payments &nbsp;
                                 <?php
                                 // retrieving number of employees without designations
                                 $result = mysqli_query($conn, "select count(*) from employee_information where designation_id is null");
@@ -369,7 +369,7 @@ $count = $_GET["c"];
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                 </div>
-                                <div class="modal-body-Otppay">
+                                <div id="modal-body-Otppay" class="modal-body">
 
                                 </div>
                                 <div class="modal-footer">
@@ -392,7 +392,7 @@ $count = $_GET["c"];
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                 </div>
-                                <div class="modal-body-comp">
+                                <div id="modal-body-comp" class="modal-body">
 
                                 </div>
                                 <div class="modal-footer">
@@ -439,7 +439,7 @@ $count = $_GET["c"];
                     },
                     success: function(response) {
                         // Add response in Modal body
-                        $('.modal-body-Otppay').html(response);
+                        $('#modal-body-Otppay').html(response);
 
                         // Display Modal
                         $('#modal_view_Otppay').modal('show');
@@ -463,7 +463,7 @@ $count = $_GET["c"];
                     },
                     success: function(response) {
                         // Add response in Modal body
-                        $('.modal-body-comp').html(response);
+                        $('#modal-body-comp').html(response);
 
                         // Display Modal
                         $('#modal_view_comp').modal('show');

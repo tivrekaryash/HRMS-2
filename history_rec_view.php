@@ -422,7 +422,7 @@ $count = $_GET["c"];
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                 </div>
-                                <div class="modal-body-hisJob">
+                                <div id="modal-body-hisJob" class="modal-body">
 
                                 </div>
                                 <div class="modal-footer">
@@ -445,7 +445,7 @@ $count = $_GET["c"];
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                 </div>
-                                <div class="modal-body-hissal">
+                                <div id="modal-body-hissal" class="modal-body">
 
                                 </div>
                                 <div class="modal-footer">
@@ -468,7 +468,7 @@ $count = $_GET["c"];
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                 </div>
-                                <div class="modal-body-HisOtp">
+                                <div id="modal-body-HisOtp" class="modal-body">
 
                                 </div>
                                 <div class="modal-footer">
@@ -491,7 +491,7 @@ $count = $_GET["c"];
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                 </div>
-                                <div class="modal-body-HisDisc">
+                                <div id="modal-body-HisDisc" class="modal-body">
 
                                 </div>
                                 <div class="modal-footer">
@@ -521,7 +521,7 @@ $count = $_GET["c"];
                                     },
                                     success: function(response) {
                                         // Add response in Modal body
-                                        $('.modal-body-hisJob').html(response);
+                                        $('#modal-body-hisJob').html(response);
 
                                         // Display Modal
                                         $('#modal_view_HisJob').modal('show');
@@ -545,7 +545,7 @@ $count = $_GET["c"];
                                     },
                                     success: function(response) {
                                         // Add response in Modal body
-                                        $('.modal-body-hissal').html(response);
+                                        $('#modal-body-hissal').html(response);
 
                                         // Display Modal
                                         $('#modal_view_Hissal').modal('show');
@@ -569,7 +569,7 @@ $count = $_GET["c"];
                                     },
                                     success: function(response) {
                                         // Add response in Modal body
-                                        $('.modal-body-HisOtp').html(response);
+                                        $('#modal-body-HisOtp').html(response);
 
                                         // Display Modal
                                         $('#modal_view_HisOtp').modal('show');
@@ -593,7 +593,7 @@ $count = $_GET["c"];
                                     },
                                     success: function(response) {
                                         // Add response in Modal body
-                                        $('.modal-body-HisDisc').html(response);
+                                        $('#modal-body-HisDisc').html(response);
 
                                         // Display Modal
                                         $('#modal_view_HisDisc').modal('show');

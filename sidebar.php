@@ -79,7 +79,7 @@ include 'db_conn.php';
 
               echo "</span>";
             } else
-              echo "<span data-toggle='tooltip' data-placement='right' title='△ Set Designations △' class='badge badge-danger right'>▲</span>";
+              echo "<span data-toggle='tooltip' data-placement='right' title='△ Set Designations △' class='badge badge-danger right'><i class='fa-solid fa-triangle-exclamation'></i></span>";
             ?>
           </p>
         </a>
@@ -157,7 +157,7 @@ include 'db_conn.php';
             $res_otp = $res_otp->fetch_assoc();
 
             if ($res["count(salary_id)"] != 0 || $res_otp["count(otp_pay_id)"] != 0) {
-              echo "<span data-toggle='tooltip' data-placement='right' title='△ Due Amount to be cleared △' class='badge badge-warning right'>▲</span>";
+              echo "<span data-toggle='tooltip' data-placement='right' title='△ Due Amount to be cleared △' class='badge badge-warning right'><i class='fa-solid fa-triangle-exclamation'></i></span>";
             }
             ?>
           </p>
@@ -166,7 +166,7 @@ include 'db_conn.php';
           <li class="nav-item">
             <a href="finance_rec_view.php?c=0" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p>Salary Pay</p>
+              <p>Salary Payments</p>
               <?php
               // badge displays number of salary records pending if any
               if ($res["count(salary_id)"] != 0) {
@@ -180,7 +180,7 @@ include 'db_conn.php';
           <li class="nav-item">
             <a href="finance_rec_view.php?c=1" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p>Overtime Pay</p>
+              <p>Overtime Payments</p>
               <?php
               // badge displays number of overtime pay records pending if any
               if ($res_otp["count(otp_pay_id)"] != 0) {
