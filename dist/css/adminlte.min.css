@@ -93,11 +93,11 @@ a:link {
 }
 
 .empty-state__content .empty-state__icon {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     display: flex;
     align-items: center;
-    border-radius: 200px;
+    border-radius: 100px;
     justify-content: center;
     background-color: #dbdbdb;
 }
@@ -117,10 +117,6 @@ a:link {
     color: #343a40;
     font-size: 1.0rem;
     font-weight: 700;
-}
-
-.ioniconsposition {
-    text-align: center;
 }
 
 article,
