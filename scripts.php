@@ -1,5 +1,7 @@
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Font Awesome -->
+  <script defer src="plugins/fontawesome-free/js/all.js"></script>
   <!-- Select2 -->
   <script src="plugins/select2/js/select2.full.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
