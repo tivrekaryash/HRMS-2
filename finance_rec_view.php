@@ -152,7 +152,7 @@ $count = $_GET["c"];
                                 echo " <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <i class='fa-solid fa-circle-dollar-to-slot' style='font-size: 200%;'></i>
+                               <i class='fa-solid fa-circle-dollar-to-slot' style=''></i>
                                </div>
                                <div class='empty-state__message'>All Past Salary Payments are Cleared</div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
