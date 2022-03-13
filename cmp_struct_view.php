@@ -112,7 +112,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo " <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <i class='fa-solid fa-building'></i>
+                               </div>
+                               <div class='empty-state__message'>No Department data</div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add departments in Department tab under Compny Structure tab.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -154,7 +164,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo " <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <i class='fa-solid fa-user-tie'></i>
+                               </div>
+                               <div class='empty-state__message'>No Designations data</div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add designations in Designations tab under Compny Structure tab.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -268,13 +288,9 @@ $count = $_GET["c"];
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2021-2022 <a href="#">EVA</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 0.1.1
-            </div>
-        </footer>
+        <!-- footer -->
+        <?php include 'footer.php'; ?>
+        <!-- /.footer -->
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

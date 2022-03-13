@@ -152,14 +152,14 @@ $count = $_GET["c"];
                                 echo " <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <i class='fa-solid fa-circle-dollar-to-slot' style=''></i>
+                               <i class='fa-solid fa-circle-dollar-to-slot'></i>
                                </div>
                                <div class='empty-state__message'>All Past Salary Payments are Cleared</div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
                                Add new payments by clicking the button Add New.
                                </div>
                                </div>
-                               </div>";
+                               </div>"; 
                             }
 
                             ?>
@@ -200,7 +200,18 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo " <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <i class='fa-solid fa-circle-dollar-to-slot' style=''></i>
+                               </div>
+                               <div class='empty-state__message'>All Past Overtime Payments are Cleared</div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Overtime Payments will be shown if the employee has done overtime during his shift.
+                               <br>Check Attentance records in Time and Attendance tab.
+                               </div>
+                               </div>
+                               </div>"; 
                             }
 
                             ?>
@@ -236,9 +247,7 @@ $count = $_GET["c"];
                                 }
 
                                 echo "</table>";
-                            } else {
-                                echo "no records inserted";
-                            }
+                            } 
 
                             // retrieves all cleared compensation records
                             $result = $conn->query("SELECT * FROM compensation where clearance = 'cleared' group by employee_id order by compensation_id desc");
@@ -258,10 +267,21 @@ $count = $_GET["c"];
                                 }
 
                                 echo "</table>";
-                            } else {
-                                echo "no records inserted";
                             }
-
+                            
+                            else {
+                                echo " <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <i class='fa-solid fa-circle-dollar-to-slot' style=''></i>
+                               </div>
+                               <div class='empty-state__message'>All Past Compensation Payments are Cleared</div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add new payments by clicking the button Add New.
+                               </div>
+                               </div>
+                               </div>"; 
+                            }
                             ?>
                         </div><!-- /.Compensation -->
 
@@ -389,13 +409,9 @@ $count = $_GET["c"];
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2021-2022 <a href="#">EVA</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 0.1.1
-            </div>
-        </footer>
+         <!-- footer -->
+         <?php include 'footer.php'; ?>
+        <!-- /.footer -->
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

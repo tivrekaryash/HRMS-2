@@ -101,7 +101,17 @@ include 'db_conn.php';
                         }
                         echo "</table>";
                     } else {
-                        echo "no records inserted";
+                        echo " <div class='empty-state'>
+                       <div class='empty-state__content'>
+                       <div class='empty-state__icon'>
+                       <i class='fa-regular fa-address-book></i>
+                       </div>
+                       <div class='empty-state__message'>No Candidates</div>
+                       <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                       Add new candidates by clicking the button Add New.
+                       </div>
+                       </div>
+                       </div>"; 
                     }
 
                     // closing connection
@@ -112,13 +122,9 @@ include 'db_conn.php';
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2021-2022 <a href="#">EVA</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 0.1.1
-            </div>
-        </footer>
+        <!-- footer -->
+        <?php include 'footer.php'; ?>
+        <!-- /.footer -->
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

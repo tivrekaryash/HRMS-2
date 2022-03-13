@@ -125,9 +125,18 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo " <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <i class='fa-regular fa-clock'></i>
+                               </div>
+                               <div class='empty-state__message'>No attendance data</div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add new attendance data by clicking the button clock-in.
+                               </div>
+                               </div>
+                               </div>";
                             }
-
                             ?>
                         </div><!-- /.attendace -->
 
@@ -159,7 +168,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo " <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <i class='fa-regular fa-clock'></i>
+                               </div>
+                               <div class='empty-state__message'>No attendance records data</div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add new attendance data by clicking the button clock-in in Attendance tab.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -197,7 +216,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo " <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <i class='fa-solid fa-right-from-bracket'></i>
+                               </div>
+                               <div class='empty-state__message'>No Leave types</div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add new Leave types by clicking Add Types.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -246,9 +275,18 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo " <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <i class='fa-solid fa-right-from-bracket'></i>
+                               </div>
+                               <div class='empty-state__message'>No Leave data</div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add new Leave data by clicking Add Leaves.
+                               </div>
+                               </div>
+                               </div>";
                             }
-
                             ?>
                         </div>
                         <!-- /.leave management -->
@@ -284,7 +322,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo " <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <i class='fa-solid fa-calendar-week'></i>
+                               </div>
+                               <div class='empty-state__message'>No Leave records</div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add new Leave data by clicking Add Leaves in Leave Management under <br>Leave Management.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -510,13 +558,9 @@ $count = $_GET["c"];
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2021-2022 <a href="#">EVA</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 0.1.1
-            </div>
-        </footer>
+        <!-- footer -->
+        <?php include 'footer.php'; ?>
+        <!-- /.footer -->
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

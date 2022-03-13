@@ -110,7 +110,9 @@ $count = $_GET["c"];
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
-                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $row["employee_name"] . "</td><td>" . $row["employee_dob"] . "</td><td>" . $row["employee_age"] . "</td><td>" . $row["employee_gender"] . "</td><td>" . $row["employee_address"] . "</td><td>" . $row["employee_email"] . "</td>";
+
+                                    $emp_email = $row["employee_email"];
+                                    echo "<tr><td>" . $row["employee_id"] . "</td><td>" . $row["employee_name"] . "</td><td>" . $row["employee_dob"] . "</td><td>" . $row["employee_age"] . "</td><td>" . $row["employee_gender"] . "</td><td>" . $row["employee_address"] . "</td><td id = 'email_td'><a href='mailto:$emp_email' class='hyperlinked_emails'>$emp_email</a></td>";
 
                             ?>
 
@@ -124,8 +126,19 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo " <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <i class='fa-regular fa-address-book></i>
+                               </div>
+                               <div class='empty-state__message'>No Employees</div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add new employees by adding them as candidates in Candidate Details tab.
+                               </div>
+                               </div>
+                               </div>";
                             }
+
 
                             ?>
                         </div><!-- /.Details -->
@@ -138,7 +151,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID." . "</th><th>" . "Employee name" . "</th><th>" . "Home" . "</th><th>" . "Work" . "</th><th>" . "Mobile" . "</th><th>" . "Action" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee name" . "</th><th>" . "Home" . "</th><th>" . "Work" . "</th><th>" . "Mobile" . "</th><th>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -165,7 +178,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo " <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <i class='fa-solid fa-phone-slash'></i>
+                               </div>
+                               <div class='empty-state__message'>No Contacts data</div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add new employees by adding them as candidates in Candidate Details tab.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -179,7 +202,7 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Sr No." . "</th><th>" . "Employee name" . "</th><th>" . "Qualifications" . "</th><th>" . "Action" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Employee ID" . "</th><th>" . "Employee name" . "</th><th>" . "Qualifications" . "</th><th>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
@@ -187,7 +210,7 @@ $count = $_GET["c"];
                                     $res = $conn->query("select * from employee_information where employee_id = $row[employee_id]");
                                     $res = $res->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["qualification_id"] . "</td><td>" . $res["employee_name"] . "</td><td>" . $row["qualifications_file_location"] . "</td>";
+                                    echo "<tr><td>" . $res["employee_id"] . "</td><td>" . $res["employee_name"] . "</td><td>" . $row["qualifications_file_location"] . "</td>";
 
                             ?>
 
@@ -200,7 +223,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo " <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <i class='fa-regular fa-file'></i>
+                               </div>
+                               <div class='empty-state__message'>No Qualification data</div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add new employees by adding them as candidates in Candidate Details tab.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -240,7 +273,17 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo " <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <i class='fa-solid fa-user-tie'></i>
+                               </div>
+                               <div class='empty-state__message'>No Designations data</div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               Add new employees by adding them as candidates in Candidate Details tab or Add designations in Designations tab under Compny Structure tab.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -281,7 +324,18 @@ $count = $_GET["c"];
 
                                 echo "</table>";
                             } else {
-                                echo "no records inserted";
+                                echo " <div class='empty-state'>
+                               <div class='empty-state__content'>
+                               <div class='empty-state__icon'>
+                               <i class='fa-solid fa-circle-dollar-to-slot'></i>
+                               </div>
+                               <div class='empty-state__message'>No Personal Salary data</div>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               These records are of each employee's personal salary amount that is edited for increments or decrements from the employee's base salary.
+                               <br> Add new employees by adding them as candidates in Candidate Details tab.
+                               </div>
+                               </div>
+                               </div>";
                             }
 
                             ?>
@@ -351,13 +405,9 @@ $count = $_GET["c"];
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2021-2022 <a href="#">EVA</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 0.1.1
-            </div>
-        </footer>
+        <!-- footer -->
+        <?php include 'footer.php'; ?>
+        <!-- /.footer -->
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

@@ -5,24 +5,24 @@ include 'db_conn.php';
 
 <!-- Brand Logo -->
 <a href="index_admin.php" class="brand-link">
-  <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-  <span class="brand-text font-weight-light"> HRMS </span>
+  <img src="dist/img/cosmic.png" alt="Cosmic Solutions Logo" class="brand-image">
+  <span class="brand-text font-weight-light"> HRSP </span>
 </a>
 <div class="sidebar">
   <!-- Sidebar user panel (optional) -->
   <div class="user-panel mt-3 pb-3 mb-3 d-flex">
     <div class="image">
-      <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+      <img src="dist/img/avatar5.png" class="img-circle elevation-1" alt="User Image">
     </div>
     <div class="info">
-      <a href="#" class="d-block">Admin - Test</a>
+      <a href="index_admin.php" class="d-block">HR - Admin</a>
     </div>
   </div>
 
   <!-- SidebarSearch Form -->
   <div class="form-inline">
     <div class="input-group" data-widget="sidebar-search">
-      <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+      <input class="form-control form-control-sidebar" type="search" placeholder="Search tabs" aria-label="Search">
       <div class="input-group-append">
         <button class="btn btn-sidebar">
           <i class="fas fa-search fa-fw"></i>
