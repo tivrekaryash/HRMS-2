@@ -2,6 +2,9 @@
 // db connection file
 include 'db_conn.php';
 
+// session check
+require_once('check_login.php');
+
 $count = $_GET["c"];
 ?>
 

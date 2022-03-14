@@ -1,6 +1,8 @@
 <?php
 // db connection file
 include 'db_conn.php';
+// session check
+require_once('check_login.php');
 
 // fetching candidate data from db
 $cand_res = $conn->query("SELECT count(candidate_id) FROM candidate_information where employee_id is null");

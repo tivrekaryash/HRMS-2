@@ -1,43 +1,38 @@
 <?php
-
+session_start();
 // db connection file
 include 'db_conn.php';
+// 
+require_once('if_logged_in.php');
 
 // retrieves form data from login_form.html
 $uname = $_POST['username'];
 $pass = $_POST['password'];
 
-// checking validity of username and password
-$res = mysqli_query($conn, "select * from login_details where username = '$uname' and password = '$pass'");
+// checking validity of username and password (from db)
+
+/* $res = mysqli_query($conn, "select * from login_details where username = '$uname' and password = '$pass'");
 if( $res->num_rows > 0 )
 {
     $row = $res->fetch_assoc();
     
-    // creating session for user id
-    session_start();
-    $_SESSION["uid"] = $row["user_id"];
-    
-    // redirects to correct dashboard based on login role
-    if( $row["login_role"] == "HR" )
-    {
-        // redirects to admin dashboard and closes connection
-        header("location:index_admin.php");
-        $conn->close();
-        exit;
-    }
+    // regenerate session id
+    session_regenerate_id();
+    $_SESSION['login'] = true;
 
-    else
-    {
-        // redirects to user dashboard and closes connection
-        header("location:index_user.php");
-        $conn->close();
-        exit;
-    }
+    // redirect the user to members area/dashboard page
+    header("location:index_admin.php");
+} */
+
+// checking validity of username and password (hardcoded)
+if( $uname == "admin" && $pass == "admin" )
+{
+    // regenerate session id
+    session_regenerate_id();
+    $_SESSION['login'] = true;
+    $_SESSION['id'] = 1;
+
+    // redirect the user to members area/dashboard page
+    header("location:index_admin.php");
 }
-
-// redirects to login page after closing connection if username or password doesn't exist
-$conn->close();
-header("location:login_form.html");
-exit;
-
 ?>
