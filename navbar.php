@@ -19,7 +19,7 @@
               </a>
           </li>
           <li class="nav-item">
-              <a class="btn btn-outline-danger" href="login_form.html" role="button">
+              <a class="btn btn-outline-danger" href="logout.php" role="button">
               <i class="fa-solid fa-arrow-right-from-bracket"></i>
               Log Out
               </a>
