@@ -31,6 +31,7 @@ if( $uname == "admin" && $pass == "admin" )
     session_regenerate_id();
     $_SESSION['login'] = true;
     $_SESSION['id'] = 1;
+    $_SESSION['login_time'] = time();
 
     // redirect the user to members area/dashboard page
     header("location:index_admin.php");
