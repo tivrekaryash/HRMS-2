@@ -110,7 +110,7 @@ $emp_res = $emp_res->fetch_assoc();
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
                 </div>
-                <a href="user_reg.php" class="small-box-footer">View Info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="user_reg_view.php?c=0" class="small-box-footer">View Info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->

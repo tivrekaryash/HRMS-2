@@ -85,6 +85,20 @@ include 'db_conn.php';
         </a>
       </li>
       <li class="nav-item">
+        <a href="user_reg_view.php?c=0" class="nav-link">
+          <i class="nav-icon far fa-list-alt"></i>
+          <p data-toggle="tooltip" title="Users">
+          User Registrations
+            <span class="badge badge-info right">
+              <?php
+              // fetching user data from db
+
+              ?>
+            </span>
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
         <a href="cmp_struct_view.php" class="nav-link">
           <i class="nav-icon far fa-building"></i>
           <p>

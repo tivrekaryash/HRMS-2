@@ -1,6 +1,8 @@
 <?php
 // db connection file
 include 'db_conn.php';
+// session check
+require_once('check_login.php');
 
 $count = $_GET["c"];
 ?>
@@ -71,10 +73,12 @@ $count = $_GET["c"];
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" id="cmpTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if($count == 0) echo "active";?>" id="role-tab" data-toggle="tab" href="#role" role="tab" aria-controls="role" aria-selected="<?php if($count == 0) echo "true"; else echo "false"; ?>">Login/user Role</a>
+                            <a class="nav-link <?php if ($count == 0) echo "active"; ?>" id="role-tab" data-toggle="tab" href="#role" role="tab" aria-controls="role" aria-selected="<?php if ($count == 0) echo "true";
+                                                                                                                                                                                    else echo "false"; ?>">Login/user Role</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if($count == 1) echo "active";?>" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="<?php if($count == 1) echo "true"; else echo "false"; ?>">Users Registrations</a>
+                            <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="<?php if ($count == 1) echo "true";
+                                                                                                                                                                                        else echo "false"; ?>">Users Registrations</a>
                         </li>
                     </ul>
 
@@ -90,24 +94,22 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all role information records
-                            $result = $conn->query("SELECT * FROM login_role");
+                            $result = $conn->query("SELECT * FROM user_role");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Role ID" . "</th><th>" . "Role" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Role ID" . "</th><th>" . "Role" . "</th><th>" . "Action" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<tr><td>" . $row["role_id"] . "</td><td>" . $row["role"] . "</td>";
 
                             ?>
-
-                                    <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_role<?php echo $row["role_id"]; ?>">Update</button></td>
                                     <td><a href="user_role_delete.php?del=<?php echo $row["role_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
                                     </tr>
 
                             <?php
-                                    include 'user_role_upd.php';
+
                                 }
 
                                 echo "</table>";
@@ -130,7 +132,7 @@ $count = $_GET["c"];
 
                         <!-- login -->
                         <div class="tab-pane fade <?php if ($count == 1) echo "show active"; ?>" id="login" role="tabpanel" aria-labelledby="login-tab">
-                            <button type="button" data-toggle="modal" data-target="#modal_insert_login" class="btn btn-outline-success" style="float:right">
+                            <button type="button" data-toggle="modal" data-target="#modal_insert_user" class="btn btn-outline-success" style="float:right">
                                 <i class="fas fa-plus"></i> Add New
 
                             </button>
@@ -138,28 +140,25 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all login information records
-                            $result = $conn->query("SELECT * FROM login_details");
+                            $result = $conn->query("SELECT * FROM user_details");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Designation ID" . "</th><th>" . "Department" . "</th><th>" . "Designation" . "</th><th>" . "Base Salary(Rs.)" .  "</th><th>" . "Overtime Pay (Rs.)" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "User ID" . "</th><th>" . "Role" . "</th><th>" . "User Name" . "</th><th>" . " Password" .  "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
 
-                                    $res = $conn->query("select * from department where department_id = $row[department_id]");
-                                    $res = $res->fetch_assoc();
-
-                                    echo "<tr><td>" . $row["designation_id"] . "</td><td>" . $res["department_name"] . "</td><td>" . $row["designation"] . "</td><td>" . $row["base_salary"] .  "</td><td>" . $row["amt_per_hour"] ."</td>";
+                                    echo "<tr><td>" . $row["user_id"] . "</td><td>" . $res["role_id"] . "</td><td>" . $row["username"] . "</td><td>" . $row["password"] . "</td>";
 
                             ?>
 
-                                    <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_desg<?php echo $row["designation_id"]; ?>">Update</button></td>
-                                    <td><a href="designation_delete.php?del=<?php echo $row["designation_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
+                                    <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_user<?php echo $row["user_id"]; ?>">Update</button></td>
+                                    <td><a href="user_delete.php?del=<?php echo $row["user_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
                                     </tr>
 
                             <?php
-                                    include 'designation_upd.php';
+                                    include 'user_upd.php';
                                 }
 
                                 echo "</table>";
@@ -167,46 +166,40 @@ $count = $_GET["c"];
                                 echo " <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <i class='fa-solid fa-user-tie'></i>
+                               <i class='fa-regular fa-circle-user'></i>
                                </div>
-                               <div class='empty-state__message'>No Designations data</div>
+                               <div class='empty-state__message'>No User data</div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
-                               Add designations in Designations tab under Compny Structure tab.
+                               Add user by clicking Add new.
                                </div>
                                </div>
                                </div>";
                             }
 
                             ?>
-                        </div><!-- /.designation -->
+                        </div><!-- /.login -->
 
 
                     </div><!-- /.Tab-panes -->
 
-                    <!-- Modal-Department Insert -->
-                    <div class="modal fade" id="modal_insert_dept" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <!-- Modal-user role Insert -->
+                    <div class="modal fade" id="modal_insert_role" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Department form: </h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">User Role form: </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="container p-5 my-2 border">
-                                        <h2>Enter Department details here:</h2><br>
-                                        <form name="dept_form" action="department_insert.php" method="POST">
+                                        <h2>Enter User Role here:</h2><br>
+                                        <form name="role_form" action="user_role_insert.php" method="POST">
 
                                             <div class="form-group">
-                                                <label for="deptname" class="form-label">Department Name: </label>
-                                                <input type="text" class="form-control" id="deptname" name="deptname" required>
-                                            </div>
-                                            <br>
-
-                                            <div class="form-group">
-                                                <label for="deptloc" class="form-label">Department Location: </label>
-                                                <textarea type="text" class="form-control" rows="5" cols="33" id="deptloc" name="deptloc" required></textarea>
+                                                <label for="role" class="form-label">Role: </label>
+                                                <input type="text" class="form-control" id="role" name="role" required>
                                             </div>
                                             <br>
 
@@ -222,51 +215,45 @@ $count = $_GET["c"];
                         </div>
                     </div><!-- /.Modal -->
 
-                    <!-- Modal-Designation Insert -->
-                    <div class="modal fade" id="modal_insert_desg" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+                    <!-- Modal-User Details Insert -->
+                    <div class="modal fade" id="modal_insert_user" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
                         <div class="modal-dialog modal-dialog-scrollable modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Designation form: </h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">User details form: </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="container p-5 my-2 border">
-                                        <h2>Enter Designation details here:</h2><br>
-                                        <form name="desg_form" action="designation_insert.php" method="POST">
+                                        <h2>Enter your user details here:</h2><br>
+                                        <form name="user_form" action="user_insert.php" method="POST">
 
                                             <div class="form-group">
-                                                <label for="deptname" class="form-label">Select Department: </label>
-                                                <select id="deptname" class="form-control select2bs4" name="deptname" style="width: 100%;" required>
+                                                <label for="userrole" class="form-label">Select Role: </label>
+                                                <select id="userrole" class="form-control select2bs4" name="userrole" style="width: 100%;" required>
                                                     <?php
-                                                    // retrieving all departments
-                                                    $result = $conn->query("select * from department");
+                                                    // retrieving all roles
+                                                    $result = $conn->query("select * from user_role");
 
                                                     while ($row = $result->fetch_assoc()) {
-                                                        // displaying each department in the list
-                                                        echo "<option>" . $row["department_name"] . "</option>";
+                                                        // displaying each role in the list
+                                                        echo "<option>" . $row["role"] . "</option>";
                                                     }
                                                     ?>
                                                 </select>
                                             </div><br>
 
                                             <div class="form-group">
-                                                <label for="desgname" class="form-label">Designation: </label>
-                                                <input type="text" class="form-control" id="desgname" name="desgname" required>
+                                                <label for="username" class="form-label">User Name: </label>
+                                                <input type="text" class="form-control" id="username" name="username" required>
                                             </div>
                                             <br>
 
                                             <div class="form-group">
-                                                <label for="basesal" class="form-label">Base Salary: </label>
-                                                <input type="number" class="form-control" id="basesal" name="basesal" required>
-                                            </div>
-                                            <br>
-
-                                            <div class="form-group">
-                                                <label for="otp_amt" class="form-label">Overtime Pay: </label>
-                                                <input type="number" class="form-control" id="otp_amt" name="otp_amt" placeholder="Amount-per-hour(Rs)" required>
+                                                <label for="pass" class="form-label">Password: </label>
+                                                <input type="text" class="form-control" id="pass" name="pass" minlength="8" maxlength="15" placeholder="Minimum Password length is '8'" required>
                                             </div>
                                             <br>
 
