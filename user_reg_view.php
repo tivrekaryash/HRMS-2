@@ -144,14 +144,14 @@ $count = $_GET["c"];
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
-                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "User ID" . "</th><th>" . "Role" . "</th><th>" . "User Name" . "</th><th>" . " Password" .  "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
+                                echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "User ID" . "</th><th>" . "Role" . "</th><th>" . "User Name" . "</th><th colspan = '2'>" . "Actions" . "</th></tr>";
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
                                     
                                     $res = mysqli_query($conn, "select role from user_role where role_id = '$row[role_id]'");
                                     $res = $res->fetch_assoc();
-                                    echo "<tr><td>" . $row["user_id"] . "</td><td>" . $res["role"] . "</td><td>" . $row["username"] . "</td><td>" . $row["password"] . "</td>";
+                                    echo "<tr><td>" . $row["user_id"] . "</td><td>" . $res["role"] . "</td><td>" . $row["username"] . "</td>";
 
                             ?>
 
