@@ -4,7 +4,7 @@ include 'db_conn.php';
 ?>
 
 <!-- Brand Logo -->
-<a href="index_admin.php" class="brand-link">
+<a href="index.php" class="brand-link">
   <img src="dist/img/cosmic.png" alt="Cosmic Solutions Logo" class="brand-image">
   <span class="brand-text font-weight-light"> HRSP </span>
 </a>
@@ -15,7 +15,7 @@ include 'db_conn.php';
       <img src="dist/img/avatar5.png" class="img-circle elevation-1" alt="User Image">
     </div>
     <div class="info">
-      <a href="index_admin.php" class="d-block">HR - Admin</a>
+      <a href="index.php" class="d-block">HR - Admin</a>
     </div>
   </div>
 
@@ -37,7 +37,7 @@ include 'db_conn.php';
       <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
       <li class="nav-item menu-open">
-        <a href="index_admin.php" class="nav-link">
+        <a href="index.php" class="nav-link">
           <i class="nav-icon fas fa-suitcase"></i>
           <p>
             Dashboard

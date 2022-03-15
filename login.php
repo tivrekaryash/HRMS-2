@@ -22,7 +22,7 @@ if ($row->num_rows > 0) {
         $_SESSION['login_time'] = time();
 
         // redirect the user to members area/dashboard page
-        header("location:index_admin.php");
+        header("location:index.php");
     }
 
     else
@@ -43,6 +43,6 @@ if( $uname == "admin" && $pass == "admin" )
     $_SESSION['login_time'] = time();
 
     // redirect the user to members area/dashboard page
-    header("location:index_admin.php");
+    header("location:index.php");
 } */
 ?>
