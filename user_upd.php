@@ -20,7 +20,7 @@ require_once 'db_conn.php';
 
                          <div class="form-group">
                             <label for="userrole_upd" class="form-label">Select Role: </label>
-                            <input type="text" class="form-control" id="userrole_upd" name="userrole_upd" value="<?php echo $row["role"] ?>" disabled>
+                            <input type="text" class="form-control" id="userrole_upd" name="userrole_upd" value="<?php echo $res["role"] ?>" disabled>
                         </div>
                         <br>
 
@@ -36,7 +36,7 @@ require_once 'db_conn.php';
                          </div>
                          <br>
 
-                         <input type="hidden" id="us_id" name="us_id" value="<?php echo $row["user_id"]; ?>">
+                         <input type="hidden" id="use_id" name="use_id" value="<?php echo $row["user_id"]; ?>">
 
                          <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 
