@@ -26,11 +26,11 @@ if ($row->num_rows > 0) {
     }
 
     else
-    header("location:login_form.html?lerr=2");  // 2: invalid password
+    header("location:login_form.php?lerr=2");  // 2: invalid password
 }
 
 else
-    header("location:login_form.html?lerr=1");  // 1: user doesn't exist
+    header("location:login_form.php?lerr=1");  // 1: user doesn't exist
 
 /* 
 // checking validity of username and password (hardcoded)
@@ -45,3 +45,4 @@ if( $uname == "admin" && $pass == "admin" )
     // redirect the user to members area/dashboard page
     header("location:index_admin.php");
 } */
+?>

@@ -32,6 +32,16 @@
                                 <form id="login-form" class="form" action="login.php" method="POST">
 
                                     <h3 class="mb-5">Sign in</h3>
+                                    <?php
+                                    if (isset($_GET["lerr"])) {
+                                        $login_err = $_GET["lerr"];
+                                        echo "<div class='alert alert-danger' role='alert'> User does not exist!</div>";
+                                        echo "<div class='alert alert-danger' role='alert'> Password is invalid</div>";
+                                        echo "<div class='alert alert-warning' role='alert'> Session has expired. Please login again</div>";
+
+                                    }
+
+                                    ?>
 
                                     <div class="form-floating mb-4">
                                         <input type="text" id="username" name="username" class="form-control form-control-lg" placeholder="Username" />
