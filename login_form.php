@@ -34,11 +34,14 @@
                                     <h3 class="mb-5">Sign in</h3>
                                     <?php
                                     if (isset($_GET["lerr"])) {
-                                        $login_err = $_GET["lerr"];
-                                        echo "<div class='alert alert-danger' role='alert'> User does not exist!</div>";
-                                        echo "<div class='alert alert-danger' role='alert'> Password is invalid</div>";
-                                        echo "<div class='alert alert-warning' role='alert'> Session has expired. Please login again</div>";
+                                        if($GET["lerr"] == 1)
+                                            echo "<div class='alert alert-danger' role='alert'> User does not exist!</div>";
 
+                                        else if($GET["lerr"] == 2)
+                                            echo "<div class='alert alert-danger' role='alert'> Password is invalid</div>";
+
+                                        else if($GET["lerr"] == 3)
+                                            echo "<div class='alert alert-warning' role='alert'> Session has expired. Please login again</div>";
                                     }
 
                                     ?>
