@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(isset($_SESSION['login']) & ($_SESSION['login'] == true)){
-	if(time()-$_SESSION["login_time"] >10)
+	if(time()-$_SESSION["login_time"] >600)
     {
         session_unset();
         session_destroy();
