@@ -5,7 +5,7 @@ if(isset($_SESSION['login']) & ($_SESSION['login'] == true)){
     {
         session_unset();
         session_destroy();
-        header("location:login_form.html?lerr=3");  // 3: session has expired
+        header("location:login_form.php?lerr=3");  // 3: session has expired
     }
 }else{
 	// redirect user to login page
