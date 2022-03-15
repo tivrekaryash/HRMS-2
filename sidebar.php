@@ -88,11 +88,13 @@ include 'db_conn.php';
         <a href="user_reg_view.php?c=0" class="nav-link">
           <i class="nav-icon far fa-list-alt"></i>
           <p data-toggle="tooltip" title="Users">
-          User Registrations
+            User Registrations
             <span class="badge badge-info right">
               <?php
               // fetching user data from db
-
+              $res = $conn->query("SELECT count(user_id) FROM user_details");
+              $res = $res->fetch_assoc();
+              echo $res["count(user_id)"];
               ?>
             </span>
           </p>

@@ -1,5 +1,5 @@
  <!-- Modal-User Details update -->
- <div class="modal fade" id="modal_insert_user" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
+ <div class="modal fade" id="modal_update_user<?php echo $row["user_id"]; ?>" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="overflow:hidden;">
      <div class="modal-dialog modal-dialog-scrollable modal-lg">
          <div class="modal-content">
              <div class="modal-header">
@@ -22,7 +22,7 @@
 
                                     while ($row = $result->fetch_assoc()) {
                                         // displaying each role in the list
-                                        echo "<option>" . $row["role"] . "</option>";
+                                        echo "<option value='$row[role_id]'>" . $row["role"] . "</option>";
                                     }
                                     ?>
                              </select>
@@ -39,6 +39,8 @@
                              <input type="text" class="form-control" id="pass_upd" name="pass_upd" minlength="8" maxlength="15" placeholder="Minimum Password length is '8'" required>
                          </div>
                          <br>
+
+                         <input type="hidden" id="us_id" name="us_id" value="<?php echo $row["role_id"]; ?>">
 
                          <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
 

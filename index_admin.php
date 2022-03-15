@@ -10,6 +10,9 @@ $cand_res = $cand_res->fetch_assoc();
 // fetching employee data from db
 $emp_res = $conn->query("SELECT count(employee_id) FROM employee_information");
 $emp_res = $emp_res->fetch_assoc();
+// fetching user data from db
+$user_res = $conn->query("SELECT count(user_id) FROM user_details");
+$user_res = $user_res->fetch_assoc();
 
 ?>
 
@@ -105,7 +108,7 @@ $emp_res = $emp_res->fetch_assoc();
               <div class="small-box bg-info">
                 <div class="inner">
                   <h4 style="font-weight:bold;">User Registrations</h4>
-                  <h4>Total: (44)</h4>
+                  <h4>Total: <?php echo $user_res["count(user_id)"]; ?></h4>
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>

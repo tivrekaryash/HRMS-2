@@ -239,7 +239,7 @@ $count = $_GET["c"];
 
                                                     while ($row = $result->fetch_assoc()) {
                                                         // displaying each role in the list
-                                                        echo "<option>" . $row["role"] . "</option>";
+                                                        echo "<option value='$row[role_id]'>" . $row["role"] . "</option>";
                                                     }
                                                     ?>
                                                 </select>
