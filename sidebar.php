@@ -12,7 +12,8 @@ include 'db_conn.php';
   <!-- Sidebar user panel (optional) -->
   <div class="user-panel mt-3 pb-3 mb-3 d-flex">
     <div class="info">
-      <a href="index.php" class="d-block">HR - Admin</a>
+      
+      <a href="index.php" class="d-block"><i class="fa-regular fa-circle-user"></i>&nbsp;  HR - Admin</a>
     </div>
   </div>
 

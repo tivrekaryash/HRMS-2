@@ -23,10 +23,10 @@ require_once('check_login.php');
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <!-- Preloader 
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-        </div> -->
+       <!-- Preloader -->
+       <div class="preloader flex-column justify-content-center align-items-center" >
+            <div style="font-size: xx-large;font-weight: bold;">Now Loading...</div>
+        </div>
 
         <!-- Navbar -->
         <?php include 'navbar.php'; ?>
@@ -107,19 +107,119 @@ require_once('check_login.php');
                         echo " <div class='empty-state'>
                        <div class='empty-state__content'>
                        <div class='empty-state__icon'>
-                       <i class='fa-regular fa-address-book></i>
+                       <i class='fa-solid fa-id-card'></i>
                        </div>
-                       <div class='empty-state__message'>No Candidates</div>
+                       <div class='empty-state__message'>No Candidate data</div>
                        <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
-                       Add new candidates by clicking the button Add New.
+                       Add Candidates by clicking Add New.
                        </div>
                        </div>
-                       </div>"; 
+                       </div>";
                     }
 
                     // closing connection
                     $conn->close();
                     ?>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal_insert" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Candidate form: </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container p-5 my-2 border">
+                                        <h2>Enter your details here:</h2><br>
+                                        <form name="candidate_info" action="candidate_insert.php" method="POST">
+
+                                            <div class="form-group">
+                                                <label for="fullname" class="form-label">Full Name: </label>
+                                                <input type="text" class="form-control" id="fname" name="fullname" required>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-inline">
+                                                <label for="dob" class="form-label">Date of Birth: </label>
+                                                <div class="col-sm-2">
+                                                    <input type="date" class="form-control" id="dob" name="dateofbirth" required>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-inline">
+                                                <label for="age" class="form-label">Age: </label>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" id="age" name="age" required>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-check">
+                                                <label for="gender" class="form-label">Gender: </label>
+                                                <div class="form-check">
+                                                    <input type="radio" class="form-check-input" id="gender" name="gender" value="Male" checked>Male
+                                                    <label class="form-check-label" for="radio1"></label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" class="form-check-input" id="gender" name="gender" value="Female">Female
+                                                    <label class="form-check-label" for="radio1"></label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" class="form-check-input" id="gender" name="gender" value="Others">Others
+                                                    <label class="form-check-label" for="radio1"></label>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group">
+                                                <label for="address" class="form-label">Address: </label>
+                                                <textarea type="text" class="form-control" rows="5" cols="33" id="address" name="address" required></textarea>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group">
+                                                <label for="email" class="form-label">Email address: </label>
+                                                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group">
+                                                <label for="phnum" class="form-label">Phone number: (+91) </label>
+                                                <input type="number_format" class="form-control" id="phnum" name="phnumber" minlength="10" maxlength="10" required>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-inline">
+                                                <label for="workexp" class="form-label">Total work experience (in years): </label>
+                                                <div class="col-sm-2">
+                                                    <input type="number" class="form-control" id="workexp" name="workexperience" required>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group">
+                                                <label for="qualif" class="form-label">Qualifications: </label>
+                                                <input type="text" class="form-control" id="qualif" name="qualifications" required>
+                                            </div>
+                                            <br>
+
+                                            <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.Modal -->
+
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
@@ -136,106 +236,6 @@ require_once('check_login.php');
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="modal_insert" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Candidate form: </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container p-5 my-2 border">
-                        <h2>Enter your details here:</h2><br>
-                        <form name="candidate_info" action="candidate_insert.php" method="POST">
-
-                            <div class="form-group">
-                                <label for="fullname" class="form-label">Full Name: </label>
-                                <input type="text" class="form-control" id="fname" name="fullname" required>
-                            </div>
-                            <br>
-
-                            <div class="form-inline">
-                                <label for="dob" class="form-label">Date of Birth: </label>
-                                <div class="col-sm-2">
-                                    <input type="date" class="form-control" id="dob" name="dateofbirth" required>
-                                </div>
-                            </div>
-                            <br>
-
-                            <div class="form-inline">
-                                <label for="age" class="form-label">Age: </label>
-                                <div class="col-sm-2">
-                                    <input type="number" class="form-control" id="age" name="age" required>
-                                </div>
-                            </div>
-                            <br>
-
-                            <div class="form-check">
-                                <label for="gender" class="form-label">Gender: </label>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="gender" name="gender" value="Male" checked>Male
-                                    <label class="form-check-label" for="radio1"></label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="gender" name="gender" value="Female">Female
-                                    <label class="form-check-label" for="radio1"></label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="gender" name="gender" value="Others">Others
-                                    <label class="form-check-label" for="radio1"></label>
-                                </div>
-                            </div>
-                            <br>
-
-                            <div class="form-group">
-                                <label for="address" class="form-label">Address: </label>
-                                <textarea type="text" class="form-control" rows="5" cols="33" id="address" name="address" required></textarea>
-                            </div>
-                            <br>
-
-                            <div class="form-group">
-                                <label for="email" class="form-label">Email address: </label>
-                                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                            </div>
-                            <br>
-
-                            <div class="form-group">
-                                <label for="phnum" class="form-label">Phone number: (+91) </label>
-                                <input type="number_format" class="form-control" id="phnum" name="phnumber" minlength="10" maxlength="10" required>
-                            </div>
-                            <br>
-
-                            <div class="form-inline">
-                                <label for="workexp" class="form-label">Total work experience (in years): </label>
-                                <div class="col-sm-2">
-                                    <input type="number" class="form-control" id="workexp" name="workexperience" required>
-                                </div>
-                            </div>
-                            <br>
-
-                            <div class="form-group">
-                                <label for="qualif" class="form-label">Qualifications: </label>
-                                <input type="text" class="form-control" id="qualif" name="qualifications" required>
-                            </div>
-                            <br>
-
-                            <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
-
-                        </form>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <br>
-                </div>
-            </div>
-        </div>
-    </div><!-- /.Modal -->
 
     <!-- scripts -->
     <?php include 'scripts.php'; ?>

@@ -25,10 +25,11 @@ $count = $_GET["c"];
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <!-- Preloader 
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-        </div> -->
+       <!-- Preloader -->
+       <div class="preloader flex-column justify-content-center align-items-center" >
+            <div style="font-size: xx-large;font-weight: bold;">Now Loading...</div>
+        </div>
+
 
         <!-- Navbar -->
         <?php include 'navbar.php'; ?>
@@ -132,16 +133,16 @@ $count = $_GET["c"];
                                 echo " <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <i class='fa-regular fa-address-book></i>
+                               <i class='fa-solid fa-id-card'></i>
                                </div>
-                               <div class='empty-state__message'>No Employees</div>
+                               <div class='empty-state__message'>No Candidate data</div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
                                Add new employees by adding them as candidates in Candidate Details tab.
                                </div>
                                </div>
                                </div>";
                             }
-
+                            
 
                             ?>
                         </div><!-- /.Details -->

@@ -1,3 +1,5 @@
+
+<!-- This pasge is used for testing purpose only-->
 <?php
 
 $uname='admin';

@@ -25,10 +25,10 @@ $count = $_GET["c"];
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <!-- Preloader 
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-        </div> -->
+       <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center" >
+            <div style="font-size: xx-large;font-weight: bold;">Now Loading...</div>
+        </div>
 
         <!-- Navbar -->
         <?php include 'navbar.php'; ?>
@@ -155,7 +155,7 @@ $count = $_GET["c"];
                                 echo " <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <i class='fa-solid fa-circle-dollar-to-slot'></i>
+                               <i class='fa-solid fa-indian-rupee-sign'></i>
                                </div>
                                <div class='empty-state__message'>All Past Salary Payments are Cleared</div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
@@ -206,7 +206,7 @@ $count = $_GET["c"];
                                 echo " <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <i class='fa-solid fa-circle-dollar-to-slot' style=''></i>
+                               <i class='fa-solid fa-indian-rupee-sign'></i>
                                </div>
                                <div class='empty-state__message'>All Past Overtime Payments are Cleared</div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
@@ -276,7 +276,8 @@ $count = $_GET["c"];
                                 echo " <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <i class='fa-solid fa-circle-dollar-to-slot' style=''></i>
+                               <i class='fa-solid fa-indian-rupee-sign'></i>
+                               <i class='fa-solid fa-receipt'></i>
                                </div>
                                <div class='empty-state__message'>All Past Compensation Payments are Cleared</div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
