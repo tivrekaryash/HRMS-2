@@ -281,7 +281,7 @@ $count = $_GET["c"];
                                </div>
                                <div class='empty-state__message'>All Past Compensation Payments are Cleared</div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
-                               Add new payments by clicking the button Add New.
+                               Add new payments by clicking the button Add New and Clear the Payments to view records Here.
                                </div>
                                </div>
                                </div>"; 
