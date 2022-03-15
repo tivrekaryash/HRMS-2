@@ -148,8 +148,10 @@ $count = $_GET["c"];
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
-
-                                    echo "<tr><td>" . $row["user_id"] . "</td><td>" . $res["role_id"] . "</td><td>" . $row["username"] . "</td><td>" . $row["password"] . "</td>";
+                                    
+                                    $res = mysqli_query($conn, "select role from user_role where role_id = '$row[role_id]'");
+                                    $res = $res->fetch_assoc();
+                                    echo "<tr><td>" . $row["user_id"] . "</td><td>" . $res["role"] . "</td><td>" . $row["username"] . "</td><td>" . $row["password"] . "</td>";
 
                             ?>
 
@@ -253,7 +255,7 @@ $count = $_GET["c"];
 
                                             <div class="form-group">
                                                 <label for="pass" class="form-label">Password: </label>
-                                                <input type="text" class="form-control" id="pass" name="pass" minlength="8" maxlength="15" placeholder="Minimum Password length is '8'" required>
+                                                <input type="text" class="form-control" id="pass" name="pass" placeholder="Keep Strong Password" required>
                                             </div>
                                             <br>
 
