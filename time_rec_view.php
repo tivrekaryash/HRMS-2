@@ -302,7 +302,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all leaves records
-                            $result = $conn->query("SELECT * FROM leaves where approval='approved' group by employee_id desc");
+                            $result = $conn->query("SELECT * FROM leaves where approval!='pending' group by employee_id order by leave_id desc");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
