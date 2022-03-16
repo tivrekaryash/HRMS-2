@@ -364,11 +364,13 @@ $count = $_GET["c"];
                                                 <select id="att_emp" class="form-control select2bs4" name="att_emp" style="width: 100%;" required>
                                                     <?php
                                                     // retrieving all employee_information
-                                                    $result = $conn->query("select * from employee_information");
+                                                    $result = $conn->query("select * from attendance where clock_out_val!=0 group by employee_id desc");
 
                                                     while ($row = $result->fetch_assoc()) {
                                                         // displaying each employee_information in the list
-                                                        echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
+                                                        $emp_res = $conn->query("select * from employee_information where where employee_id='$row[employee_id]'");
+                                                        $emp_res = $emp_res->fetch_assoc();
+                                                        echo "<option value = '$emp_res[employee_id]'>" . $emp_res["employee_name"] . "</option>";
                                                     }
                                                     ?>
                                                 </select>
@@ -377,7 +379,6 @@ $count = $_GET["c"];
                                             <div class="form-group">
                                                 <label for="shift">Select shift:</label>
                                                 <select id="shift" name="shift" class="custom-select" required>
-                                                    <option value="urgent" selected>Urgent</option>
                                                     <option value="8:00 am to 4:00 pm">8:00 am to 4:00 pm</option>
                                                     <option value="4:00 pm to 12:00 pm">4:00 pm to 12:00 pm</option>
                                                     <option value="12:00 am to 8:00 am">12:00 am to 8:00 am</option>
