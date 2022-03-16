@@ -135,7 +135,7 @@ $count = $_GET["c"];
                                <div class='empty-state__icon'>
                                <i class='fa-solid fa-id-card'></i>
                                </div>
-                               <div class='empty-state__message'>No Candidate data</div>
+                               <div class='empty-state__message'>No Employee data</div>
                                <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
                                Add new employees by adding them as candidates in Candidate Details tab.
                                </div>
