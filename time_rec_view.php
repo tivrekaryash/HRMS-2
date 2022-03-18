@@ -107,7 +107,7 @@ $count = $_GET["c"];
                             <?php
 
                             // retrieves all attendance records
-                            $result = $conn->query("SELECT * FROM attendance where clock_out = clock_in order by employee_id");
+                            $result = $conn->query("SELECT * FROM attendance where clock_out_val = 0 order by employee_id");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
@@ -364,13 +364,13 @@ $count = $_GET["c"];
                                                 <select id="att_emp" class="form-control select2bs4" name="att_emp" style="width: 100%;" required>
                                                     <?php
                                                     // retrieving all employee_information
-                                                    $result = $conn->query("select * from attendance where clock_out_val!=0 group by employee_id desc");
+                                                    $result = $conn->query("SELECT employee_id, employee_name FROM employee_information WHERE employee_id NOT IN (SELECT employee_id FROM attendance WHERE clock_out_val = 0 GROUP BY employee_id);");
 
                                                     while ($row = $result->fetch_assoc()) {
                                                         // displaying each employee_information in the list
-                                                        $emp_res = $conn->query("select * from employee_information where where employee_id='$row[employee_id]'");
-                                                        $emp_res = $emp_res->fetch_assoc();
-                                                        echo "<option value = '$emp_res[employee_id]'>" . $emp_res["employee_name"] . "</option>";
+                                                        //$emp_res = $conn->query("select * from employee_information where where employee_id='$row[employee_id]'");
+                                                        //$emp_res = $emp_res->fetch_assoc();
+                                                        echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
                                                     }
                                                     ?>
                                                 </select>
