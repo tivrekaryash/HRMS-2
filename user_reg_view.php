@@ -24,8 +24,8 @@ $count = $_GET["c"];
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-       <!-- Preloader -->
-       <div class="preloader flex-column justify-content-center align-items-center" >
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
             <div style="font-size: xx-large;font-weight: bold;">Now Loading...</div>
         </div>
 
@@ -74,7 +74,7 @@ $count = $_GET["c"];
                     <ul class="nav nav-tabs" id="cmpTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link <?php if ($count == 0) echo "active"; ?>" id="role-tab" data-toggle="tab" href="#role" role="tab" aria-controls="role" aria-selected="<?php if ($count == 0) echo "true";
-                                                                                                                                                                                    else echo "false"; ?>">Login/user Role</a>
+                                                                                                                                                                                        else echo "false"; ?>">Login/user Role</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="<?php if ($count == 1) echo "true";
@@ -104,12 +104,14 @@ $count = $_GET["c"];
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<tr><td>" . $row["role_id"] . "</td><td>" . $row["role"] . "</td>";
 
+                                    if ($row["role_id"] != 1) {
                             ?>
-                                    <td><a href="user_role_delete.php?del=<?php echo $row["role_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
-                                    </tr>
+                                        <td><a href="user_role_delete.php?del=<?php echo $row["role_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
+                                        </tr>
 
                             <?php
-
+                                    } else
+                                        echo "<td><button class='btn btn-danger' disabled>Cannot delete</button></td></tr>";
                                 }
 
                                 echo "</table>";
@@ -148,21 +150,22 @@ $count = $_GET["c"];
 
                                 // displaying data along with adding buttons for update and delete
                                 while ($row = $result->fetch_assoc()) {
-                                    
+
                                     $res = mysqli_query($conn, "select role from user_role where role_id = '$row[role_id]'");
                                     $res = $res->fetch_assoc();
                                     echo "<tr><td>" . $row["user_id"] . "</td><td>" . $res["role"] . "</td><td>" . $row["username"] . "</td>";
-
                             ?>
-
                                     <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_user<?php echo $row["user_id"]; ?>">Update</button></td>
-                                    <td><a href="user_delete.php?del=<?php echo $row["user_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
-                                    </tr>
-
                             <?php
+                                    if ($row["user_id"] != 1) {
+                            ?>
+                                        <td><a href="user_delete.php?del=<?php echo $row["user_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td></tr>
+                            <?php
+                                    } else
+                                        echo "<td><button class='btn btn-danger' disabled>Cannot delete</button></td></tr>";
+
                                     include 'user_upd.php';
                                 }
-
                                 echo "</table>";
                             } else {
                                 echo " <div class='empty-state'>
