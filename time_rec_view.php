@@ -368,8 +368,6 @@ $count = $_GET["c"];
 
                                                     while ($row = $result->fetch_assoc()) {
                                                         // displaying each employee_information in the list
-                                                        //$emp_res = $conn->query("select * from employee_information where where employee_id='$row[employee_id]'");
-                                                        //$emp_res = $emp_res->fetch_assoc();
                                                         echo "<option value = '$row[employee_id]'>" . $row["employee_name"] . "</option>";
                                                     }
                                                     ?>
