@@ -19,7 +19,7 @@ if ($res) {
 } else {
     // redirects to display candidate information after closing connection
     $conn->close();
-    header("location:cmp_struct_view.php?c=1&e=1");
+    header("location:cmp_struct_view.php?c=1&ed=1");
     exit;
 }
 ?>
