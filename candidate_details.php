@@ -23,8 +23,8 @@ require_once('check_login.php');
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-       <!-- Preloader -->
-       <div class="preloader flex-column justify-content-center align-items-center" >
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
             <div style="font-size: xx-large;font-weight: bold;">Now Loading...</div>
         </div>
 
@@ -150,14 +150,6 @@ require_once('check_login.php');
                                             </div>
                                             <br>
 
-                                            <div class="form-inline">
-                                                <label for="age" class="form-label">Age: </label>
-                                                <div class="col-sm-2">
-                                                    <input type="number" class="form-control" id="age" name="age" required>
-                                                </div>
-                                            </div>
-                                            <br>
-
                                             <div class="form-check">
                                                 <label for="gender" class="form-label">Gender: </label>
                                                 <div class="form-check">
@@ -190,7 +182,7 @@ require_once('check_login.php');
 
                                             <div class="form-group">
                                                 <label for="phnum" class="form-label">Phone number: (+91) </label>
-                                                <input type="number_format" class="form-control" id="phnum" name="phnumber" minlength="10" maxlength="10" required>
+                                                <input type="tel" class="form-control" id="phnum" name="phnumber" maxlength="10" pattern="[1-9]{1}[0-9]{9}" title="Please enter a valid 10 digits contact number" required>
                                             </div>
                                             <br>
 

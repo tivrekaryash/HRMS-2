@@ -283,8 +283,8 @@ $count = $_GET["c"];
                                <i class='fa-solid fa-user-tie'></i>
                                </div>
                                <div class='empty-state__message'>No Designations data</div>
-                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
-                               Add new employees by adding them as candidates in Candidate Details tab or Add designations in Designations tab under Compny Structure tab.
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span><br>
+                               Add new employees by adding them as candidates in Candidate Details tab or <br>Add designations in Designations tab under Compny Structure tab.
                                </div>
                                </div>
                                </div>";
@@ -331,12 +331,11 @@ $count = $_GET["c"];
                                 echo " <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
-                               <i class='fa-solid fa-circle-dollar-to-slot'></i>
+                               <i class='fa-solid fa-indian-rupee-sign'></i> 
                                </div>
                                <div class='empty-state__message'>No Personal Salary data</div>
-                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span><br>
                                These records are of each employee's personal salary amount that is edited for increments or decrements from the employee's base salary.
-                               <br> Add new employees by adding them as candidates in Candidate Details tab.
                                </div>
                                </div>
                                </div>";

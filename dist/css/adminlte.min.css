@@ -90,6 +90,8 @@ a:link {
     display: flex;
     align-items: center;
     flex-direction: column;
+    background-color: rgb(207, 241, 252);
+    border-radius: 10px;
 }
 
 .empty-state__content .empty-state__icon {
@@ -100,11 +102,11 @@ a:link {
     border-radius: 100px;
     justify-content: center;
     font-size: 300%;
-    background-color: #dbdbdb;
+    background-color: white;
 }
 
 .empty-state__content .empty-state__message {
-    color: #28a745;
+    color: red;
     font-size: 2.0rem;
     font-weight: 500;
     margin-top: 0.85rem;

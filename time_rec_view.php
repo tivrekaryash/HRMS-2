@@ -331,8 +331,8 @@ $count = $_GET["c"];
                                <i class='fa-solid fa-calendar-week'></i>
                                </div>
                                <div class='empty-state__message'>No Leave records</div>
-                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
-                               Add new Leave data by clicking Add Leaves in Leave Management under <br>Leave Management.
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span><br>
+                               Add new Leave data by clicking Add Leaves in Leave Management under Leave Management.
                                </div>
                                </div>
                                </div>";

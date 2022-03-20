@@ -258,7 +258,7 @@ $count = $_GET["c"];
 
                                             <div class="form-group">
                                                 <label for="pass" class="form-label">Password: </label>
-                                                <input type="text" class="form-control" id="pass" name="pass" placeholder="Keep Strong Password" required>
+                                                <input type="text" class="form-control" id="pass" name="pass" placeholder="***Keep a Strong Password***" autocomplete="off" required>
                                             </div>
                                             <br>
 

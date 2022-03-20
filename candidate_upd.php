@@ -63,14 +63,6 @@
                         </div>
                         <br>
 
-                        <div class="form-inline">
-                            <label for="age_upd" class="form-label">Age: </label>
-                            <div class="col-sm-2">
-                                <input type="number" class="form-control" id="age_upd" name="age_upd" value="<?php echo $row["candidate_age"]; ?>" required>
-                            </div>
-                        </div>
-                        <br>
-
                         <div class="form-check">
                             <label for="gender_upd" class="form-label">Gender: </label>
                             <div class="form-check">
@@ -96,7 +88,7 @@
 
                         <div class="form-group">
                             <label for="phnum_upd" class="form-label">Phone number: (+91) </label>
-                            <input type="number_format" class="form-control" id="phnum_upd" name="phnum_upd" minlength="10" maxlength="10" value="<?php echo $row["phnum"]; ?>" required>
+                            <input type="tel" class="form-control" id="phnum_upd" name="phnum_upd" value="<?php echo $row["phnum"]; ?>" maxlength="10" pattern="[1-9]{1}[0-9]{9}" title="Please enter a valid 10 digits contact number" required>
                         </div>
                         <br>
 

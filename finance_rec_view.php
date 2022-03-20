@@ -209,7 +209,7 @@ $count = $_GET["c"];
                                <i class='fa-solid fa-indian-rupee-sign'></i>
                                </div>
                                <div class='empty-state__message'>All Past Overtime Payments are Cleared</div>
-                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span><br>
                                Overtime Payments will be shown if the employee has done overtime during his shift.
                                <br>Check Attentance records in Time and Attendance tab.
                                </div>
@@ -280,8 +280,8 @@ $count = $_GET["c"];
                                <i class='fa-solid fa-receipt'></i>
                                </div>
                                <div class='empty-state__message'>All Past Compensation Payments are Cleared</div>
-                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span>
-                               Add new payments by clicking the button Add New and Clear the Payments to view records Here.
+                               <div class='empty-state__help'><span class='badge badge-secondary'>Tip</span><br>
+                               Add new payments by clicking the button Add New and Clear the Payments to view records here.
                                </div>
                                </div>
                                </div>"; 

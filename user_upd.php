@@ -32,7 +32,7 @@ require_once 'db_conn.php';
 
                          <div class="form-group">
                              <label for="pass_upd" class="form-label">Password: </label>
-                             <input type="text" class="form-control" id="pass_upd" name="pass_upd" placeholder="Keep Strong Password" required>
+                             <input type="text" class="form-control" id="pass_upd" name="pass_upd" placeholder="***Keep a Strong Password***" autocomplete="off" required>
                          </div>
                          <br>
 
