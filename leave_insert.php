@@ -8,7 +8,7 @@ $start_date = $_POST['leave_sdate'];
 $end_date = $_POST['leave_edate'];
 $reason = $_POST['reason'];
 
-if ($end_date > $start_date) {
+if ($end_date >= $start_date) {
     // inserting leave
     $res = mysqli_query($conn, "INSERT INTO leaves (employee_id, type_id, leave_start_date, leave_end_date, reason) values ('$emp_id', '$type_id', '$start_date', '$end_date', '$reason')");
 
