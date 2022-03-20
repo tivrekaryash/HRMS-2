@@ -29,19 +29,19 @@ require_once 'db_conn.php';
 
                         <div class="form-group">
                             <label for="phnum_hm" class="form-label">Phone (Home) number: (+91) </label>
-                            <input type="number_format" class="form-control" id="phnum_hm" name="phnum_hm" minlength="10" maxlength="10" value="<?php echo $row["phnum_home"]; ?>">
+                            <input type="tel" class="form-control" id="phnum_hm" name="phnum_hm" value="<?php echo $row["phnum_home"]; ?>"  maxlength="10" pattern="[1-9]{1}[0-9]{9}" title="Please enter a valid 10 digits contact number">
                         </div>
                         <br>
 
                         <div class="form-group">
                             <label for="phnum_wk" class="form-label">Phone (work) number: (+91) </label>
-                            <input type="number_format" class="form-control" id="phnum_wk" name="phnum_wk" minlength="10" maxlength="10" value="<?php echo $row["phnum_work"]; ?>" required>
+                            <input type="tel" class="form-control" id="phnum_wk" name="phnum_wk" value="<?php echo $row["phnum_work"]; ?>"  maxlength="10" pattern="[1-9]{1}[0-9]{9}" title="Please enter a valid 10 digits contact number" required>
                         </div>
                         <br>
 
                         <div class="form-group">
                             <label for="phnum_mb" class="form-label">Phone (Mobile) number: (+91) </label>
-                            <input type="number_format" class="form-control" id="phnum_mb" name="phnum_mb" minlength="10" maxlength="10" value="<?php echo $row["phnum_mobile"]; ?>">
+                            <input type="tel" class="form-control" id="phnum_mb" name="phnum_mb" value="<?php echo $row["phnum_mobile"]; ?>" maxlength="10" pattern="[1-9]{1}[0-9]{9}" title="Please enter a valid 10 digits contact number">
                         </div>
                         <br>
 
