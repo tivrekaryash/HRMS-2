@@ -9,7 +9,7 @@ $uname = $_POST['username'];
 $pass = $_POST['password'];
 
 // checking validity of username and password (from db)
-$row = mysqli_query($conn, "select password from user_details where username = '$uname'");
+$row = mysqli_query($conn, "select user_id, password from user_details where username = '$uname'");
 
 if ($row->num_rows > 0) {
     $row = $row->fetch_assoc();
@@ -18,7 +18,7 @@ if ($row->num_rows > 0) {
         // regenerate session id
         session_regenerate_id();
         $_SESSION['login'] = true;
-        $_SESSION['id'] = 1;
+        $_SESSION['id'] = $row["user_id"];
         $_SESSION['login_time'] = time();
 
         // redirect the user to members area/dashboard page

@@ -13,7 +13,14 @@ include 'db_conn.php';
   <div class="user-panel mt-3 pb-3 mb-3 d-flex">
     <div class="info">
       
-      <a href="index.php" class="d-block"><i class="fa-regular fa-circle-user"></i>&nbsp;  HR - Admin</a>
+      <a href="index.php" class="d-block"><i class="fa-regular fa-circle-user"></i>&nbsp;  
+      <?php
+      // displaying user role and user name
+        $row = $conn->query("select user_details.username, user_role.role from user_details inner join user_role on user_details.role_id=user_role.role_id where user_id='$_SESSION[id]'");
+        $row = $row->fetch_assoc();
+        echo $row["role"]." - ".$row["username"];
+      ?>
+      </a>
     </div>
   </div>
 

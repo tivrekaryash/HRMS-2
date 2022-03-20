@@ -1,10 +1,8 @@
-
 <!-- This pasge is used for testing purpose only-->
 <?php
 
-$uname='admin';
-$password = password_hash($uname, PASSWORD_DEFAULT);
-
-echo $password;
+$from = new DateTime('2001-05-23');
+$to   = new DateTime('today');
+echo $from->diff($to)->y;
 
 ?>
