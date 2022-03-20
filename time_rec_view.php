@@ -253,6 +253,14 @@ $count = $_GET["c"];
                             <br><br>
                             <?php
 
+                            if(isset($_GET["e"]))
+                            {
+                            echo "<div class='alert alert-warning alert-dismissible fade show' style='font-size: large; text-align:center;'>
+                                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                <strong>Warning! </strong>End Date should not be same as Start Date.
+                            </div>";
+                            }
+
                             // retrieves all leaves records
                             $result = $conn->query("SELECT * FROM leaves where approval='pending' order by employee_id");
 
