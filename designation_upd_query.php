@@ -11,8 +11,15 @@ $upd_id = $_POST['desgid'];
 // stores updated data into the database
 $res = $conn->query("UPDATE designations SET designation='$desig', base_salary='$salary', amt_per_hour='$amt_per_hour' WHERE designation_id='$upd_id'");
 
-// redirects to display employee information after closing connection
-$conn->close();
-header("location:cmp_struct_view.php?c=1");
-exit;
+if ($res) {
+    // redirects to display candidate information after closing connection
+    $conn->close();
+    header("location:cmp_struct_view.php?c=1");
+    exit;
+} else {
+    // redirects to display candidate information after closing connection
+    $conn->close();
+    header("location:cmp_struct_view.php?c=1&e=1");
+    exit;
+}
 ?>

@@ -12,8 +12,15 @@ $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 // creating the user
 $res = mysqli_query($conn, "INSERT INTO user_details (role_id, username, password) values ('$user_role', '$username', '$password')");
 
-// redirects to user details page
-$conn->close();
-header("location:user_reg_view.php?c=1");
-exit;
+if ($res) {
+    // redirects to display candidate information after closing connection
+    $conn->close();
+    header("location:user_reg_view.php?c=1");
+    exit;
+} else {
+    // redirects to display candidate information after closing connection
+    $conn->close();
+    header("location:user_reg_view.php?c=1&e=1");
+    exit;
+}
 ?>

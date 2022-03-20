@@ -10,8 +10,15 @@ $upd_id = $_POST['dptid'];
 // stores updated data into the database
 $res = $conn->query("UPDATE department SET department_name='$deptname', department_location='$deptloc' WHERE department_id='$upd_id'");
 
-// redirects to display employee information after closing connection
-$conn->close();
-header("location:cmp_struct_view.php?c=0");
-exit;
+if ($res) {
+    // redirects to display employee information after closing connection
+    $conn->close();
+    header("location:cmp_struct_view.php?c=0");
+    exit;
+} else {
+    // redirects to display employee information after closing connection
+    $conn->close();
+    header("location:cmp_struct_view.php?c=0&e=1");
+    exit;
+}
 ?>
