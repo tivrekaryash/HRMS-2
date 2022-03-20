@@ -149,6 +149,13 @@ $count = $_GET["c"];
                             </button>
                             <br><br>
                             <?php
+                            if(isset($_GET["e"]))
+                            {
+                            echo "<div class='alert alert-warning alert-dismissible fade show' style='font-size: large; text-align:center;'>
+                                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                <strong>Warning! </strong>The designation already exists.
+                            </div>";
+                            }
 
                             // retrieves all designation information records
                             $result = $conn->query("SELECT * FROM designations");
@@ -259,7 +266,7 @@ $count = $_GET["c"];
 
                                                     while ($row = $result->fetch_assoc()) {
                                                         // displaying each department in the list
-                                                        echo "<option>" . $row["department_name"] . "</option>";
+                                                        echo "<option value = '$row[department_id]'>" . $row["department_name"] . "</option>";
                                                     }
                                                     ?>
                                                 </select>

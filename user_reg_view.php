@@ -93,6 +93,14 @@ $count = $_GET["c"];
                             <br><br>
                             <?php
 
+                            if(isset($_GET["e"]))
+                            {
+                            echo "<div class='alert alert-warning alert-dismissible fade show' style='font-size: large; text-align:center;'>
+                                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                <strong>Warning! </strong>User role already exists.
+                            </div>";
+                            }
+
                             // retrieves all role information records
                             $result = $conn->query("SELECT * FROM user_role");
 
@@ -140,6 +148,14 @@ $count = $_GET["c"];
                             </button>
                             <br><br>
                             <?php
+
+                            if(isset($_GET["e"]))
+                            {
+                            echo "<div class='alert alert-warning alert-dismissible fade show' style='font-size: large; text-align:center;'>
+                                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                <strong>Warning! </strong>The User already exists.
+                            </div>";
+                            }
 
                             // retrieves all login information records
                             $result = $conn->query("SELECT * FROM user_details");
