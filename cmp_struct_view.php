@@ -25,8 +25,8 @@ $count = $_GET["c"];
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-       <!-- Preloader -->
-       <div class="preloader flex-column justify-content-center align-items-center" >
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
             <div style="font-size: xx-large;font-weight: bold;">Now Loading...</div>
         </div>
 
@@ -74,15 +74,18 @@ $count = $_GET["c"];
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" id="cmpTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if($count == 0) echo "active";?>" id="department-tab" data-toggle="tab" href="#department" role="tab" aria-controls="department" aria-selected="<?php if($count == 0) echo "true"; else echo "false"; ?>">Departments</a>
+                            <a class="nav-link <?php if ($count == 0) echo "active"; ?>" id="department-tab" data-toggle="tab" href="#department" role="tab" aria-controls="department" aria-selected="<?php if ($count == 0) echo "true";
+                                                                                                                                                                                                        else echo "false"; ?>">Departments</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link <?php if($count == 1) echo "active";?>" id="designation-tab" data-toggle="tab" href="#designation" role="tab" aria-controls="designation" aria-selected="<?php if($count == 1) echo "true"; else echo "false"; ?>">Designations</a>
+                            <a class="nav-link <?php if ($count == 1) echo "active"; ?>" id="designation-tab" data-toggle="tab" href="#designation" role="tab" aria-controls="designation" aria-selected="<?php if ($count == 1) echo "true";
+                                                                                                                                                                                                            else echo "false"; ?>">Designations</a>
                         </li>
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
+
                         <!-- department -->
                         <div class="tab-pane fade <?php if ($count == 0) echo "show active"; ?>" id="department" role="tabpanel" aria-labelledby="department-tab">
                             <button type="button" data-toggle="modal" data-target="#modal_insert_dept" class="btn btn-outline-success" style="float:right">
@@ -90,6 +93,10 @@ $count = $_GET["c"];
 
                             </button>
                             <br><br>
+                            <div class="alert alert-warning alert-dismissible fade show" style="font-size: large; text-align:center;">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Warning!</strong> Unique Department Names.
+                            </div>
                             <?php
 
                             // retrieves all department information records
@@ -153,7 +160,7 @@ $count = $_GET["c"];
                                     $res = $conn->query("select * from department where department_id = $row[department_id]");
                                     $res = $res->fetch_assoc();
 
-                                    echo "<tr><td>" . $row["designation_id"] . "</td><td>" . $res["department_name"] . "</td><td>" . $row["designation"] . "</td><td>" . $row["base_salary"] .  "</td><td>" . $row["amt_per_hour"] ."</td>";
+                                    echo "<tr><td>" . $row["designation_id"] . "</td><td>" . $res["department_name"] . "</td><td>" . $row["designation"] . "</td><td>" . $row["base_salary"] .  "</td><td>" . $row["amt_per_hour"] . "</td>";
 
                             ?>
 
