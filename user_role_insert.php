@@ -15,7 +15,7 @@ if ($res) {
 } else {
     // redirects to display candidate information after closing connection
     $conn->close();
-    header("location:user_reg_view.php?c=0&e=1");
+    header("location:user_reg_view.php?c=0&er=1");
     exit;
 }
 ?>
