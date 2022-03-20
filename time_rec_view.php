@@ -253,7 +253,7 @@ $count = $_GET["c"];
                             <br><br>
                             <?php
 
-                            if(isset($_GET["e"]))
+                            if(isset($_GET["el"]))
                             {
                             echo "<div class='alert alert-warning alert-dismissible fade show' style='font-size: large; text-align:center;'>
                                 <button type='button' class='close' data-dismiss='alert'>&times;</button>
