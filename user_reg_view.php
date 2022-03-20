@@ -102,7 +102,7 @@ $count = $_GET["c"];
                             }
 
                             // retrieves all role information records
-                            $result = $conn->query("SELECT * FROM user_role");
+                            $result = $conn->query("SELECT * FROM user_role order by role_id");
 
                             if ($result->num_rows > 0) {
                                 // displaying header for tabular form
