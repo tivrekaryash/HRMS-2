@@ -90,14 +90,17 @@ $count = $_GET["c"];
                         <div class="tab-pane fade <?php if ($count == 0) echo "show active"; ?>" id="department" role="tabpanel" aria-labelledby="department-tab">
                             <button type="button" data-toggle="modal" data-target="#modal_insert_dept" class="btn btn-outline-success" style="float:right">
                                 <i class="fas fa-plus"></i> Add New
-
                             </button>
                             <br><br>
-                            <div class="alert alert-warning alert-dismissible fade show" style="font-size: large; text-align:center;">
-                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                <strong>Warning!</strong> Unique Department Names.
-                            </div>
+
                             <?php
+                            if(isset($_GET["e"]))
+                            {
+                            echo "<div class='alert alert-warning alert-dismissible fade show' style='font-size: large; text-align:center;'>
+                                <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                <strong>Warning! </strong>The department already exists.
+                            </div>";
+                            }
 
                             // retrieves all department information records
                             $result = $conn->query("SELECT * FROM department");
