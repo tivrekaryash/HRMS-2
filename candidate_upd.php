@@ -100,7 +100,7 @@
                         <br>
 
                         <div class="form-inline">
-                            <label for="workexp_upd" class="form-label">Total work experience (in years): </label>
+                            <label for="workexp_upd" class="form-label">Experience (in years): </label>
                             <div class="col-sm-2">
                                 <input type="number" class="form-control" id="workexp_upd" name="workexp_upd" value="<?php echo $row["experience_in_years"]; ?>" required>
                             </div>

@@ -187,7 +187,7 @@ require_once('check_login.php');
                                             <br>
 
                                             <div class="form-inline">
-                                                <label for="workexp" class="form-label">Total work experience (in years): </label>
+                                                <label for="workexp" class="form-label">Experience (in years): </label>
                                                 <div class="col-sm-2">
                                                     <input type="number" class="form-control" id="workexp" name="workexperience" required>
                                                 </div>
