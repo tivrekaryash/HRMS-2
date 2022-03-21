@@ -25,8 +25,8 @@ $count = $_GET["c"];
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-       <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center" >
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
             <div style="font-size: xx-large;font-weight: bold;">Now Loading...</div>
         </div>
 
@@ -162,7 +162,7 @@ $count = $_GET["c"];
                                Add new payments by clicking the button Add New.
                                </div>
                                </div>
-                               </div>"; 
+                               </div>";
                             }
 
                             ?>
@@ -214,7 +214,7 @@ $count = $_GET["c"];
                                <br>Check Attentance records in Time and Attendance tab.
                                </div>
                                </div>
-                               </div>"; 
+                               </div>";
                             }
 
                             ?>
@@ -250,7 +250,7 @@ $count = $_GET["c"];
                                 }
 
                                 echo "</table>";
-                            } 
+                            }
 
                             // retrieves all cleared compensation records
                             $result = $conn->query("SELECT * FROM compensation where clearance = 'cleared' group by employee_id order by compensation_id desc");
@@ -270,9 +270,7 @@ $count = $_GET["c"];
                                 }
 
                                 echo "</table>";
-                            }
-                            
-                            else {
+                            } else {
                                 echo " <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
@@ -284,7 +282,7 @@ $count = $_GET["c"];
                                Add new payments by clicking the button Add New and Clear the Payments to view records here.
                                </div>
                                </div>
-                               </div>"; 
+                               </div>";
                             }
                             ?>
                         </div><!-- /.Compensation -->
@@ -411,10 +409,14 @@ $count = $_GET["c"];
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
+            <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top" style="opacity: 60%;">
+                <i class="fas fa-chevron-up"></i>
+            </a>
+            <!-- /.back-to-top button -->
         </div>
         <!-- /.content-wrapper -->
-         <!-- footer -->
-         <?php include 'footer.php'; ?>
+        <!-- footer -->
+        <?php include 'footer.php'; ?>
         <!-- /.footer -->
 
         <!-- Control Sidebar -->

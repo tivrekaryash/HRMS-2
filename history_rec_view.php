@@ -25,8 +25,8 @@ $count = $_GET["c"];
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-       <!-- Preloader -->
-       <div class="preloader flex-column justify-content-center align-items-center" >
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
             <div style="font-size: xx-large;font-weight: bold;">Now Loading...</div>
         </div>
 
@@ -224,7 +224,7 @@ $count = $_GET["c"];
                                 }
 
                                 echo "</table>";
-                            }else {
+                            } else {
                                 echo " <div class='empty-state'>
                                <div class='empty-state__content'>
                                <div class='empty-state__icon'>
@@ -507,110 +507,13 @@ $count = $_GET["c"];
                     </div>
                     <!-- /.Modal -->
 
-                    <!-- scripts -->
-                    <?php include 'scripts.php'; ?>
-                    <script type='text/javascript'>
-                        $(document).ready(function() {
-
-                            $('.userinfo').click(function() {
-
-                                var userid = $(this).data('id');
-
-                                // AJAX request
-                                $.ajax({
-                                    url: 'ajax_hisJob.php',
-                                    type: 'post',
-                                    data: {
-                                        userid: userid
-                                    },
-                                    success: function(response) {
-                                        // Add response in Modal body
-                                        $('#modal-body-hisJob').html(response);
-
-                                        // Display Modal
-                                        $('#modal_view_HisJob').modal('show');
-                                    }
-                                });
-                            });
-                        });
-
-                        $(document).ready(function() {
-
-                            $('.salhisinfo').click(function() {
-
-                                var userid = $(this).data('id');
-
-                                // AJAX request
-                                $.ajax({
-                                    url: 'ajax_hissal.php',
-                                    type: 'post',
-                                    data: {
-                                        userid: userid
-                                    },
-                                    success: function(response) {
-                                        // Add response in Modal body
-                                        $('#modal-body-hissal').html(response);
-
-                                        // Display Modal
-                                        $('#modal_view_Hissal').modal('show');
-                                    }
-                                });
-                            });
-                        });
-
-                        $(document).ready(function() {
-
-                            $('.otphisinfo').click(function() {
-
-                                var userid = $(this).data('id');
-
-                                // AJAX request
-                                $.ajax({
-                                    url: 'ajax_HisOtp.php',
-                                    type: 'post',
-                                    data: {
-                                        userid: userid
-                                    },
-                                    success: function(response) {
-                                        // Add response in Modal body
-                                        $('#modal-body-HisOtp').html(response);
-
-                                        // Display Modal
-                                        $('#modal_view_HisOtp').modal('show');
-                                    }
-                                });
-                            });
-                        });
-
-                        $(document).ready(function() {
-
-                            $('.HisDiscinfo').click(function() {
-
-                                var userid = $(this).data('id');
-
-                                // AJAX request
-                                $.ajax({
-                                    url: 'ajax_HisDisc.php',
-                                    type: 'post',
-                                    data: {
-                                        userid: userid
-                                    },
-                                    success: function(response) {
-                                        // Add response in Modal body
-                                        $('#modal-body-HisDisc').html(response);
-
-                                        // Display Modal
-                                        $('#modal_view_HisDisc').modal('show');
-                                    }
-                                });
-                            });
-                        });
-                    </script>
-                    <!-- /.scripts -->
-
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
+            <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top" style="opacity: 60%;">
+                <i class="fas fa-chevron-up"></i>
+            </a>
+            <!-- /.back-to-top button -->
         </div>
         <!-- /.content-wrapper -->
         <!-- footer -->
@@ -624,6 +527,107 @@ $count = $_GET["c"];
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
+
+    <!-- scripts -->
+    <?php include 'scripts.php'; ?>
+    <script type='text/javascript'>
+        $(document).ready(function() {
+
+            $('.userinfo').click(function() {
+
+                var userid = $(this).data('id');
+
+                // AJAX request
+                $.ajax({
+                    url: 'ajax_hisJob.php',
+                    type: 'post',
+                    data: {
+                        userid: userid
+                    },
+                    success: function(response) {
+                        // Add response in Modal body
+                        $('#modal-body-hisJob').html(response);
+
+                        // Display Modal
+                        $('#modal_view_HisJob').modal('show');
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function() {
+
+            $('.salhisinfo').click(function() {
+
+                var userid = $(this).data('id');
+
+                // AJAX request
+                $.ajax({
+                    url: 'ajax_hissal.php',
+                    type: 'post',
+                    data: {
+                        userid: userid
+                    },
+                    success: function(response) {
+                        // Add response in Modal body
+                        $('#modal-body-hissal').html(response);
+
+                        // Display Modal
+                        $('#modal_view_Hissal').modal('show');
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function() {
+
+            $('.otphisinfo').click(function() {
+
+                var userid = $(this).data('id');
+
+                // AJAX request
+                $.ajax({
+                    url: 'ajax_HisOtp.php',
+                    type: 'post',
+                    data: {
+                        userid: userid
+                    },
+                    success: function(response) {
+                        // Add response in Modal body
+                        $('#modal-body-HisOtp').html(response);
+
+                        // Display Modal
+                        $('#modal_view_HisOtp').modal('show');
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function() {
+
+            $('.HisDiscinfo').click(function() {
+
+                var userid = $(this).data('id');
+
+                // AJAX request
+                $.ajax({
+                    url: 'ajax_HisDisc.php',
+                    type: 'post',
+                    data: {
+                        userid: userid
+                    },
+                    success: function(response) {
+                        // Add response in Modal body
+                        $('#modal-body-HisDisc').html(response);
+
+                        // Display Modal
+                        $('#modal_view_HisDisc').modal('show');
+                    }
+                });
+            });
+        });
+    </script>
+    <!-- /.scripts -->
 </body>
 
 </html>

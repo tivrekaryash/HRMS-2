@@ -215,6 +215,10 @@ require_once('check_login.php');
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
+            <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top" style="opacity: 60%;">
+                <i class="fas fa-chevron-up"></i>
+            </a>
+            <!-- /.back-to-top button -->
         </div>
         <!-- /.content-wrapper -->
         <!-- footer -->
