@@ -3,7 +3,7 @@
 include 'db_conn.php';
 
 // session check
-require_once('check_login.php');
+//require_once('check_login.php');
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +17,10 @@ require_once('check_login.php');
     <!-- style-sheet links -->
     <?php include 'style_links.php'; ?>
     <!-- /.style-sheet links -->
+
+    <!--datatable style links -->
+    <link href="datatable/css/bootstrap5.0.1.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="datatable/css/datatables-1.10.25.min.css" />
 
 </head>
 
@@ -79,7 +83,7 @@ require_once('check_login.php');
 
                     if ($result->num_rows > 0) {
                         // displaying header for table view
-                        echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<tr><th>" . "Candidate ID" . "</th><th>" . "Full name" . "</th><th>" . "Date of Birth" . "</th><th>" . "Age" . "</th><th>" . "Gender" . "</th><th>" . "Address" . "</th><th>" . "Contact number" . "</th><th>" . "E-mail" . "</th><th colspan = '3'>" . "Actions" . "</th></tr>";
+                        echo "<table style='text-align:center; background-color:white;' class='table table-bordered'>" . "<thead><tr><th>" . "Candidate ID" . "</th><th>" . "Full name" . "</th><th>" . "Date of Birth" . "</th><th>" . "Age" . "</th><th>" . "Gender" . "</th><th>" . "Address" . "</th><th>" . "Contact number" . "</th><th>" . "E-mail" . "</th><th colspan = '3'>" . "Actions" . "</th></tr></thead>";
 
                         // displaying data from db
                         while ($row = $result->fetch_assoc()) {
@@ -87,6 +91,7 @@ require_once('check_login.php');
                             $candidate_email = $row["candidate_email"];
                             echo "<tr><td>" . $row["candidate_id"] . "</td><td id = 'fname_td'>" . $row["candidate_fullname"] . "</td><td id = 'dob_td'>" . $row["candidate_dob"] . "</td><td id = 'age_td'>" . $row["candidate_age"] . "</td><td id = 'gender_td'>" . $row["candidate_gender"] . "</td><td id = 'address_td'>" . $row["candidate_address"] . "</td><td id = 'phnum_td'> <a href='tel:$candidate_phone' class='hyperlinked_phones'>$candidate_phone</a></td><td id = 'email_td'><a href='mailto:$candidate_email' class='hyperlinked_emails'>$candidate_email</a></td>";
                     ?>
+
                             <td><a href="candidate_delete.php?del=<?php echo $row["candidate_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
                             <?php
                             // different button styles based on whether candidate was already accepted or not
@@ -212,6 +217,22 @@ require_once('check_login.php');
                         </div>
                     </div><!-- /.Modal -->
 
+                    <table id="datatable1" class="table">
+                        <thead>
+                            <th>Candidate Id</th>
+                            <th>Full Name</th>
+                            <th>Date of Birth</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Address</th>
+                            <th>Contact Number</th>
+                            <th>Email</th>
+                            <th>Options</th>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
@@ -232,6 +253,36 @@ require_once('check_login.php');
     <!-- scripts -->
     <?php include 'scripts.php'; ?>
     <!-- /.scripts -->
+
+    <!-- datatable js -->
+    <script src="datatable/js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <script src="datatable/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="datatable/js/dt-1.10.25datatables.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#datatable1').DataTable({
+                "fnCreatedRow": function(nRow, aData, iDataIndex) {
+                    $(nRow).attr('candidate_id', aData[0]);
+                },
+                'serverSide': 'true',
+                'processing': 'true',
+                'paging': 'true',
+                'order': [],
+                'ajax': {
+                    'url': 'fetch_data.php',
+                    'type': 'post',
+                },
+                "aoColumnDefs": [{
+                        "bSortable": false,
+                        "aTargets": [8]
+                    },
+
+                ]
+            });
+        });
+    </script>
+
 </body>
 
 </html>
