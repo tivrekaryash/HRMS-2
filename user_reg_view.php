@@ -93,9 +93,8 @@ $count = $_GET["c"];
                             <br><br>
                             <?php
 
-                            if(isset($_GET["er"]))
-                            {
-                            echo "<div class='alert alert-warning alert-dismissible fade show' style='font-size: large; text-align:center;'>
+                            if (isset($_GET["er"])) {
+                                echo "<div class='alert alert-warning alert-dismissible fade show' style='font-size: large; text-align:center;'>
                                 <button type='button' class='close' data-dismiss='alert'>&times;</button>
                                 <strong>Warning! </strong>User role already exists.
                             </div>";
@@ -149,9 +148,8 @@ $count = $_GET["c"];
                             <br><br>
                             <?php
 
-                            if(isset($_GET["e"]))
-                            {
-                            echo "<div class='alert alert-warning alert-dismissible fade show' style='font-size: large; text-align:center;'>
+                            if (isset($_GET["e"])) {
+                                echo "<div class='alert alert-warning alert-dismissible fade show' style='font-size: large; text-align:center;'>
                                 <button type='button' class='close' data-dismiss='alert'>&times;</button>
                                 <strong>Warning! </strong>The User already exists.
                             </div>";
@@ -172,10 +170,11 @@ $count = $_GET["c"];
                                     echo "<tr><td>" . $row["user_id"] . "</td><td>" . $res["role"] . "</td><td>" . $row["username"] . "</td>";
                             ?>
                                     <td><button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modal_update_user<?php echo $row["user_id"]; ?>">Update</button></td>
-                            <?php
+                                    <?php
                                     if ($row["user_id"] != 1) {
-                            ?>
-                                        <td><a href="user_delete.php?del=<?php echo $row["user_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td></tr>
+                                    ?>
+                                        <td><a href="user_delete.php?del=<?php echo $row["user_id"]; ?>"><button type="submit" class="btn btn-danger">Delete</button></td>
+                                        </tr>
                             <?php
                                     } else
                                         echo "<td><button class='btn btn-danger' disabled>Cannot delete</button></td></tr>";
@@ -294,6 +293,10 @@ $count = $_GET["c"];
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
+            <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top" style="opacity: 60%;">
+                <i class="fas fa-chevron-up"></i>
+            </a>
+            <!-- /.back-to-top button -->
         </div>
         <!-- /.content-wrapper -->
         <!-- footer -->
@@ -305,6 +308,10 @@ $count = $_GET["c"];
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
+        <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top" style="opacity: 60%;">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+        <!-- /.back-to-top button -->
     </div>
     <!-- ./wrapper -->
 

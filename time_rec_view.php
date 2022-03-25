@@ -25,8 +25,8 @@ $count = $_GET["c"];
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-       <!-- Preloader -->
-       <div class="preloader flex-column justify-content-center align-items-center" >
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
             <div style="font-size: xx-large;font-weight: bold;">Now Loading...</div>
         </div>
 
@@ -195,10 +195,9 @@ $count = $_GET["c"];
                             </button>
                             <br><br>
                             <?php
-                            
-                            if(isset($_GET["e"]))
-                            {
-                            echo "<div class='alert alert-warning alert-dismissible fade show' style='font-size: large; text-align:center;'>
+
+                            if (isset($_GET["e"])) {
+                                echo "<div class='alert alert-warning alert-dismissible fade show' style='font-size: large; text-align:center;'>
                                 <button type='button' class='close' data-dismiss='alert'>&times;</button>
                                 <strong>Warning! </strong>The Leave type already exists.
                             </div>";
@@ -253,9 +252,8 @@ $count = $_GET["c"];
                             <br><br>
                             <?php
 
-                            if(isset($_GET["el"]))
-                            {
-                            echo "<div class='alert alert-warning alert-dismissible fade show' style='font-size: large; text-align:center;'>
+                            if (isset($_GET["el"])) {
+                                echo "<div class='alert alert-warning alert-dismissible fade show' style='font-size: large; text-align:center;'>
                                 <button type='button' class='close' data-dismiss='alert'>&times;</button>
                                 <strong>Warning! </strong>End Date can not be prior to Start Date.
                             </div>";
@@ -574,6 +572,10 @@ $count = $_GET["c"];
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
+            <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top" style="opacity: 60%;">
+                <i class="fas fa-chevron-up"></i>
+            </a>
+            <!-- /.back-to-top button -->
         </div>
         <!-- /.content-wrapper -->
         <!-- footer -->

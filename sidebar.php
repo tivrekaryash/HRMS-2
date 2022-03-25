@@ -206,7 +206,7 @@ include 'db_conn.php';
               // badge displays number of overtime pay records pending if any
               if ($res_otp["count(otp_pay_id)"] != 0) {
                 echo "<span class='badge badge-warning right'>";
-                echo $res["count(salary_id)"];
+                echo $res_otp["count(otp_pay_id)"];
                 echo "</span>";
               }
               ?>
