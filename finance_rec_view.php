@@ -78,12 +78,12 @@ $count = $_GET["c"];
                                                                                                                                                                                     else echo "false"; ?>">Salary Payments &nbsp;
                                 <?php
                                 // retrieving number of employees without designations
-                                $result = mysqli_query($conn, "select count(*) from employee_information where designation_id is null");
+                                $result = mysqli_query($conn, "select count(salary_id) from employee_salary where clearance = 'pending'");
                                 $row = $result->fetch_assoc();
 
                                 // if there is atleast one employee without a designation, shows a count of employees without designations
-                                if ($row["count(*)"] > 0)
-                                    echo "<span data-toggle='tooltip' data-placement='top' title='△ Pending salary clearance △' class='badge badge-warning right'>" . $row["count(*)"] . "</span>";
+                                if ($row["count(salary_id)"] > 0)
+                                    echo "<span data-toggle='tooltip' data-placement='top' title='△ Pending salary clearance △' class='badge badge-warning right'>" . $row["count(salary_id)"] . "</span>";
                                 ?>
                             </a>
                         </li>
@@ -92,12 +92,12 @@ $count = $_GET["c"];
                                                                                                                                                                                     else echo "false"; ?>">Overtime Payments &nbsp;
                                 <?php
                                 // retrieving number of employees without designations
-                                $result = mysqli_query($conn, "select count(*) from employee_information where designation_id is null");
+                                $result = mysqli_query($conn, "select count(otp_pay_id) from overtime_pay_emp where clearance = 'pending'");
                                 $row = $result->fetch_assoc();
 
                                 // if there is atleast one employee without a designation, shows a count of employees without designations
-                                if ($row["count(*)"] > 0)
-                                    echo "<span data-toggle='tooltip' data-placement='top' title='△ Pending Overtime Pay clearance △' class='badge badge-waring right'>" . $row["count(*)"] . "</span>";
+                                if ($row["count(otp_pay_id)"] > 0)
+                                    echo "<span data-toggle='tooltip' data-placement='top' title='△ Pending Overtime Pay clearance △' class='badge badge-warning right'>" . $row["count(otp_pay_id)"] . "</span>";
                                 ?>
                             </a>
                         </li>
